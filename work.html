@@ -105,6 +105,37 @@
   footer .container { display: flex; justify-content: space-between; align-items: center; }
   footer div { font-size: 12px; color: var(--muted); letter-spacing: 0.05em; }
 
+  /* ========== Loader ========== */
+  .loader-overlay {
+    position: fixed; inset: 0;
+    background: #1a1a1a;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 999;
+    transition: opacity 0.7s ease;
+  }
+  .loader-overlay.hidden { opacity: 0; pointer-events: none; }
+  .loader-logo {
+    font-size: 18px; letter-spacing: 0.35em;
+    color: #f2f2f2; font-weight: 400;
+    opacity: 0;
+    animation: logoIn 0.7s ease 0.3s forwards;
+  }
+  @keyframes logoIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ========== Scroll Reveal (上から) ========== */
+  .reveal {
+    opacity: 0;
+    transform: translateY(-18px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
   /* ========== Responsive ========== */
   @media (max-width: 640px) {
     .container { padding: 0 20px; }
@@ -116,6 +147,11 @@
 </style>
 </head>
 <body>
+
+<!-- ========== Loader ========== -->
+<div class="loader-overlay" id="loaderOverlay">
+  <span class="loader-logo">Launch.</span>
+</div>
 
 <header id="siteHeader">
   <div class="container">
@@ -129,7 +165,7 @@
 </header>
 
 <div class="container">
-  <div class="back-bar">
+  <div class="back-bar reveal">
     <a href="works.html">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
         <line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/>
@@ -141,16 +177,16 @@
 
 <div class="container">
   <section class="work-hero">
-    <div class="work-meta">
+    <div class="work-meta reveal">
       <span class="work-cat" id="workCat"></span>
       <span class="work-year" id="workYear"></span>
     </div>
-    <h2 id="workTitle"></h2>
+    <h2 class="reveal" id="workTitle"></h2>
   </section>
 </div>
 
 <div class="container">
-  <section class="work-video">
+  <section class="work-video reveal">
     <div class="video-wrap">
       <iframe id="workIframe" src="" allowfullscreen loading="lazy"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
@@ -159,7 +195,7 @@
   </section>
 </div>
 
-<div class="container" id="descSection" style="display:none">
+<div class="container reveal" id="descSection" style="display:none">
   <section class="work-desc">
     <div class="section-label">Description</div>
     <p id="workDesc"></p>
@@ -167,7 +203,7 @@
 </div>
 
 <div class="container">
-  <section class="work-credits">
+  <section class="work-credits reveal">
     <div class="section-label">Role</div>
     <div class="credits-list" id="creditsList"></div>
   </section>
@@ -319,6 +355,24 @@ if (work) {
 } else {
   document.querySelector('.work-hero h2').textContent = '作品が見つかりません';
 }
+
+// ===== Loader =====
+const loaderOverlay = document.getElementById('loaderOverlay');
+setTimeout(() => {
+  loaderOverlay.classList.add('hidden');
+  setTimeout(() => loaderOverlay.remove(), 800);
+}, 1400);
+
+// ===== Scroll reveal (上から) =====
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
 // ===== Header scroll =====
 const header = document.getElementById('siteHeader');
