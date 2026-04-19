@@ -1,0 +1,7 @@
+# Local Netlify folder
+.netlify
+# macOS
+.DS_Store
+# 一時ファイル
+*.zip
+ziOJ7QQ8
