@@ -304,11 +304,39 @@
   .about-grid {
     display: grid;
     grid-template-columns: 240px 1fr;
-    gap: 48px;
+    gap: 64px;
+    align-items: start;
+  }
+  .about-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  .about-photo {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  .about-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 73% 28%;
+  }
+  .about-name {
+    font-size: 12px;
+    letter-spacing: 0.3em;
+    color: var(--muted);
+    text-transform: uppercase;
+    font-weight: 500;
   }
   .about h3 {
     font-size: 13px; color: var(--muted);
     letter-spacing: 0.2em; text-transform: uppercase; font-weight: 500;
+    margin-bottom: 20px;
   }
   .about-body p { margin-bottom: 16px; }
   .tools {
@@ -401,7 +429,9 @@
     .work-list { grid-template-columns: 1fr; gap: 40px; }
     .work-item h3 { font-size: 15px; }
     .about { padding: 56px 0; }
-    .about-grid { grid-template-columns: 1fr; gap: 16px; }
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    .about-left { flex-direction: row; align-items: center; gap: 24px; }
+    .about-photo { width: 120px; height: 120px; }
     .contact { padding: 72px 0; }
     footer .container { flex-direction: column; gap: 6px; }
   }
@@ -534,8 +564,14 @@
 <section class="about" id="about">
   <div class="container">
     <div class="about-grid">
-      <h3 class="reveal">About</h3>
+      <div class="about-left reveal">
+        <div class="about-photo">
+          <img src="about.jpg" alt="SHOTARO">
+        </div>
+        <span class="about-name">SHOTARO</span>
+      </div>
       <div class="about-body reveal">
+        <h3>About</h3>
         <p>大阪を拠点に、MV・企業PR・ドキュメンタリー・YouTube編集を幅広く手がける映像クリエイター。</p>
         <p>少人数制作を強みとし、企画段階から柔軟にご相談に応じます。撮影・編集・カラーグレーディングまで一貫対応可能。</p>
 
