@@ -43,6 +43,17 @@
     transform: translateY(0);
   }
 
+  /* ========== Page Load Stagger ========== */
+  .page-load {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .page-load.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
   /* ========== Layout ========== */
   .container {
     max-width: 960px;
@@ -385,13 +396,13 @@
 <!-- ========== Header ========== -->
 <header id="siteHeader">
   <div class="container">
-    <h1>SHOTARO</h1>
-    <nav>
+    <h1 class="page-load" data-load-delay="0">SHOTARO</h1>
+    <nav class="page-load" data-load-delay="150">
       <a href="#works">Works</a>
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
     </nav>
-    <button class="hamburger" id="hamburger" aria-label="メニュー">
+    <button class="hamburger page-load" data-load-delay="150" id="hamburger" aria-label="メニュー">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -400,10 +411,10 @@
 <!-- ========== Intro ========== -->
 <section class="intro">
   <div class="container">
-    <h2 class="reveal">想いを、届ける。</h2>
-    <p class="reveal">大阪を拠点に活動する映像クリエイターです。<br>ミュージックビデオ、企業PR映像などを手がけています。</p>
-    <p class="reveal">アーティストやブランドの「伝えたい」に寄り添った映像を届けています。<br>企画から撮影、編集まで一貫対応可能です。</p>
-    <div class="tags reveal">
+    <h2 class="page-load" data-load-delay="300">想いを、届ける。</h2>
+    <p class="page-load" data-load-delay="480">大阪を拠点に活動する映像クリエイターです。<br>ミュージックビデオ、企業PR映像などを手がけています。</p>
+    <p class="page-load" data-load-delay="580">アーティストやブランドの「伝えたい」に寄り添った映像を届けています。<br>企画から撮影、編集まで一貫対応可能です。</p>
+    <div class="tags page-load" data-load-delay="720">
       <a href="works.html?cat=artist">ミュージックビデオ</a>
       <a href="works.html?cat=corporate">企業PR</a>
     </div>
@@ -506,7 +517,7 @@
     <h2 class="reveal">お仕事のご依頼・ご相談</h2>
     <p class="reveal">企画段階からのご相談もお気軽にどうぞ。</p>
     <div class="contact-links reveal">
-      <a class="mail" href="mailto:shotaro_lib@icloud.com"><span>shotaro_lib@icloud.com</span></a>
+      <a class="mail" href="mailto:shotaro@launch-films.com"><span>shotaro@launch-films.com</span></a>
       <a class="sns-link" href="https://www.instagram.com/shotaro_lib/" target="_blank" rel="noopener">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
           <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
@@ -542,6 +553,12 @@
   hamburger.addEventListener('click', () => hamburger.classList.contains('open') ? closeMenu() : openMenu());
   overlay.addEventListener('click', closeMenu);
   document.querySelectorAll('.mobile-nav-link').forEach(l => l.addEventListener('click', closeMenu));
+
+  // ===== Page load stagger =====
+  document.querySelectorAll('.page-load').forEach(el => {
+    const delay = parseInt(el.dataset.loadDelay || 0);
+    setTimeout(() => el.classList.add('visible'), delay);
+  });
 
   // ===== Scroll reveal =====
   const observer = new IntersectionObserver((entries) => {
