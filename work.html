@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Work — SHOTARO</title>
+<style>
+  :root {
+    --bg: #f2f2f2;
+    --bg-card: #f8f8f8;
+    --fg: #1a1a1a;
+    --muted: #888;
+    --line: #dedede;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ ProN W3", -apple-system, sans-serif;
+    line-height: 1.8;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  a { color: inherit; text-decoration: none; }
+
+  .container { max-width: 960px; margin: 0 auto; padding: 0 32px; }
+
+  /* ========== Header ========== */
+  header {
+    padding: 40px 0;
+    border-bottom: 1px solid var(--line);
+    position: sticky; top: 0;
+    background: rgba(242,242,242,0.92);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 100;
+    transition: padding 0.3s ease;
+  }
+  header.scrolled { padding: 24px 0; }
+  header .container { display: flex; justify-content: space-between; align-items: center; }
+  header h1 { font-size: 18px; font-weight: 500; letter-spacing: 0.15em; }
+  header nav { display: flex; gap: 32px; align-items: center; }
+  header nav a { font-size: 13px; color: var(--muted); transition: color .2s; }
+  header nav a:hover { color: var(--fg); }
+
+  /* ========== Back ========== */
+  .back-bar { padding: 32px 0 0; }
+  .back-bar a {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 12px; letter-spacing: 0.1em; color: var(--muted);
+    transition: color 0.2s;
+  }
+  .back-bar a:hover { color: var(--fg); }
+
+  /* ========== Hero ========== */
+  .work-hero { padding: 40px 0 56px; border-bottom: 1px solid var(--line); }
+  .work-meta { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
+  .work-cat {
+    font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--muted); border: 1px solid var(--line);
+    padding: 4px 12px;
+  }
+  .work-year { font-size: 13px; color: var(--muted); }
+  .work-hero h2 { font-size: clamp(20px, 3vw, 30px); font-weight: 500; line-height: 1.5; letter-spacing: 0.02em; }
+
+  /* ========== Video ========== */
+  .work-video { padding: 56px 0; border-bottom: 1px solid var(--line); }
+  .video-wrap {
+    position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;
+    background: #000;
+  }
+  .video-wrap iframe {
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 100%; border: none;
+  }
+
+  /* ========== Description ========== */
+  .work-desc { padding: 56px 0; border-bottom: 1px solid var(--line); }
+  .section-label {
+    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--muted); font-weight: 500; margin-bottom: 24px;
+  }
+  .work-desc p { font-size: 15px; line-height: 2; color: var(--fg); max-width: 640px; }
+
+  /* ========== Credits ========== */
+  .work-credits { padding: 56px 0 80px; }
+  .credits-list { margin-top: 0; }
+  .credit-row {
+    display: grid; grid-template-columns: 160px 1fr;
+    gap: 16px; padding: 16px 0;
+    border-bottom: 1px solid var(--line);
+    font-size: 14px;
+  }
+  .credit-row:first-child { border-top: 1px solid var(--line); }
+  .credit-role { color: var(--muted); letter-spacing: 0.05em; }
+  .credit-name { font-weight: 500; }
+
+  /* ========== Footer ========== */
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 32px 0;
+  }
+  footer .container { display: flex; justify-content: space-between; align-items: center; }
+  footer div { font-size: 12px; color: var(--muted); letter-spacing: 0.05em; }
+
+  /* ========== Responsive ========== */
+  @media (max-width: 640px) {
+    .container { padding: 0 20px; }
+    header { padding: 24px 0; }
+    header nav { display: none; }
+    .work-hero h2 { font-size: 18px; }
+    .credit-row { grid-template-columns: 120px 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header id="siteHeader">
+  <div class="container">
+    <h1><a href="index.html">SHOTARO</a></h1>
+    <nav>
+      <a href="works.html">Works</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<div class="container">
+  <div class="back-bar">
+    <a href="works.html">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/>
+      </svg>
+      Works
+    </a>
+  </div>
+</div>
+
+<div class="container">
+  <section class="work-hero">
+    <div class="work-meta">
+      <span class="work-cat" id="workCat"></span>
+      <span class="work-year" id="workYear"></span>
+    </div>
+    <h2 id="workTitle"></h2>
+  </section>
+</div>
+
+<div class="container">
+  <section class="work-video">
+    <div class="video-wrap">
+      <iframe id="workIframe" src="" allowfullscreen loading="lazy"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+      </iframe>
+    </div>
+  </section>
+</div>
+
+<div class="container" id="descSection" style="display:none">
+  <section class="work-desc">
+    <div class="section-label">Description</div>
+    <p id="workDesc"></p>
+  </section>
+</div>
+
+<div class="container">
+  <section class="work-credits">
+    <div class="section-label">Role</div>
+    <div class="credits-list" id="creditsList"></div>
+  </section>
+</div>
+
+<footer>
+  <div class="container">
+    <div>© 2026 SHOTARO</div>
+    <div>Osaka, Japan</div>
+  </div>
+</footer>
+
+<script>
+// ===== 作品データ =====
+const works = {
+  'Bzf7EDiDhew': {
+    title: "you-to『Rainbow Dream』Official Music Video",
+    year: 2026, cat: 'Music Video',
+    desc: '',
+    credits: [['照明監督', 'SHOTARO']]
+  },
+  'H0g-1gybDJw': {
+    title: '川岸畜産様 社長密着ドキュメンタリー',
+    year: 2025, cat: 'Documentary',
+    desc: '',
+    credits: [['監督', 'SHOTARO']]
+  },
+  '_Zw2gbwOdrg': {
+    title: '神戸観光タクシー ポートグループ PR映像',
+    year: 2025, cat: 'Corporate PR',
+    desc: '',
+    credits: [['ドローン撮影', 'SHOTARO']]
+  },
+  'GgmS1CXq54Y': {
+    title: '猫背のネイビーセゾン「MONOTARINAI」MV',
+    year: 2025, cat: 'Music Video',
+    desc: '',
+    credits: [['撮影助手', 'SHOTARO']]
+  },
+  'XWLQKS59xxA': {
+    title: 'shu「探し物」MV',
+    year: 2025, cat: 'Music Video',
+    desc: '',
+    credits: [['照明監督', 'SHOTARO'], ['ドローン撮影', 'SHOTARO'], ['カメラマン', 'SHOTARO']]
+  },
+  'zypF-yAFEqI': {
+    title: 'ジンバジ「灯」MV',
+    year: 2025, cat: 'Music Video',
+    desc: '',
+    credits: [['監督', 'SHOTARO'], ['照明監督', 'SHOTARO']]
+  },
+  'YAT6KenzrBk': {
+    title: '2106 from Summer Christmas -「カウンターカルチャー」MV',
+    year: 2024, cat: 'Music Video',
+    desc: '',
+    credits: [['監督', 'SHOTARO'], ['照明監督', 'SHOTARO']]
+  },
+  'JaNb-H6OIqg': {
+    title: '都若丸「花咲せ」MV',
+    year: 2024, cat: 'Music Video',
+    desc: '',
+    credits: [['照明監督', 'SHOTARO']]
+  },
+  'O4Ea7N0h1Hg': {
+    title: 'すいらん「アイラブユー」MV',
+    year: 2024, cat: 'Music Video',
+    desc: '',
+    credits: [['カメラマン', 'SHOTARO']]
+  },
+  'dA14ILze64U': {
+    title: 'HIGH SPY DOLL「愛しい君へ」MV',
+    year: 2024, cat: 'Music Video',
+    desc: '',
+    credits: [['照明監督', 'SHOTARO']]
+  },
+  'hF4R6-bfg7M': {
+    title: 'LUDENS「Yellow」MV',
+    year: 2024, cat: 'Music Video',
+    desc: '',
+    credits: [['照明監督', 'SHOTARO']]
+  },
+  'IbaMGMUA1qk': {
+    title: 'アンスリューム「擬似恋愛させたげるっ！」MV',
+    year: 2023, cat: 'Music Video',
+    desc: '',
+    credits: [['照明助手', 'SHOTARO']]
+  },
+  'HkDQjjbLm6o': {
+    title: 'ジンバジ「おさんぽ」MV',
+    year: 2023, cat: 'Music Video',
+    desc: '',
+    credits: [['監督', 'SHOTARO'], ['照明監督', 'SHOTARO']]
+  },
+  'eTuEeJuTc_A': {
+    title: 'すいらん「春を越えて」MV',
+    year: 2023, cat: 'Music Video',
+    desc: '',
+    credits: [['ドローン撮影', 'SHOTARO'], ['撮影助手', 'SHOTARO']]
+  },
+  'vSd7XBJmUWo': {
+    title: 'ジンバジ「今からは」MV',
+    year: 2023, cat: 'Music Video',
+    desc: '',
+    credits: [['カメラマン', 'SHOTARO']]
+  },
+  '3tgqSp5cTGE': {
+    title: 'ジンバジ「あの空には」MV',
+    year: 2022, cat: 'Music Video',
+    desc: '',
+    credits: [['照明監督', 'SHOTARO']]
+  },
+  '5kCyAEQvFP0': {
+    title: 'ブロチ「Night Trip」MV',
+    year: 2022, cat: 'Music Video',
+    desc: '',
+    credits: [['カメラマン', 'SHOTARO']]
+  },
+  'T7LjjGe5jls': {
+    title: 'ジンバジ「気が付けば」MV',
+    year: 2022, cat: 'Music Video',
+    desc: '',
+    credits: [['撮影監督', 'SHOTARO']]
+  }
+};
+
+// ===== ページ描画 =====
+const id = new URLSearchParams(window.location.search).get('id');
+const work = works[id];
+
+if (work) {
+  document.title = work.title + ' — SHOTARO';
+  document.getElementById('workTitle').textContent = work.title;
+  document.getElementById('workCat').textContent   = work.cat;
+  document.getElementById('workYear').textContent  = work.year;
+  document.getElementById('workIframe').src = `https://www.youtube.com/embed/${id}?rel=0`;
+
+  if (work.desc) {
+    document.getElementById('workDesc').textContent = work.desc;
+    document.getElementById('descSection').style.display = '';
+  }
+
+  const list = document.getElementById('creditsList');
+  work.credits.forEach(([role, name]) => {
+    const row = document.createElement('div');
+    row.className = 'credit-row';
+    row.innerHTML = `<span class="credit-role">${role}</span><span class="credit-name">${name}</span>`;
+    list.appendChild(row);
+  });
+} else {
+  document.querySelector('.work-hero h2').textContent = '作品が見つかりません';
+}
+
+// ===== Header scroll =====
+const header = document.getElementById('siteHeader');
+window.addEventListener('scroll', () => {
+  header.classList.toggle('scrolled', window.scrollY > 40);
+}, { passive: true });
+</script>
+</body>
+</html>
