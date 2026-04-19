@@ -126,7 +126,7 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 48px 32px;
   }
-  .work-item { cursor: default; display: flex; flex-direction: column; }
+  .work-item { cursor: pointer; display: flex; flex-direction: column; }
   .work-item .thumb {
     aspect-ratio: 16/9; background: #e3e3e3;
     margin-bottom: 20px; overflow: hidden; position: relative;
@@ -143,6 +143,8 @@
     object-fit: cover; display: block; transition: transform 0.4s ease;
   }
   .work-item:hover .thumb img { transform: scale(1.03); }
+  a.work-item { color: inherit; text-decoration: none; }
+  .work-item:hover h3 { opacity: 0.65; transition: opacity 0.2s; }
   .work-item .category {
     font-size: 11px; color: var(--muted);
     letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 4px;
@@ -240,186 +242,168 @@
     <div class="work-list">
 
       <!-- 1: you-to『Rainbow Dream』 2026-04-16 -->
-      <div class="work-item reveal">
+      <a class="work-item reveal" href="work.html?id=Bzf7EDiDhew">
         <div class="thumb"><img src="https://img.youtube.com/vi/Bzf7EDiDhew/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/Bzf7EDiDhew/hqdefault.jpg'" alt="you-to Rainbow Dream"></div>
         <div class="category">アーティスト</div>
         <div class="role">照明監督</div>
         <h3>you-to『Rainbow Dream』Official Music Video</h3>
         <div class="year">2026</div>
-        <a class="watch-btn" href="work.html?id=Bzf7EDiDhew">Watch</a>
       </div>
 
       <!-- 2: 川岸畜産ドキュメンタリー 2025-12-29 -->
-      <div class="work-item reveal">
+      <a class="work-item reveal" href="work.html?id=H0g-1gybDJw">
         <div class="thumb"><img src="https://img.youtube.com/vi/H0g-1gybDJw/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/H0g-1gybDJw/hqdefault.jpg'" alt="川岸畜産ドキュメンタリー"></div>
         <div class="category">企業</div>
         <div class="role">監督</div>
         <h3>川岸畜産様 社長密着ドキュメンタリー</h3>
         <div class="year">2025</div>
-        <a class="watch-btn" href="work.html?id=H0g-1gybDJw">Watch</a>
-      </div>
+      </a>
 
       <!-- 3: 神戸観光タクシー PR 2025-11-25 -->
-      <div class="work-item reveal">
+      <a class="work-item reveal" href="work.html?id=_Zw2gbwOdrg">
         <div class="thumb"><img src="https://img.youtube.com/vi/_Zw2gbwOdrg/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/_Zw2gbwOdrg/hqdefault.jpg'" alt="神戸観光タクシー PR映像"></div>
         <div class="category">企業</div>
         <div class="role">ドローン撮影</div>
         <h3>神戸観光タクシー ポートグループ PR映像</h3>
         <div class="year">2025</div>
-        <a class="watch-btn" href="work.html?id=_Zw2gbwOdrg">Watch</a>
-      </div>
+      </a>
 
       <!-- 4: 猫背のネイビーセゾン「MONOTARINAI」 2025-09-08 -->
-      <div class="work-item reveal">
+      <a class="work-item reveal" href="work.html?id=GgmS1CXq54Y">
         <div class="thumb"><img src="https://img.youtube.com/vi/GgmS1CXq54Y/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/GgmS1CXq54Y/hqdefault.jpg'" alt="猫背のネイビーセゾン MONOTARINAI"></div>
         <div class="category">アーティスト</div>
         <div class="role">撮影助手</div>
         <h3>猫背のネイビーセゾン「MONOTARINAI」MV</h3>
         <div class="year">2025</div>
-        <a class="watch-btn" href="work.html?id=GgmS1CXq54Y">Watch</a>
-      </div>
+      </a>
 
       <!-- 5: shu「探し物」 2025-02-05 -->
-      <div class="work-item reveal">
+      <a class="work-item reveal" href="work.html?id=XWLQKS59xxA">
         <div class="thumb"><img src="https://img.youtube.com/vi/XWLQKS59xxA/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/XWLQKS59xxA/hqdefault.jpg'" alt="shu 探し物"></div>
         <div class="category">アーティスト</div>
         <div class="role">照明監督・ドローン撮影・カメラマン</div>
         <h3>shu「探し物」MV</h3>
         <div class="year">2025</div>
-        <a class="watch-btn" href="work.html?id=XWLQKS59xxA">Watch</a>
-      </div>
+      </a>
 
       <!-- 6: ジンバジ「灯」 2025-01-22 -->
-      <div class="work-item reveal">
+      <a class="work-item reveal" href="work.html?id=zypF-yAFEqI">
         <div class="thumb"><img src="https://img.youtube.com/vi/zypF-yAFEqI/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/zypF-yAFEqI/hqdefault.jpg'" alt="ジンバジ 灯"></div>
         <div class="category">アーティスト</div>
         <div class="role">監督・照明監督</div>
         <h3>ジンバジ「灯」MV</h3>
         <div class="year">2025</div>
-        <a class="watch-btn" href="work.html?id=zypF-yAFEqI">Watch</a>
-      </div>
+      </a>
 
       <!-- 7: 2106「カウンターカルチャー」 2024-12-25 -->
-      <div class="work-item reveal">
+      <a class="work-item reveal" href="work.html?id=YAT6KenzrBk">
         <div class="thumb"><img src="https://img.youtube.com/vi/YAT6KenzrBk/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/YAT6KenzrBk/hqdefault.jpg'" alt="2106 カウンターカルチャー"></div>
         <div class="category">アーティスト</div>
         <div class="role">監督・照明監督</div>
         <h3>2106 from Summer Christmas -「カウンターカルチャー」MV</h3>
         <div class="year">2024</div>
-        <a class="watch-btn" href="work.html?id=YAT6KenzrBk">Watch</a>
-      </div>
+      </a>
 
       <!-- 8: 都若丸「花咲せ」 2024-04-26 -->
-      <div class="work-item reveal">
+      <a class="work-item reveal" href="work.html?id=JaNb-H6OIqg">
         <div class="thumb"><img src="https://img.youtube.com/vi/JaNb-H6OIqg/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/JaNb-H6OIqg/hqdefault.jpg'" alt="都若丸 花咲せ"></div>
         <div class="category">アーティスト</div>
         <div class="role">照明監督</div>
         <h3>都若丸「花咲せ」MV</h3>
         <div class="year">2024</div>
-        <a class="watch-btn" href="work.html?id=JaNb-H6OIqg">Watch</a>
-      </div>
+      </a>
 
       <!-- 9: すいらん「アイラブユー」 2024-04-21 -->
-      <div class="work-item reveal">
+      <a class="work-item reveal" href="work.html?id=O4Ea7N0h1Hg">
         <div class="thumb"><img src="https://img.youtube.com/vi/O4Ea7N0h1Hg/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/O4Ea7N0h1Hg/hqdefault.jpg'" alt="すいらん アイラブユー"></div>
         <div class="category">アーティスト</div>
         <div class="role">カメラマン</div>
         <h3>すいらん「アイラブユー」MV</h3>
         <div class="year">2024</div>
-        <a class="watch-btn" href="work.html?id=O4Ea7N0h1Hg">Watch</a>
-      </div>
+      </a>
 
       <!-- 10: HIGH SPY DOLL「愛しい君へ」 2024-03-11 -->
-      <div class="work-item reveal">
+      <a class="work-item reveal" href="work.html?id=dA14ILze64U">
         <div class="thumb"><img src="https://img.youtube.com/vi/dA14ILze64U/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/dA14ILze64U/hqdefault.jpg'" alt="HIGH SPY DOLL 愛しい君へ"></div>
         <div class="category">アーティスト</div>
         <div class="role">照明監督</div>
         <h3>HIGH SPY DOLL「愛しい君へ」MV</h3>
         <div class="year">2024</div>
-        <a class="watch-btn" href="work.html?id=dA14ILze64U">Watch</a>
-      </div>
+      </a>
 
       <!-- 11: LUDENS「Yellow」 2024-02-15 -->
-      <div class="work-item reveal">
+      <a class="work-item reveal" href="work.html?id=hF4R6-bfg7M">
         <div class="thumb"><img src="https://img.youtube.com/vi/hF4R6-bfg7M/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/hF4R6-bfg7M/hqdefault.jpg'" alt="LUDENS Yellow"></div>
         <div class="category">アーティスト</div>
         <div class="role">照明監督</div>
         <h3>LUDENS「Yellow」MV</h3>
         <div class="year">2024</div>
-        <a class="watch-btn" href="work.html?id=hF4R6-bfg7M">Watch</a>
-      </div>
+      </a>
 
       <!-- 12: アンスリューム 2023-08-01 -->
-      <div class="work-item reveal">
+      <a class="work-item reveal" href="work.html?id=IbaMGMUA1qk">
         <div class="thumb"><img src="https://img.youtube.com/vi/IbaMGMUA1qk/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/IbaMGMUA1qk/hqdefault.jpg'" alt="アンスリューム"></div>
         <div class="category">アーティスト</div>
         <div class="role">照明助手</div>
         <h3>アンスリューム「擬似恋愛させたげるっ！」MV</h3>
         <div class="year">2023</div>
-        <a class="watch-btn" href="work.html?id=IbaMGMUA1qk">Watch</a>
-      </div>
+      </a>
 
       <!-- 13: ジンバジ「おさんぽ」 2023-06-20 -->
-      <div class="work-item reveal">
+      <a class="work-item reveal" href="work.html?id=HkDQjjbLm6o">
         <div class="thumb"><img src="https://img.youtube.com/vi/HkDQjjbLm6o/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/HkDQjjbLm6o/hqdefault.jpg'" alt="ジンバジ おさんぽ"></div>
         <div class="category">アーティスト</div>
         <div class="role">監督・照明監督</div>
         <h3>ジンバジ「おさんぽ」MV</h3>
         <div class="year">2023</div>
-        <a class="watch-btn" href="work.html?id=HkDQjjbLm6o">Watch</a>
-      </div>
+      </a>
 
       <!-- 14: すいらん「春を越えて」 2023-03-01 -->
-      <div class="work-item reveal">
+      <a class="work-item reveal" href="work.html?id=eTuEeJuTc_A">
         <div class="thumb"><img src="https://img.youtube.com/vi/eTuEeJuTc_A/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/eTuEeJuTc_A/hqdefault.jpg'" alt="すいらん 春を越えて"></div>
         <div class="category">アーティスト</div>
         <div class="role">ドローン撮影・撮影助手</div>
         <h3>すいらん「春を越えて」MV</h3>
         <div class="year">2023</div>
-        <a class="watch-btn" href="work.html?id=eTuEeJuTc_A">Watch</a>
-      </div>
+      </a>
 
       <!-- 15: ジンバジ「今からは」 2023-01-26 -->
-      <div class="work-item reveal">
+      <a class="work-item reveal" href="work.html?id=vSd7XBJmUWo">
         <div class="thumb"><img src="https://img.youtube.com/vi/vSd7XBJmUWo/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/vSd7XBJmUWo/hqdefault.jpg'" alt="ジンバジ 今からは"></div>
         <div class="category">アーティスト</div>
         <div class="role">カメラマン</div>
         <h3>ジンバジ「今からは」MV</h3>
         <div class="year">2023</div>
-        <a class="watch-btn" href="work.html?id=vSd7XBJmUWo">Watch</a>
-      </div>
+      </a>
 
       <!-- 16: ジンバジ「あの空には」 2022-12-28 -->
-      <div class="work-item reveal">
+      <a class="work-item reveal" href="work.html?id=3tgqSp5cTGE">
         <div class="thumb"><img src="https://img.youtube.com/vi/3tgqSp5cTGE/hqdefault.jpg" onerror="this.onerror=null;this.src='https://img.youtube.com/vi/3tgqSp5cTGE/mqdefault.jpg'" alt="ジンバジ あの空には"></div>
         <div class="category">アーティスト</div>
         <div class="role">照明監督</div>
         <h3>ジンバジ「あの空には」MV</h3>
         <div class="year">2022</div>
-        <a class="watch-btn" href="work.html?id=3tgqSp5cTGE">Watch</a>
-      </div>
+      </a>
 
       <!-- 17: ブロチ「Night Trip」 2022-05-08 -->
-      <div class="work-item reveal">
+      <a class="work-item reveal" href="work.html?id=5kCyAEQvFP0">
         <div class="thumb"><img src="https://img.youtube.com/vi/5kCyAEQvFP0/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/5kCyAEQvFP0/hqdefault.jpg'" alt="ブロチ Night Trip"></div>
         <div class="category">アーティスト</div>
         <div class="role">カメラマン</div>
         <h3>ブロチ「Night Trip」MV</h3>
         <div class="year">2022</div>
-        <a class="watch-btn" href="work.html?id=5kCyAEQvFP0">Watch</a>
-      </div>
+      </a>
 
       <!-- 18: ジンバジ「気が付けば」 2022-03-10 -->
-      <div class="work-item reveal">
+      <a class="work-item reveal" href="work.html?id=T7LjjGe5jls">
         <div class="thumb"><img src="https://img.youtube.com/vi/T7LjjGe5jls/hqdefault.jpg" onerror="this.onerror=null;this.src='https://img.youtube.com/vi/T7LjjGe5jls/mqdefault.jpg'" alt="ジンバジ 気が付けば"></div>
         <div class="category">アーティスト</div>
         <div class="role">撮影監督</div>
         <h3>ジンバジ「気が付けば」MV</h3>
         <div class="year">2022</div>
-        <a class="watch-btn" href="work.html?id=T7LjjGe5jls">Watch</a>
-      </div>
+      </a>
 
-    </div>
+    </a>
   </div>
 </section>
 
