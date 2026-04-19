@@ -54,6 +54,34 @@
     transform: translateY(0);
   }
 
+  /* ========== Loader ========== */
+  .loader-overlay {
+    position: fixed;
+    inset: 0;
+    background: #1a1a1a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    transition: opacity 0.8s ease;
+  }
+  .loader-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+  .loader-logo {
+    font-size: 20px;
+    letter-spacing: 0.35em;
+    color: #f2f2f2;
+    font-weight: 400;
+    opacity: 0;
+    animation: logoFadeIn 0.8s ease 0.4s forwards;
+  }
+  @keyframes logoFadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
   /* ========== Layout ========== */
   .container {
     max-width: 960px;
@@ -385,6 +413,11 @@
 </head>
 <body>
 
+<!-- ========== Loader ========== -->
+<div class="loader-overlay" id="loaderOverlay">
+  <span class="loader-logo">Launch.</span>
+</div>
+
 <!-- ========== Mobile Nav ========== -->
 <div class="mobile-overlay" id="mobileOverlay"></div>
 <nav class="mobile-nav" id="mobileNav">
@@ -554,11 +587,24 @@
   overlay.addEventListener('click', closeMenu);
   document.querySelectorAll('.mobile-nav-link').forEach(l => l.addEventListener('click', closeMenu));
 
-  // ===== Page load stagger =====
-  document.querySelectorAll('.page-load').forEach(el => {
-    const delay = parseInt(el.dataset.loadDelay || 0);
-    setTimeout(() => el.classList.add('visible'), delay);
-  });
+  // ===== Loader → Page load stagger =====
+  const loaderOverlay = document.getElementById('loaderOverlay');
+  const LOADER_HOLD = 1600;  // "Launch." 表示時間
+  const LOADER_FADE = 800;   // フェードアウト時間
+
+  setTimeout(() => {
+    loaderOverlay.classList.add('hidden');
+    // ローダーがフェードし始めたらスタッガー開始
+    setTimeout(() => {
+      document.querySelectorAll('.page-load').forEach(el => {
+        const delay = parseInt(el.dataset.loadDelay || 0);
+        setTimeout(() => el.classList.add('visible'), delay);
+      });
+    }, LOADER_FADE * 0.5);
+  }, LOADER_HOLD);
+
+  // フェード完了後にDOMから削除
+  setTimeout(() => loaderOverlay.remove(), LOADER_HOLD + LOADER_FADE + 100);
 
   // ===== Scroll reveal =====
   const observer = new IntersectionObserver((entries) => {
