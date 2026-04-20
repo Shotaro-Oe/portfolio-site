@@ -6,11 +6,10 @@
 <title>Work — SHOTARO</title>
 <style>
   :root {
-    --bg: #f2f2f2;
-    --bg-card: #f8f8f8;
-    --fg: #1a1a1a;
+    --bg: #f5f5f5;
+    --fg: #111;
     --muted: #888;
-    --line: #dedede;
+    --line: #ddd;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
@@ -24,125 +23,177 @@
     overflow-x: hidden;
   }
   a { color: inherit; text-decoration: none; }
+  .container { max-width: 1080px; margin: 0 auto; padding: 0 48px; }
 
-  .container { max-width: 960px; margin: 0 auto; padding: 0 32px; }
-
-  /* ========== Header ========== */
+  /* ===== Header ===== */
   header {
-    padding: 40px 0;
+    position: sticky; top: 0; z-index: 100;
+    padding: 22px 0;
+    background: rgba(245,245,245,0.96);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--line);
-    position: sticky; top: 0;
-    background: rgba(242,242,242,0.92);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    z-index: 100;
     transition: padding 0.3s ease;
   }
-  header.scrolled { padding: 24px 0; }
-  header .container { display: flex; justify-content: space-between; align-items: center; }
-  header h1 { font-size: 18px; font-weight: 500; letter-spacing: 0.15em; }
-  header nav { display: flex; gap: 32px; align-items: center; }
-  header nav a { font-size: 13px; color: var(--muted); transition: color .2s; }
+  header .inner {
+    display: flex; justify-content: space-between; align-items: center;
+    max-width: 1080px; margin: 0 auto; padding: 0 48px;
+  }
+  header h1 { font-size: 15px; font-weight: 500; letter-spacing: 0.22em; }
+  header nav { display: flex; align-items: center; }
+  header nav a {
+    font-size: 12px; letter-spacing: 0.12em; color: var(--muted);
+    padding: 0 18px; position: relative; transition: color 0.2s;
+  }
+  header nav a:not(:last-child)::after {
+    content: '/'; position: absolute; right: 0;
+    top: 50%; transform: translateY(-50%);
+    color: var(--line); font-size: 11px;
+  }
   header nav a:hover { color: var(--fg); }
 
-  /* ========== Back ========== */
-  .back-bar { padding: 32px 0 0; }
+  /* Hamburger */
+  .hamburger {
+    display: none; flex-direction: column; gap: 5px;
+    cursor: pointer; background: none; border: none; padding: 4px;
+  }
+  .hamburger span {
+    display: block; width: 22px; height: 1px; background: var(--fg);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+  .mobile-nav {
+    display: none; position: fixed;
+    top: 0; right: 0; width: 260px; height: 100dvh;
+    background: #111; border-left: 1px solid rgba(255,255,255,0.06);
+    z-index: 200; padding: 80px 40px 40px;
+    flex-direction: column; gap: 32px;
+    transform: translateX(100%); transition: transform 0.35s ease;
+  }
+  .mobile-nav.open { transform: translateX(0); }
+  .mobile-nav a { font-size: 16px; color: rgba(255,255,255,0.55); letter-spacing: 0.1em; transition: color 0.2s; }
+  .mobile-nav a:hover { color: #fff; }
+
+  .mobile-overlay {
+    display: none; position: fixed; inset: 0;
+    background: rgba(0,0,0,0.5); z-index: 150;
+    opacity: 0; transition: opacity 0.3s; pointer-events: none;
+  }
+  .mobile-overlay.open { opacity: 1; pointer-events: auto; }
+
+  /* ===== Back ===== */
+  .back-bar { padding: 36px 0 0; }
   .back-bar a {
     display: inline-flex; align-items: center; gap: 8px;
-    font-size: 12px; letter-spacing: 0.1em; color: var(--muted);
-    transition: color 0.2s;
+    font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--muted); transition: color 0.2s, gap 0.2s;
   }
-  .back-bar a:hover { color: var(--fg); }
+  .back-bar a:hover { color: var(--fg); gap: 12px; }
 
-  /* ========== Hero ========== */
+  /* ===== Hero ===== */
   .work-hero { padding: 40px 0 56px; border-bottom: 1px solid var(--line); }
   .work-meta { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
   .work-cat {
-    font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
-    color: var(--muted); border: 1px solid var(--line);
-    padding: 4px 12px;
+    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--muted); border: 1px solid var(--line); padding: 4px 14px;
   }
-  .work-year { font-size: 13px; color: var(--muted); }
-  .work-hero h2 { font-size: clamp(20px, 3vw, 30px); font-weight: 500; line-height: 1.5; letter-spacing: 0.02em; }
+  .work-year { font-size: 12px; color: var(--muted); }
+  .work-hero h2 {
+    font-size: clamp(18px, 3vw, 30px);
+    font-weight: 500; line-height: 1.5; letter-spacing: 0.02em;
+  }
 
-  /* ========== Video ========== */
-  .work-video { padding: 56px 0; border-bottom: 1px solid var(--line); }
+  /* ===== Video ===== */
+  .work-video { padding: 64px 0; border-bottom: 1px solid var(--line); }
   .video-wrap {
-    position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;
-    background: #000;
+    position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000;
   }
-  .video-wrap iframe {
-    position: absolute; top: 0; left: 0;
-    width: 100%; height: 100%; border: none;
-  }
+  .video-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
 
-  /* ========== Description ========== */
-  .work-desc { padding: 56px 0; border-bottom: 1px solid var(--line); }
+  /* ===== Description ===== */
+  .work-desc { padding: 64px 0; border-bottom: 1px solid var(--line); }
   .section-label {
-    font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--muted); font-weight: 500; margin-bottom: 24px;
+    font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 28px;
   }
-  .work-desc p { font-size: 15px; line-height: 2; color: var(--fg); max-width: 640px; white-space: pre-line; }
+  .work-desc p { font-size: 14px; line-height: 2.1; color: #444; max-width: 640px; white-space: pre-line; }
 
-  /* ========== Credits ========== */
-  .work-credits { padding: 56px 0 80px; }
-  .credits-list { margin-top: 0; }
+  /* ===== Credits ===== */
+  .work-credits { padding: 64px 0 100px; }
   .credit-row {
     display: grid; grid-template-columns: 160px 1fr;
     gap: 16px; padding: 16px 0;
-    border-bottom: 1px solid var(--line);
-    font-size: 14px;
+    border-bottom: 1px solid var(--line); font-size: 14px;
   }
   .credit-row:first-child { border-top: 1px solid var(--line); }
   .credit-role { color: var(--muted); letter-spacing: 0.05em; }
   .credit-name { font-weight: 500; }
 
-  /* ========== Footer ========== */
-  footer {
-    border-top: 1px solid var(--line);
-    padding: 32px 0;
-  }
-  footer .container { display: flex; justify-content: space-between; align-items: center; }
-  footer div { font-size: 12px; color: var(--muted); letter-spacing: 0.05em; }
-
-  /* ========== Scroll Reveal (上から) ========== */
+  /* ===== Reveal ===== */
   .reveal {
-    opacity: 0;
-    transform: translateY(-18px);
+    opacity: 0; transform: translateY(-16px);
     transition: opacity 0.55s ease, transform 0.55s ease;
   }
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
 
-  /* ========== Responsive ========== */
+  /* ===== Footer ===== */
+  footer {
+    background: #111;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 28px 0;
+  }
+  footer .inner {
+    max-width: 1080px; margin: 0 auto; padding: 0 48px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  footer span { font-size: 11px; color: rgba(255,255,255,0.25); letter-spacing: 0.08em; }
+
+  /* ===== Responsive ===== */
   @media (max-width: 640px) {
-    .container { padding: 0 20px; }
-    header { padding: 24px 0; }
+    .container { padding: 0 24px; }
+    header .inner { padding: 0 24px; }
     header nav { display: none; }
+    .hamburger { display: flex; }
+    .mobile-nav { display: flex; }
+    .mobile-overlay { display: block; pointer-events: none; }
     .work-hero h2 { font-size: 18px; }
     .credit-row { grid-template-columns: 120px 1fr; }
+    footer .inner { flex-direction: column; gap: 8px; text-align: center; }
   }
 </style>
 </head>
 <body>
 
-<header id="siteHeader">
-  <div class="container">
+<!-- ===== Mobile Nav ===== -->
+<div class="mobile-overlay" id="mobileOverlay"></div>
+<nav class="mobile-nav" id="mobileNav">
+  <a href="works.html" class="mnl">Works</a>
+  <a href="index.html#about" class="mnl">About</a>
+  <a href="index.html#contact" class="mnl">Contact</a>
+</nav>
+
+<!-- ===== Header ===== -->
+<header>
+  <div class="inner">
     <h1><a href="index.html">SHOTARO</a></h1>
     <nav>
       <a href="works.html">Works</a>
       <a href="index.html#about">About</a>
       <a href="index.html#contact">Contact</a>
     </nav>
+    <button class="hamburger" id="hamburger" aria-label="メニュー">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
 
 <div class="container">
   <div class="back-bar reveal">
     <a href="works.html">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
         <line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/>
       </svg>
       Works
@@ -180,132 +231,130 @@
 <div class="container">
   <section class="work-credits reveal">
     <div class="section-label">Role</div>
-    <div class="credits-list" id="creditsList"></div>
+    <div id="creditsList"></div>
   </section>
 </div>
 
 <footer>
-  <div class="container">
-    <div>© 2026 Launch.</div>
-    <div>Osaka, Japan</div>
+  <div class="inner">
+    <span>© 2026 Launch.</span>
+    <span>Osaka, Japan</span>
   </div>
 </footer>
 
 <script>
-// ===== 作品データ =====
 const works = {
   'Bzf7EDiDhew': {
     title: "you-to『Rainbow Dream』Official Music Video",
-    year: 2026, cat: 'Music Video',
+    year: 2026, cat: 'アーティスト',
     desc: 'Music: you-to\n\nCast: 千葉向日葵(gram)/ 千葉音羽(gram)\n\nArt Director: 井口朋実(gram)/ 石原徹(gram)\nStylist: Rivulet\n\nDirector: 玉田しんせつ (hitotsu.inc.)\nLighting Director: SHOTARO (Launch.)\nCamera Assistant: 茂池 くるみ(hitotsu.inc.)',
     credits: [['照明監督', 'SHOTARO']]
   },
   'H0g-1gybDJw': {
     title: '川岸畜産様 社長密着ドキュメンタリー',
-    year: 2025, cat: 'Documentary',
+    year: 2025, cat: '企業',
     desc: '',
     credits: [['監督', 'SHOTARO']]
   },
   '_Zw2gbwOdrg': {
     title: '神戸観光タクシー ポートグループ PR映像',
-    year: 2023, cat: 'Corporate PR',
+    year: 2023, cat: '企業',
     desc: '',
     credits: [['ドローン撮影', 'SHOTARO']]
   },
   'GgmS1CXq54Y': {
     title: '猫背のネイビーセゾン「MONOTARINAI」MV',
-    year: 2025, cat: 'Music Video',
+    year: 2025, cat: 'アーティスト',
     desc: '',
     credits: [['撮影助手', 'SHOTARO']]
   },
   'XWLQKS59xxA': {
     title: 'shu「探し物」MV',
-    year: 2025, cat: 'Music Video',
+    year: 2025, cat: 'アーティスト',
     desc: '',
     credits: [['照明監督', 'SHOTARO'], ['ドローン撮影', 'SHOTARO'], ['カメラマン', 'SHOTARO']]
   },
   'zypF-yAFEqI': {
     title: 'ジンバジ「灯」MV',
-    year: 2025, cat: 'Music Video',
+    year: 2025, cat: 'アーティスト',
     desc: '',
     credits: [['監督', 'SHOTARO'], ['照明監督', 'SHOTARO']]
   },
   'YAT6KenzrBk': {
     title: '2106 from Summer Christmas -「カウンターカルチャー」MV',
-    year: 2024, cat: 'Music Video',
+    year: 2024, cat: 'アーティスト',
     desc: '',
     credits: [['監督', 'SHOTARO'], ['照明監督', 'SHOTARO']]
   },
   'JaNb-H6OIqg': {
     title: '都若丸「花咲せ」MV',
-    year: 2024, cat: 'Music Video',
+    year: 2024, cat: 'アーティスト',
     desc: '',
     credits: [['照明監督', 'SHOTARO']]
   },
   'O4Ea7N0h1Hg': {
     title: 'すいらん「アイラブユー」MV',
-    year: 2024, cat: 'Music Video',
+    year: 2024, cat: 'アーティスト',
     desc: '',
     credits: [['カメラマン', 'SHOTARO']]
   },
   'dA14ILze64U': {
     title: 'HIGH SPY DOLL「愛しい君へ」MV',
-    year: 2024, cat: 'Music Video',
+    year: 2024, cat: 'アーティスト',
     desc: '',
     credits: [['照明監督', 'SHOTARO']]
   },
   'hF4R6-bfg7M': {
     title: 'LUDENS「Yellow」MV',
-    year: 2024, cat: 'Music Video',
+    year: 2024, cat: 'アーティスト',
     desc: '',
     credits: [['照明監督', 'SHOTARO']]
   },
   'IbaMGMUA1qk': {
     title: 'アンスリューム「擬似恋愛させたげるっ！」MV',
-    year: 2023, cat: 'Music Video',
+    year: 2023, cat: 'アーティスト',
     desc: '',
     credits: [['照明助手', 'SHOTARO']]
   },
   'HkDQjjbLm6o': {
     title: 'ジンバジ「おさんぽ」MV',
-    year: 2023, cat: 'Music Video',
+    year: 2023, cat: 'アーティスト',
     desc: '',
     credits: [['監督', 'SHOTARO'], ['照明監督', 'SHOTARO']]
   },
   'eTuEeJuTc_A': {
     title: 'すいらん「春を越えて」MV',
-    year: 2023, cat: 'Music Video',
+    year: 2023, cat: 'アーティスト',
     desc: '',
     credits: [['ドローン撮影', 'SHOTARO'], ['撮影助手', 'SHOTARO']]
   },
   'vSd7XBJmUWo': {
     title: 'ジンバジ「今からは」MV',
-    year: 2023, cat: 'Music Video',
+    year: 2023, cat: 'アーティスト',
     desc: '',
     credits: [['カメラマン', 'SHOTARO']]
   },
   '3tgqSp5cTGE': {
     title: 'ジンバジ「あの空には」MV',
-    year: 2022, cat: 'Music Video',
+    year: 2022, cat: 'アーティスト',
     desc: '',
     credits: [['照明監督', 'SHOTARO']]
   },
   '5kCyAEQvFP0': {
     title: 'ブロチ「Night Trip」MV',
-    year: 2022, cat: 'Music Video',
+    year: 2022, cat: 'アーティスト',
     desc: '',
     credits: [['カメラマン', 'SHOTARO']]
   },
   'T7LjjGe5jls': {
     title: 'ジンバジ「気が付けば」MV',
-    year: 2022, cat: 'Music Video',
+    year: 2022, cat: 'アーティスト',
     desc: '',
     credits: [['撮影監督', 'SHOTARO']]
   }
 };
 
-// ===== ページ描画 =====
-const id = new URLSearchParams(window.location.search).get('id');
+const id   = new URLSearchParams(window.location.search).get('id');
 const work = works[id];
 
 if (work) {
@@ -331,7 +380,17 @@ if (work) {
   document.querySelector('.work-hero h2').textContent = '作品が見つかりません';
 }
 
-// ===== Scroll reveal (上から) =====
+// Hamburger
+const hamburger = document.getElementById('hamburger');
+const mobileNav = document.getElementById('mobileNav');
+const overlay   = document.getElementById('mobileOverlay');
+function openMenu()  { hamburger.classList.add('open'); mobileNav.classList.add('open'); overlay.classList.add('open'); document.body.style.overflow = 'hidden'; }
+function closeMenu() { hamburger.classList.remove('open'); mobileNav.classList.remove('open'); overlay.classList.remove('open'); document.body.style.overflow = ''; }
+hamburger.addEventListener('click', () => hamburger.classList.contains('open') ? closeMenu() : openMenu());
+overlay.addEventListener('click', closeMenu);
+document.querySelectorAll('.mnl').forEach(l => l.addEventListener('click', closeMenu));
+
+// Scroll reveal
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -341,12 +400,6 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-// ===== Header scroll =====
-const header = document.getElementById('siteHeader');
-window.addEventListener('scroll', () => {
-  header.classList.toggle('scrolled', window.scrollY > 40);
-}, { passive: true });
 </script>
 </body>
 </html>

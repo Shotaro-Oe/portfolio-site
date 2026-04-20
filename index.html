@@ -5,6 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SHOTARO ｜ 映像クリエイター ｜ 大阪</title>
 <meta name="description" content="大阪を拠点に活動する映像クリエイター SHOTARO のポートフォリオ。MV・企業PR映像・ドキュメンタリー・YouTube編集。">
+<meta property="og:title" content="SHOTARO ｜ 映像クリエイター ｜ 大阪">
+<meta property="og:description" content="想いを、届ける。大阪を拠点に活動する映像クリエイター SHOTARO のポートフォリオ。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://launch-films.com">
 
 <style>
   :root {
@@ -451,10 +455,63 @@
     .about-grid { grid-template-columns: 1fr; gap: 48px; }
     .about-photo { aspect-ratio: 3/2; }
   }
+  /* ===== Hamburger / Mobile Nav ===== */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 4px;
+  }
+  .hamburger span {
+    display: block;
+    width: 22px; height: 1px;
+    background: #fff;
+    transition: transform 0.3s ease, opacity 0.3s ease, background 0.4s;
+  }
+  header.solid .hamburger span { background: var(--fg); }
+  .hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+  .mobile-nav {
+    display: none;
+    position: fixed;
+    top: 0; right: 0;
+    width: 260px; height: 100dvh;
+    background: #111;
+    border-left: 1px solid rgba(255,255,255,0.06);
+    z-index: 200;
+    padding: 80px 40px 40px;
+    flex-direction: column;
+    gap: 32px;
+    transform: translateX(100%);
+    transition: transform 0.35s ease;
+  }
+  .mobile-nav.open { transform: translateX(0); }
+  .mobile-nav a { font-size: 16px; color: rgba(255,255,255,0.55); letter-spacing: 0.1em; transition: color 0.2s; }
+  .mobile-nav a:hover { color: #fff; }
+
+  .mobile-overlay {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 150;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+  }
+  .mobile-overlay.open { opacity: 1; pointer-events: auto; }
+
   @media (max-width: 640px) {
     .container { padding: 0 24px; }
     header .inner { padding: 0 24px; }
-    header nav a { padding: 0 12px; font-size: 11px; }
+    header nav { display: none; }
+    .hamburger { display: flex; }
+    .mobile-nav { display: flex; }
+    .mobile-overlay { display: block; pointer-events: none; }
     .works { padding: 80px 0; }
     .work-grid { gap: 36px; }
     .about { padding: 80px 0; }
@@ -466,6 +523,14 @@
 </head>
 <body>
 
+<!-- ===== Mobile Nav ===== -->
+<div class="mobile-overlay" id="mobileOverlay"></div>
+<nav class="mobile-nav" id="mobileNav">
+  <a href="#works" class="mnl">Works</a>
+  <a href="#about" class="mnl">About</a>
+  <a href="#contact" class="mnl">Contact</a>
+</nav>
+
 <!-- ===== Header ===== -->
 <header id="siteHeader">
   <div class="inner">
@@ -475,6 +540,9 @@
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
     </nav>
+    <button class="hamburger" id="hamburger" aria-label="メニュー">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
 
@@ -620,6 +688,16 @@
   window.addEventListener('scroll', () => {
     header.classList.toggle('solid', window.scrollY > 60);
   }, { passive: true });
+
+  // Hamburger menu
+  const hamburger = document.getElementById('hamburger');
+  const mobileNav = document.getElementById('mobileNav');
+  const overlay   = document.getElementById('mobileOverlay');
+  function openMenu()  { hamburger.classList.add('open'); mobileNav.classList.add('open'); overlay.classList.add('open'); document.body.style.overflow = 'hidden'; }
+  function closeMenu() { hamburger.classList.remove('open'); mobileNav.classList.remove('open'); overlay.classList.remove('open'); document.body.style.overflow = ''; }
+  hamburger.addEventListener('click', () => hamburger.classList.contains('open') ? closeMenu() : openMenu());
+  overlay.addEventListener('click', closeMenu);
+  document.querySelectorAll('.mnl').forEach(l => l.addEventListener('click', closeMenu));
 
   // Scroll reveal
   const observer = new IntersectionObserver((entries) => {
