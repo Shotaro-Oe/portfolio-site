@@ -418,6 +418,26 @@
   overlay.addEventListener('click', closeMenu);
   document.querySelectorAll('.mnl').forEach(l => l.addEventListener('click', closeMenu));
 
+  // Category filter from URL param
+  const params = new URLSearchParams(window.location.search);
+  const catParam = params.get('cat');
+  const cards = document.querySelectorAll('.work-card');
+
+  if (catParam) {
+    const labelMap = { 'アーティスト': 'MV', '企業': 'Corporate' };
+    document.getElementById('page-title').textContent = labelMap[catParam] || catParam;
+    let count = 0;
+    cards.forEach(card => {
+      const cardCat = card.querySelector('.work-cat').textContent.trim();
+      if (cardCat === catParam) {
+        count++;
+      } else {
+        card.style.display = 'none';
+      }
+    });
+    document.getElementById('work-count').textContent = count + ' projects';
+  }
+
   // Scroll reveal
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
