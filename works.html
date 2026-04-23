@@ -424,7 +424,7 @@
   const cards = document.querySelectorAll('.work-card');
 
   if (catParam) {
-    const labelMap = { 'アーティスト': 'MV', '企業': 'Corporate' };
+    const labelMap = { 'アーティスト': 'MV', '企業': '企業' };
     document.getElementById('page-title').textContent = labelMap[catParam] || catParam;
     let count = 0;
     cards.forEach(card => {
