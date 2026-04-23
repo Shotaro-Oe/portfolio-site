@@ -338,9 +338,9 @@
   }
   .about-members {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 32px;
-    max-width: 720px;
+    max-width: 1080px;
   }
   .about-member {}
   .about-member-photo {
@@ -369,6 +369,7 @@
   }
   @media (max-width: 640px) {
     .about-members { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .about-member-label { max-width: 100%; }
   }
 
   /* ===== Contact ===== */
@@ -658,6 +659,12 @@
           <img src="about-ddd.jpg" alt="DDD">
         </div>
         <div class="about-member-name">DDD</div>
+      </div>
+      <div class="about-member reveal">
+        <div class="about-member-photo">
+          <img src="about-shun.jpg" alt="Shun Shimizu">
+        </div>
+        <div class="about-member-name">Shun Shimizu</div>
       </div>
     </div>
   </div>
