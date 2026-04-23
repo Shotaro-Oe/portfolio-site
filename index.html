@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SHOTARO ｜ 映像クリエイター ｜ 大阪</title>
-<meta name="description" content="大阪を拠点に活動する映像クリエイター SHOTARO のポートフォリオ。MV・企業PR映像・ドキュメンタリー・YouTube編集。">
-<meta property="og:title" content="SHOTARO ｜ 映像クリエイター ｜ 大阪">
-<meta property="og:description" content="想いを、届ける。大阪を拠点に活動する映像クリエイター SHOTARO のポートフォリオ。">
+<title>Launch. ｜ 映像制作チーム ｜ 大阪</title>
+<meta name="description" content="大阪を拠点に活動する映像制作チーム Launch. のポートフォリオ。MV・企業PR映像・ドキュメンタリー・YouTube編集。">
+<meta property="og:title" content="Launch. ｜ 映像制作チーム ｜ 大阪">
+<meta property="og:description" content="想いを、届ける。大阪を拠点に活動する映像制作チーム Launch. のポートフォリオ。">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://portfolio-site-70s.pages.dev/og-image.png">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -309,59 +309,48 @@
     background: #fff;
     border-top: 1px solid var(--line);
   }
-  .about-grid {
-    display: grid;
-    grid-template-columns: 380px 1fr;
-    gap: 80px;
-    align-items: start;
+  .about-intro {
+    max-width: 640px;
+    margin-bottom: 72px;
   }
-  .about-photo {
+  .about-intro p {
+    font-size: 15px;
+    line-height: 2.2;
+    color: #444;
+  }
+  .about-members {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+    max-width: 720px;
+  }
+  .about-member {}
+  .about-member-photo {
     width: 100%;
     aspect-ratio: 4/5;
     overflow: hidden;
     background: #e0e0e0;
+    margin-bottom: 20px;
   }
-  .about-photo img {
+  .about-member-photo img {
     width: 100%; height: 100%;
     object-fit: cover;
-    object-position: 73% 15%;
     display: block;
   }
-  .about-right { padding-top: 8px; }
-  .about-name {
-    font-size: 36px;
-    font-weight: 300;
-    letter-spacing: 0.2em;
+  .about-member-name {
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: 0.18em;
     margin-bottom: 6px;
   }
-  .about-sub {
+  .about-member-role {
     font-size: 11px;
-    letter-spacing: 0.25em;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
     color: var(--muted);
-    margin-bottom: 48px;
-    padding-bottom: 48px;
-    border-bottom: 1px solid var(--line);
   }
-  .about-body p {
-    font-size: 15px;
-    line-height: 2.1;
-    color: #444;
-    margin-bottom: 18px;
-  }
-  .about-skills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 36px;
-  }
-  .about-skills span {
-    font-size: 10px;
-    letter-spacing: 0.12em;
-    padding: 5px 14px;
-    border: 1px solid var(--line);
-    color: var(--muted);
-    text-transform: uppercase;
+  @media (max-width: 640px) {
+    .about-members { grid-template-columns: repeat(2, 1fr); gap: 20px; }
   }
 
   /* ===== Contact ===== */
@@ -536,7 +525,7 @@
 <!-- ===== Header ===== -->
 <header id="siteHeader">
   <div class="inner">
-    <h1><a href="#">SHOTARO</a></h1>
+    <h1><a href="#">Launch.</a></h1>
     <nav>
       <a href="#works">Works</a>
       <a href="#about">About</a>
@@ -638,17 +627,23 @@
     <div class="section-head reveal">
       <span class="section-label">About</span>
     </div>
-    <div class="about-grid">
-      <div class="about-photo reveal">
-        <img src="about.jpg" alt="SHOTARO">
-      </div>
-      <div class="about-right reveal">
-        <div class="about-name">SHOTARO</div>
-        <div class="about-sub">Filmmaker · Osaka, Japan</div>
-        <div class="about-body">
-          <p>大阪を拠点に、MV・企業PR・ドキュメンタリー・YouTube編集を幅広く手がける映像クリエイター。</p>
-          <p>少人数制作を強みとし、企画段階から柔軟にご相談に応じます。撮影・編集・カラーグレーディングまで一貫対応可能。</p>
+    <div class="about-intro reveal">
+      <p>大阪を拠点に、MV・企業PR・ドキュメンタリー・YouTube編集を幅広く手がける映像制作チーム。少人数制作を強みとし、企画段階から柔軟にご相談に応じます。撮影・編集・カラーグレーディングまで一貫対応可能。</p>
+    </div>
+    <div class="about-members">
+      <div class="about-member reveal">
+        <div class="about-member-photo">
+          <img src="about.jpg" alt="SHOTARO">
         </div>
+        <div class="about-member-name">SHOTARO</div>
+        <div class="about-member-role">Filmmaker · Osaka, Japan</div>
+      </div>
+      <div class="about-member reveal">
+        <div class="about-member-photo">
+          <img src="about-ddd.jpg" alt="DDD">
+        </div>
+        <div class="about-member-name">DDD</div>
+        <div class="about-member-role">Filmmaker · Osaka, Japan</div>
       </div>
     </div>
   </div>
