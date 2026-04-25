@@ -34,12 +34,7 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   body {
-    background: #e8ecf5;
-    background-image:
-      radial-gradient(ellipse 70% 55% at 12% 12%, rgba(175,150,240,0.22) 0%, transparent 60%),
-      radial-gradient(ellipse 60% 50% at 88% 85%, rgba(120,195,240,0.18) 0%, transparent 60%),
-      radial-gradient(ellipse 50% 40% at 65% 5%,  rgba(200,170,255,0.14) 0%, transparent 50%);
-    background-attachment: fixed;
+    background: #f5f5f5;
     color: var(--fg);
     font-family: -apple-system, "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ ProN W3", sans-serif;
     line-height: 1.8;
@@ -54,8 +49,7 @@
     position: fixed;
     top: 0; left: 0; right: 0;
     z-index: 100;
-    padding: 20px 24px;
-    transition: padding 0.4s ease;
+    padding: 16px 24px;
     pointer-events: none;
   }
   header .inner {
@@ -64,33 +58,26 @@
     align-items: center;
     max-width: 1080px;
     margin: 0 auto;
-    padding: 14px 40px;
-    border-radius: 0;
-    transition: background 0.4s ease, border-color 0.4s ease, border-radius 0.4s ease, box-shadow 0.4s ease, padding 0.4s ease, backdrop-filter 0.4s ease;
-    pointer-events: auto;
-  }
-  header.solid .inner {
+    padding: 12px 40px;
     background: rgba(255,255,255,0.65);
     backdrop-filter: blur(28px) saturate(2);
     -webkit-backdrop-filter: blur(28px) saturate(2);
     border: 1px solid rgba(255,255,255,0.80);
     border-radius: 18px;
     box-shadow: 0 6px 28px rgba(50,70,180,0.10), inset 0 1.5px 0 rgba(255,255,255,0.95);
-    padding: 12px 40px;
+    pointer-events: auto;
   }
   header h1 {
     font-size: 15px;
     font-weight: 500;
     letter-spacing: 0.22em;
-    color: #fff;
-    transition: color 0.4s;
+    color: var(--fg);
   }
-  header.solid h1 { color: var(--fg); }
   header nav { display: flex; align-items: center; }
   header nav a {
     font-size: 12px;
     letter-spacing: 0.12em;
-    color: rgba(255,255,255,0.65);
+    color: var(--muted);
     padding: 0 18px;
     position: relative;
     transition: color 0.2s;
@@ -99,13 +86,10 @@
     content: '/';
     position: absolute;
     right: 0; top: 50%; transform: translateY(-50%);
-    color: rgba(255,255,255,0.2);
+    color: rgba(120,140,180,0.3);
     font-size: 11px;
   }
-  header nav a:hover { color: #fff; }
-  header.solid nav a { color: var(--muted); }
-  header.solid nav a:not(:last-child)::after { color: rgba(120,140,180,0.3); }
-  header.solid nav a:hover { color: var(--fg); }
+  header nav a:hover { color: var(--fg); }
 
   /* ===== Hero ===== */
   .hero {
@@ -444,10 +428,6 @@
     background: linear-gradient(90deg, transparent, rgba(255,255,255,0.92) 35%, rgba(255,255,255,0.92) 65%, transparent);
     pointer-events: none;
   }
-  .about-member:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-hover);
-  }
   .about-member-photo {
     width: 100%;
     aspect-ratio: 4/5;
@@ -586,10 +566,9 @@
   .hamburger span {
     display: block;
     width: 22px; height: 1px;
-    background: #fff;
-    transition: transform 0.3s ease, opacity 0.3s ease, background 0.4s;
+    background: var(--fg);
+    transition: transform 0.3s ease, opacity 0.3s ease;
   }
-  header.solid .hamburger span { background: var(--fg); }
   .hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
   .hamburger.open span:nth-child(2) { opacity: 0; }
   .hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
@@ -814,12 +793,6 @@
 </footer>
 
 <script>
-  // Header: transparent → solid on scroll
-  const header = document.getElementById('siteHeader');
-  window.addEventListener('scroll', () => {
-    header.classList.toggle('solid', window.scrollY > 60);
-  }, { passive: true });
-
   // Hamburger menu
   const hamburger = document.getElementById('hamburger');
   const mobileNav = document.getElementById('mobileNav');
