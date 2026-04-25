@@ -8,7 +8,7 @@
 <meta property="og:title" content="Launch. ｜ 映像制作チーム ｜ 大阪">
 <meta property="og:description" content="想いを、届ける。大阪を拠点に活動する映像制作チーム Launch. のポートフォリオ。">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://portfolio-site-70s.pages.dev/og-image.png">
+<meta property="og:image" content="https://launch-films.com/og-image.png">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="apple-touch-icon" href="favicon.svg">
 
@@ -674,8 +674,8 @@
 <section class="contact" id="contact">
   <div class="container">
     <div class="contact-eyebrow">Contact</div>
-    <h2 class="contact-heading">お仕事のご依頼・ご相談</h2>
-    <p class="contact-sub">企画段階からのご相談もお気軽にどうぞ。</p>
+    <h2 class="contact-heading">映像制作のご依頼・ご相談</h2>
+    <p class="contact-sub">企画・撮影・編集まで、お気軽にご連絡ください。</p>
     <div class="contact-links">
       <a class="contact-link" href="mailto:info@launch-films.com">
         <span>info@launch-films.com</span>
@@ -716,6 +716,17 @@
   hamburger.addEventListener('click', () => hamburger.classList.contains('open') ? closeMenu() : openMenu());
   overlay.addEventListener('click', closeMenu);
   document.querySelectorAll('.mnl').forEach(l => l.addEventListener('click', closeMenu));
+
+  // カード全体クリックで work.html へ
+  document.querySelectorAll('.work-card').forEach(card => {
+    const watchBtn = card.querySelector('.watch-btn');
+    if (!watchBtn) return;
+    card.style.cursor = 'pointer';
+    card.addEventListener('click', (e) => {
+      if (e.target.closest('.watch-btn')) return;
+      window.location.href = watchBtn.getAttribute('href');
+    });
+  });
 
   // Scroll reveal
   const observer = new IntersectionObserver((entries) => {
