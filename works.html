@@ -45,11 +45,10 @@
     top: 0;
     z-index: 100;
     padding: 22px 0;
-    background: rgba(255,255,255,0.72);
-    backdrop-filter: blur(28px) saturate(2);
-    -webkit-backdrop-filter: blur(28px) saturate(2);
-    border-bottom: 1px solid rgba(255,255,255,0.80);
-    box-shadow: 0 4px 24px rgba(50,70,180,0.08);
+    background: rgba(14,14,14,0.92);
+    backdrop-filter: blur(20px) saturate(1.4);
+    -webkit-backdrop-filter: blur(20px) saturate(1.4);
+    border-bottom: 1px solid rgba(255,255,255,0.07);
   }
   header .inner {
     display: flex;
@@ -59,19 +58,19 @@
     margin: 0 auto;
     padding: 0 48px;
   }
-  header h1 { font-size: 15px; font-weight: 500; letter-spacing: 0.22em; color: var(--fg); }
+  header h1 { font-size: 15px; font-weight: 500; letter-spacing: 0.22em; color: #fff; }
   header nav { display: flex; align-items: center; }
   header nav a {
     font-size: 12px; letter-spacing: 0.12em;
-    color: var(--muted); padding: 0 18px;
+    color: rgba(255,255,255,0.5); padding: 0 18px;
     position: relative; transition: color 0.2s;
   }
   header nav a:not(:last-child)::after {
     content: '/'; position: absolute; right: 0;
     top: 50%; transform: translateY(-50%);
-    color: rgba(120,140,180,0.3); font-size: 11px;
+    color: rgba(255,255,255,0.15); font-size: 11px;
   }
-  header nav a:hover { color: var(--fg); }
+  header nav a:hover { color: #fff; }
 
   /* Hamburger */
   .hamburger {
@@ -80,7 +79,7 @@
   }
   .hamburger span {
     display: block; width: 22px; height: 1px;
-    background: var(--fg);
+    background: #fff;
     transition: transform 0.3s ease, opacity 0.3s ease;
   }
   .hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
