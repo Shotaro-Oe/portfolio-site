@@ -9,8 +9,7 @@ if git diff --cached --quiet; then
   exit 0
 fi
 
-read -p "コミットメッセージを入力してください: " msg
-git commit -m "$msg"
+git commit -m "update: $(date '+%Y-%m-%d %H:%M')"
 git push
 
 echo "✅ deployが完了しました。"
