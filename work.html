@@ -155,6 +155,25 @@
   .credit-role { color: var(--muted); letter-spacing: 0.05em; }
   .credit-name { font-weight: 500; }
 
+  /* ===== Desktop: Liquid Glass OFF (769px以上) ===== */
+  @media (min-width: 769px) {
+    .work-cat {
+      background: none;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      border: 1px solid var(--line);
+      border-radius: 0;
+      box-shadow: none;
+      padding: 4px 14px;
+      color: var(--muted);
+    }
+    .video-wrap {
+      border-radius: 0;
+      box-shadow: none;
+    }
+    .video-wrap iframe { border-radius: 0; }
+  }
+
   /* ===== Reveal ===== */
   .reveal {
     opacity: 0; transform: translateY(-16px);

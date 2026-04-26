@@ -3,34 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Works ｜ Launch. 映像制作チーム</title>
-<meta name="description" content="大阪を拠点に活動する映像制作チーム Launch. の全作品一覧。MV・企業PR映像・ドキュメンタリー・YouTube編集。">
-<meta property="og:title" content="Works ｜ Launch. 映像制作チーム">
-<meta property="og:description" content="大阪を拠点に活動する映像制作チーム Launch. の全作品一覧。">
-<meta property="og:type" content="website">
-<meta property="og:image" content="https://launch-films.com/og-image.png">
+<title>[BEFORE] Works ｜ Launch. 映像制作チーム</title>
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
-<link rel="apple-touch-icon" href="favicon.svg">
 
 <style>
+  /* ===== BEFORE Liquid Glass ===== */
   :root {
-    --fg: #1a1a2e;
-    --muted: #6a7090;
-    --line: rgba(170,185,225,0.35);
-    --glass: rgba(255,255,255,0.50);
-    --glass-border: rgba(255,255,255,0.76);
-    --blur: blur(24px) saturate(1.8);
-    --shadow: 0 8px 40px rgba(50,70,180,0.10), 0 2px 10px rgba(50,70,180,0.06), inset 0 1.5px 0 rgba(255,255,255,0.88);
-    --shadow-hover: 0 20px 60px rgba(50,70,180,0.16), 0 4px 20px rgba(50,70,180,0.08), inset 0 1.5px 0 rgba(255,255,255,0.95);
-    --r: 20px;
-    --r-sm: 12px;
+    --bg: #f5f5f5;
+    --fg: #111;
+    --muted: #888;
+    --line: #ddd;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   body {
-    background: #f5f5f5;
+    background: var(--bg);
     color: var(--fg);
-    font-family: -apple-system, "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ ProN W3", sans-serif;
+    font-family: "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ ProN W3", -apple-system, sans-serif;
     line-height: 1.8;
     font-size: 15px;
     -webkit-font-smoothing: antialiased;
@@ -45,10 +34,10 @@
     top: 0;
     z-index: 100;
     padding: 22px 0;
-    background: rgba(14,14,14,0.92);
-    backdrop-filter: blur(20px) saturate(1.4);
-    -webkit-backdrop-filter: blur(20px) saturate(1.4);
-    border-bottom: 1px solid rgba(255,255,255,0.07);
+    background: rgba(255,255,255,0.97);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
   }
   header .inner {
     display: flex;
@@ -58,19 +47,19 @@
     margin: 0 auto;
     padding: 0 48px;
   }
-  header h1 { font-size: 15px; font-weight: 500; letter-spacing: 0.22em; color: #fff; }
+  header h1 { font-size: 15px; font-weight: 500; letter-spacing: 0.22em; }
   header nav { display: flex; align-items: center; }
   header nav a {
     font-size: 12px; letter-spacing: 0.12em;
-    color: rgba(255,255,255,0.5); padding: 0 18px;
+    color: var(--muted); padding: 0 18px;
     position: relative; transition: color 0.2s;
   }
   header nav a:not(:last-child)::after {
     content: '/'; position: absolute; right: 0;
     top: 50%; transform: translateY(-50%);
-    color: rgba(255,255,255,0.15); font-size: 11px;
+    color: var(--line); font-size: 11px;
   }
-  header nav a:hover { color: #fff; }
+  header nav a:hover { color: var(--fg); }
 
   /* Hamburger */
   .hamburger {
@@ -79,7 +68,7 @@
   }
   .hamburger span {
     display: block; width: 22px; height: 1px;
-    background: #fff;
+    background: var(--fg);
     transition: transform 0.3s ease, opacity 0.3s ease;
   }
   .hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
@@ -89,10 +78,7 @@
   .mobile-nav {
     display: none; position: fixed;
     top: 0; right: 0; width: 260px; height: 100dvh;
-    background: rgba(9,9,20,0.82);
-    backdrop-filter: blur(32px) saturate(1.6);
-    -webkit-backdrop-filter: blur(32px) saturate(1.6);
-    border-left: 1px solid rgba(255,255,255,0.09);
+    background: #222; border-left: 1px solid rgba(255,255,255,0.06);
     z-index: 200; padding: 80px 40px 40px;
     flex-direction: column; gap: 32px;
     transform: translateX(100%); transition: transform 0.35s ease;
@@ -103,17 +89,14 @@
 
   .mobile-overlay {
     display: none; position: fixed; inset: 0;
-    background: rgba(0,0,0,0.38);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    z-index: 150;
+    background: rgba(0,0,0,0.5); z-index: 150;
     opacity: 0; transition: opacity 0.3s; pointer-events: none;
   }
   .mobile-overlay.open { opacity: 1; pointer-events: auto; }
 
   /* ===== Page Heading ===== */
   .page-heading {
-    padding: 48px 0 56px;
+    padding: 80px 0 64px;
     border-bottom: 1px solid var(--line);
   }
   .page-heading .back, .page-heading .back-all {
@@ -132,41 +115,17 @@
   .page-heading .count { font-size: 12px; color: var(--muted); margin-top: 8px; letter-spacing: 0.1em; }
 
   /* ===== Works Grid ===== */
-  .works { padding: 64px 0 120px; }
+  .works { padding: 80px 0 120px; }
   .work-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    gap: 56px 24px;
   }
-  .work-card {
-    display: flex; flex-direction: column;
-    background: var(--glass);
-    backdrop-filter: var(--blur);
-    -webkit-backdrop-filter: var(--blur);
-    border: 1px solid var(--glass-border);
-    border-radius: var(--r);
-    padding: 12px 12px 18px;
-    box-shadow: var(--shadow);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    overflow: hidden;
-    position: relative;
-  }
-  .work-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 8%; right: 8%;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.92) 35%, rgba(255,255,255,0.92) 65%, transparent);
-    pointer-events: none;
-  }
-  .work-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-hover);
-  }
+  .work-card { display: flex; flex-direction: column; }
   .work-thumb {
-    border-radius: var(--r-sm);
+    border-radius: 8px;
     aspect-ratio: 16/9; overflow: hidden;
-    background: rgba(200,210,230,0.45); margin-bottom: 14px; position: relative;
+    background: #ccc; margin-bottom: 18px; position: relative;
   }
   .work-thumb img {
     width: 100%; height: 100%; object-fit: cover;
@@ -175,67 +134,17 @@
   .work-card:hover .work-thumb img { transform: scale(1.04); }
   .work-cat {
     font-size: 10px; letter-spacing: 0.22em;
-    text-transform: uppercase; color: var(--muted); margin-bottom: 5px; padding: 0 2px;
+    text-transform: uppercase; color: var(--muted); margin-bottom: 6px;
   }
-  .work-role { font-size: 11px; color: var(--fg); letter-spacing: 0.05em; margin-bottom: 5px; }
-  .work-title { font-size: 13px; font-weight: 500; line-height: 1.5; margin-bottom: 4px; padding: 0 2px; }
-  .work-year { font-size: 11px; color: var(--muted); margin-bottom: 14px; padding: 0 2px; }
+  .work-title { font-size: 14px; font-weight: 500; line-height: 1.5; margin-bottom: 4px; }
+  .work-year { font-size: 12px; color: var(--muted); margin-bottom: 16px; }
   .watch-btn {
     margin-top: auto; display: inline-block; align-self: flex-start;
     font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase;
-    color: var(--fg);
-    background: rgba(255,255,255,0.62);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border: 1px solid rgba(255,255,255,0.82);
-    border-radius: 100px;
-    padding: 6px 18px;
-    margin-left: 2px;
-    box-shadow: 0 2px 8px rgba(50,70,160,0.08), inset 0 1px 0 rgba(255,255,255,0.92);
-    transition: all 0.22s ease;
+    color: var(--fg); border: 1px solid var(--fg);
+    padding: 7px 18px; transition: background 0.2s, color 0.2s;
   }
-  .watch-btn:hover {
-    background: rgba(255,255,255,0.88);
-    box-shadow: 0 4px 16px rgba(50,70,160,0.12), inset 0 1px 0 rgba(255,255,255,0.98);
-    transform: translateY(-1px);
-  }
-
-  /* ===== Desktop: Liquid Glass OFF (769px以上) ===== */
-  @media (min-width: 769px) {
-    .work-card {
-      background: none;
-      backdrop-filter: none;
-      -webkit-backdrop-filter: none;
-      border: none;
-      border-radius: 0;
-      padding: 0;
-      box-shadow: none;
-    }
-    .work-card::before { display: none; }
-    .work-card:hover { transform: none; box-shadow: none; }
-    .work-grid { gap: 56px 24px; }
-    .work-thumb { margin-bottom: 18px; background: #ccc; }
-    .work-cat, .work-title, .work-year { padding: 0; }
-    .work-title { font-size: 14px; }
-    .work-year { font-size: 12px; }
-    .watch-btn {
-      background: none;
-      backdrop-filter: none;
-      -webkit-backdrop-filter: none;
-      border: 1px solid var(--fg);
-      border-radius: 0;
-      box-shadow: none;
-      padding: 7px 18px;
-      margin-left: 0;
-      color: var(--fg);
-    }
-    .watch-btn:hover {
-      background: var(--fg);
-      color: #f5f5f5;
-      box-shadow: none;
-      transform: none;
-    }
-  }
+  .watch-btn:hover { background: var(--fg); color: var(--bg); }
 
   /* ===== Reveal ===== */
   .reveal {
@@ -254,28 +163,44 @@
     max-width: 1080px; margin: 0 auto; padding: 0 48px;
     display: flex; justify-content: space-between; align-items: center;
   }
-  footer span { font-size: 11px; color: rgba(255,255,255,0.3); letter-spacing: 0.08em; }
+  footer span { font-size: 11px; color: rgba(255,255,255,0.4); letter-spacing: 0.08em; }
 
   /* ===== Responsive ===== */
   @media (max-width: 900px) {
     .work-grid { grid-template-columns: repeat(2, 1fr); }
   }
   @media (max-width: 640px) {
-    .container { padding: 0 20px; }
-    header { padding: 16px 0; }
+    .container { padding: 0 24px; }
     header .inner { padding: 0 24px; }
     header nav { display: none; }
     .hamburger { display: flex; }
     .mobile-nav { display: flex; }
     .mobile-overlay { display: block; pointer-events: none; }
-    .page-heading { padding: 40px 0 40px; }
-    .works { padding: 40px 0 80px; }
-    .work-grid { grid-template-columns: 1fr; gap: 16px; }
+    .page-heading { padding: 56px 0 48px; }
+    .works { padding: 56px 0 80px; }
+    .work-grid { grid-template-columns: 1fr; gap: 40px; }
     footer .inner { flex-direction: column; gap: 8px; text-align: center; }
+  }
+
+  /* ===== Preview Badge ===== */
+  .preview-badge {
+    position: fixed;
+    bottom: 20px; right: 20px;
+    background: #e24b4a;
+    color: #fff;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    padding: 8px 16px;
+    border-radius: 100px;
+    z-index: 9999;
+    pointer-events: none;
+    font-family: -apple-system, sans-serif;
   }
 </style>
 </head>
 <body>
+
+<div class="preview-badge">BEFORE — Liquid Glass 適用前</div>
 
 <!-- ===== Mobile Nav ===== -->
 <div class="mobile-overlay" id="mobileOverlay"></div>
@@ -325,7 +250,6 @@
   <div class="container">
     <div class="work-grid">
 
-      <!-- 2026 -->
       <div class="work-card reveal">
         <div class="work-thumb"><img src="https://img.youtube.com/vi/Bzf7EDiDhew/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/Bzf7EDiDhew/hqdefault.jpg'" alt=""></div>
         <div class="work-cat">アーティスト</div>
@@ -334,7 +258,6 @@
         <a class="watch-btn" href="work.html?id=Bzf7EDiDhew">Watch</a>
       </div>
 
-      <!-- 2025 -->
       <div class="work-card reveal">
         <div class="work-thumb"><img src="https://img.youtube.com/vi/jYZN9irRYTk/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/jYZN9irRYTk/hqdefault.jpg'" alt=""></div>
         <div class="work-cat">アーティスト</div>
@@ -383,7 +306,6 @@
         <a class="watch-btn" href="work.html?id=l_Af4hLnry0">Watch</a>
       </div>
 
-      <!-- 2024 -->
       <div class="work-card reveal">
         <div class="work-thumb"><img src="https://img.youtube.com/vi/YAT6KenzrBk/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/YAT6KenzrBk/hqdefault.jpg'" alt=""></div>
         <div class="work-cat">アーティスト</div>
@@ -424,7 +346,6 @@
         <a class="watch-btn" href="work.html?id=hF4R6-bfg7M">Watch</a>
       </div>
 
-      <!-- 2023 -->
       <div class="work-card reveal">
         <div class="work-thumb"><img src="https://img.youtube.com/vi/IbaMGMUA1qk/maxresdefault.jpg" onerror="this.src='https://img.youtube.com/vi/IbaMGMUA1qk/hqdefault.jpg'" alt=""></div>
         <div class="work-cat">アーティスト</div>
@@ -465,7 +386,6 @@
         <a class="watch-btn" href="work.html?id=eTuEeJuTc_A">Watch</a>
       </div>
 
-      <!-- 2022 -->
       <div class="work-card reveal">
         <div class="work-thumb"><img src="https://img.youtube.com/vi/3tgqSp5cTGE/hqdefault.jpg" onerror="this.onerror=null;this.src='https://img.youtube.com/vi/3tgqSp5cTGE/mqdefault.jpg'" alt=""></div>
         <div class="work-cat">アーティスト</div>
@@ -502,7 +422,6 @@
 </footer>
 
 <script>
-  // Hamburger
   const hamburger = document.getElementById('hamburger');
   const mobileNav = document.getElementById('mobileNav');
   const overlay   = document.getElementById('mobileOverlay');
@@ -512,11 +431,9 @@
   overlay.addEventListener('click', closeMenu);
   document.querySelectorAll('.mnl').forEach(l => l.addEventListener('click', closeMenu));
 
-  // Category filter from URL param
   const params = new URLSearchParams(window.location.search);
   const catParam = params.get('cat');
   const cards = document.querySelectorAll('.work-card');
-
   if (catParam) {
     const labelMap = { 'アーティスト': 'MV', '企業': '企業' };
     document.getElementById('page-title').textContent = labelMap[catParam] || catParam;
@@ -524,16 +441,11 @@
     let count = 0;
     cards.forEach(card => {
       const cardCat = card.querySelector('.work-cat').textContent.trim();
-      if (cardCat === catParam) {
-        count++;
-      } else {
-        card.style.display = 'none';
-      }
+      if (cardCat === catParam) { count++; } else { card.style.display = 'none'; }
     });
     document.getElementById('work-count').textContent = count + ' projects';
   }
 
-  // カード全体クリックで work.html へ
   cards.forEach(card => {
     const watchBtn = card.querySelector('.watch-btn');
     if (!watchBtn) return;
@@ -544,13 +456,9 @@
     });
   });
 
-  // Scroll reveal
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
+      if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
     });
   }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));

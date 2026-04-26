@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Works ｜ Launch. 映像制作チーム</title>
+<title>[AFTER] Works ｜ Launch. 映像制作チーム</title>
 <meta name="description" content="大阪を拠点に活動する映像制作チーム Launch. の全作品一覧。MV・企業PR映像・ドキュメンタリー・YouTube編集。">
 <meta property="og:title" content="Works ｜ Launch. 映像制作チーム">
 <meta property="og:description" content="大阪を拠点に活動する映像制作チーム Launch. の全作品一覧。">
@@ -200,43 +200,6 @@
     transform: translateY(-1px);
   }
 
-  /* ===== Desktop: Liquid Glass OFF (769px以上) ===== */
-  @media (min-width: 769px) {
-    .work-card {
-      background: none;
-      backdrop-filter: none;
-      -webkit-backdrop-filter: none;
-      border: none;
-      border-radius: 0;
-      padding: 0;
-      box-shadow: none;
-    }
-    .work-card::before { display: none; }
-    .work-card:hover { transform: none; box-shadow: none; }
-    .work-grid { gap: 56px 24px; }
-    .work-thumb { margin-bottom: 18px; background: #ccc; }
-    .work-cat, .work-title, .work-year { padding: 0; }
-    .work-title { font-size: 14px; }
-    .work-year { font-size: 12px; }
-    .watch-btn {
-      background: none;
-      backdrop-filter: none;
-      -webkit-backdrop-filter: none;
-      border: 1px solid var(--fg);
-      border-radius: 0;
-      box-shadow: none;
-      padding: 7px 18px;
-      margin-left: 0;
-      color: var(--fg);
-    }
-    .watch-btn:hover {
-      background: var(--fg);
-      color: #f5f5f5;
-      box-shadow: none;
-      transform: none;
-    }
-  }
-
   /* ===== Reveal ===== */
   .reveal {
     opacity: 0; transform: translateY(16px);
@@ -273,9 +236,24 @@
     .work-grid { grid-template-columns: 1fr; gap: 16px; }
     footer .inner { flex-direction: column; gap: 8px; text-align: center; }
   }
+  .preview-badge {
+    position: fixed;
+    bottom: 20px; right: 20px;
+    background: #1D9E75;
+    color: #fff;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    padding: 8px 16px;
+    border-radius: 100px;
+    z-index: 9999;
+    pointer-events: none;
+    font-family: -apple-system, sans-serif;
+  }
 </style>
 </head>
 <body>
+
+<div class="preview-badge">AFTER — Liquid Glass 適用後</div>
 
 <!-- ===== Mobile Nav ===== -->
 <div class="mobile-overlay" id="mobileOverlay"></div>
