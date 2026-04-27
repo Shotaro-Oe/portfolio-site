@@ -423,7 +423,7 @@ if (work) {
   document.getElementById('workIframe').src = `https://www.youtube.com/embed/${id}?rel=0`;
 
   if (work.desc) {
-    document.getElementById('workDesc').textContent = work.desc;
+    document.getElementById('workDesc').textContent = work.desc.replace(/\//g, '、');
     document.getElementById('descSection').style.display = '';
   }
 
