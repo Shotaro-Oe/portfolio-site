@@ -147,13 +147,14 @@
   /* ===== Credits ===== */
   .work-credits { padding: 64px 0 100px; }
   .credit-row {
-    display: grid; grid-template-columns: 160px 1fr;
+    display: grid; grid-template-columns: clamp(100px, 22%, 160px) 1fr;
     gap: 16px; padding: 16px 0;
-    border-bottom: 1px solid var(--line); font-size: 14px;
+    border-bottom: 1px solid var(--line); font-size: clamp(12px, 1.4vw, 14px);
   }
   .credit-row:first-child { border-top: 1px solid var(--line); }
   .credit-role { color: var(--muted); letter-spacing: 0.05em; }
   .credit-name { font-weight: 500; }
+  .credit-name-line { display: block; }
   .credit-row.is-launch .credit-role,
   .credit-row.is-launch .credit-name { font-weight: 700; color: var(--fg); }
 
@@ -428,10 +429,16 @@ if (work) {
 
   const list = document.getElementById('creditsList');
   work.credits.forEach(([role, name]) => {
-    const row = document.createElement('div');
-    row.className = 'credit-row' + (name.includes('Launch.') ? ' is-launch' : '');
-    row.innerHTML = `<span class="credit-role">${role}</span><span class="credit-name">${name}</span>`;
-    list.appendChild(row);
+    const roles = role.split('/').map(r => r.trim());
+    const names = name.split('/').map(n => n.trim());
+    const isLaunch = name.includes('Launch.');
+    const nameHtml = `<span class="credit-name">${names.map(n => `<span class="credit-name-line">${n}</span>`).join('')}</span>`;
+    roles.forEach(r => {
+      const row = document.createElement('div');
+      row.className = 'credit-row' + (isLaunch ? ' is-launch' : '');
+      row.innerHTML = `<span class="credit-role">${r}</span>${nameHtml}`;
+      list.appendChild(row);
+    });
   });
 } else {
   document.querySelector('.work-hero h2').textContent = '作品が見つかりません';
