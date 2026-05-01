@@ -429,6 +429,17 @@
     overflow: hidden;
     position: relative;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    display: block;
+    color: inherit;
+    text-decoration: none;
+  }
+  .about-member:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+  }
+  .about-member:hover .about-member-name {
+    color: var(--fg);
   }
   .about-member::before {
     content: '';
@@ -713,6 +724,10 @@
       padding: 0;
       box-shadow: none;
     }
+    .about-member:hover {
+      transform: translateY(-3px);
+      box-shadow: none;
+    }
     .about-member::before { display: none; }
     .about-member-photo {
       background: #e0e0e0;
@@ -968,24 +983,24 @@
     </div>
     <div class="about-member-label reveal">Member</div>
     <div class="about-members">
-      <div class="about-member reveal">
+      <a class="about-member reveal" href="works.html?member=SHOTARO">
         <div class="about-member-photo">
           <img src="about.jpg" alt="SHOTARO">
         </div>
         <div class="about-member-name">SHOTARO</div>
-      </div>
-      <div class="about-member reveal">
+      </a>
+      <a class="about-member reveal" href="works.html?member=DDD">
         <div class="about-member-photo">
           <img src="about-ddd.jpg" alt="DDD">
         </div>
         <div class="about-member-name">DDD</div>
-      </div>
-      <div class="about-member reveal">
+      </a>
+      <a class="about-member reveal" href="works.html?member=Shun Shimizu">
         <div class="about-member-photo">
           <img src="about-shun.jpg" alt="Shun Shimizu">
         </div>
         <div class="about-member-name">Shun Shimizu</div>
-      </div>
+      </a>
     </div>
   </div>
 </section>
