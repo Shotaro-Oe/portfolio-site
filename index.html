@@ -303,13 +303,23 @@
     transition: transform 0.5s ease;
   }
   .work-card:hover .work-thumb img { transform: scale(1.04); }
+  .work-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+    padding: 0 2px;
+  }
   .work-cat {
     font-size: 10px;
     letter-spacing: 0.22em;
     text-transform: uppercase;
     color: var(--muted);
-    margin-bottom: 6px;
-    padding: 0 2px;
+  }
+  .work-year {
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.08em;
   }
   .work-role {
     font-size: 11px;
@@ -324,8 +334,8 @@
     margin-bottom: 4px;
     padding: 0 2px;
   }
-  .work-year {
-    font-size: 12px;
+  .work-members {
+    font-size: 11px;
     color: var(--muted);
     margin-bottom: 16px;
     padding: 0 2px;
@@ -667,7 +677,7 @@
     .work-card:hover { transform: none; box-shadow: none; }
     .work-grid { gap: 48px 32px; }
     .work-thumb { margin-bottom: 18px; }
-    .work-cat, .work-title, .work-year { padding: 0; }
+    .work-meta, .work-title, .work-members { padding: 0; }
     .work-thumb { border-radius: 0; }
 
     /* Watch button */
@@ -921,47 +931,59 @@
     </div>
     <div class="work-grid">
 
-      <div class="work-card reveal">
+      <div class="work-card reveal" data-members="SHOTARO">
         <div class="work-thumb">
           <img src="https://img.youtube.com/vi/Bzf7EDiDhew/maxresdefault.jpg"
                onerror="this.src='https://img.youtube.com/vi/Bzf7EDiDhew/hqdefault.jpg'" alt="you-to Rainbow Dream">
         </div>
-        <div class="work-cat">アーティスト</div>
+        <div class="work-meta">
+          <div class="work-cat">アーティスト</div>
+          <div class="work-year">2026</div>
+        </div>
         <div class="work-title">you-to「Rainbow Dream」Official Music Video</div>
-        <div class="work-year">2026</div>
+        <div class="work-members"></div>
         <a class="watch-btn" href="work.html?id=Bzf7EDiDhew">Watch</a>
       </div>
 
-      <div class="work-card reveal">
+      <div class="work-card reveal" data-members="SHOTARO">
         <div class="work-thumb">
           <img src="https://img.youtube.com/vi/GgmS1CXq54Y/maxresdefault.jpg"
                onerror="this.src='https://img.youtube.com/vi/GgmS1CXq54Y/hqdefault.jpg'" alt="猫背のネイビーセゾン MONOTARINAI">
         </div>
-        <div class="work-cat">アーティスト</div>
+        <div class="work-meta">
+          <div class="work-cat">アーティスト</div>
+          <div class="work-year">2025</div>
+        </div>
         <div class="work-title">猫背のネイビーセゾン「MONOTARINAI」MV</div>
-        <div class="work-year">2025</div>
+        <div class="work-members"></div>
         <a class="watch-btn" href="work.html?id=GgmS1CXq54Y">Watch</a>
       </div>
 
-      <div class="work-card reveal">
+      <div class="work-card reveal" data-members="SHOTARO,Shun Shimizu">
         <div class="work-thumb">
           <img src="https://img.youtube.com/vi/H0g-1gybDJw/maxresdefault.jpg"
                onerror="this.src='https://img.youtube.com/vi/H0g-1gybDJw/hqdefault.jpg'" alt="川岸畜産ドキュメンタリー">
         </div>
-        <div class="work-cat">企業</div>
+        <div class="work-meta">
+          <div class="work-cat">企業</div>
+          <div class="work-year">2025</div>
+        </div>
         <div class="work-title">川岸畜産様 社長密着ドキュメンタリー</div>
-        <div class="work-year">2025</div>
+        <div class="work-members"></div>
         <a class="watch-btn" href="work.html?id=H0g-1gybDJw">Watch</a>
       </div>
 
-      <div class="work-card reveal">
+      <div class="work-card reveal" data-members="SHOTARO,DDD">
         <div class="work-thumb">
           <img src="https://img.youtube.com/vi/XWLQKS59xxA/maxresdefault.jpg"
                onerror="this.src='https://img.youtube.com/vi/XWLQKS59xxA/hqdefault.jpg'" alt="shu 探し物">
         </div>
-        <div class="work-cat">アーティスト</div>
+        <div class="work-meta">
+          <div class="work-cat">アーティスト</div>
+          <div class="work-year">2025</div>
+        </div>
         <div class="work-title">shu「探し物」MV</div>
-        <div class="work-year">2025</div>
+        <div class="work-members"></div>
         <a class="watch-btn" href="work.html?id=XWLQKS59xxA">Watch</a>
       </div>
 
@@ -1110,6 +1132,15 @@
       if (e.target.closest('.watch-btn')) return;
       window.location.href = watchBtn.getAttribute('href');
     });
+  });
+
+  // メンバー名を .work-members に挿入
+  document.querySelectorAll('.work-card').forEach(card => {
+    const membersEl = card.querySelector('.work-members');
+    const members = card.dataset.members || '';
+    if (membersEl && members) {
+      membersEl.textContent = members.split(',').map(m => m.trim()).join(' / ');
+    }
   });
 
   // Scroll reveal
