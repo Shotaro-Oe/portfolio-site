@@ -173,16 +173,19 @@
   }
   .work-card:hover .work-thumb img { transform: scale(1.04); }
   .work-meta {
-    display: flex; justify-content: space-between; align-items: center;
+    display: flex; align-items: center; gap: 6px;
     margin-bottom: 5px; padding: 0 2px;
   }
   .work-cat {
     font-size: 10px; letter-spacing: 0.22em;
     text-transform: uppercase; color: var(--muted);
   }
+  .work-year {
+    font-size: 10px; color: var(--muted); letter-spacing: 0.08em;
+  }
+  .work-year::before { content: '·'; margin-right: 6px; }
   .work-role { font-size: 11px; color: var(--fg); letter-spacing: 0.05em; margin-bottom: 5px; }
   .work-title { font-size: 13px; font-weight: 500; line-height: 1.5; margin-bottom: 4px; padding: 0 2px; }
-  .work-year { font-size: 10px; color: var(--muted); letter-spacing: 0.08em; }
   .work-members { font-size: 11px; color: var(--muted); margin-bottom: 14px; padding: 0 2px; }
   .watch-btn {
     margin-top: auto; display: inline-block; align-self: center;
