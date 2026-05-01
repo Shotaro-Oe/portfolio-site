@@ -429,17 +429,26 @@
     overflow: hidden;
     position: relative;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer;
     display: block;
     color: inherit;
     text-decoration: none;
   }
-  .about-member:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-hover);
+  .about-member-works-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 14px;
+    padding: 0 4px;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s, gap 0.2s;
   }
-  .about-member:hover .about-member-name {
+  .about-member-works-btn:hover {
     color: var(--fg);
+    gap: 10px;
   }
   .about-member::before {
     content: '';
@@ -724,10 +733,7 @@
       padding: 0;
       box-shadow: none;
     }
-    .about-member:hover {
-      transform: translateY(-3px);
-      box-shadow: none;
-    }
+    .about-member-works-btn { padding: 0; margin-top: 16px; }
     .about-member::before { display: none; }
     .about-member-photo {
       background: #e0e0e0;
@@ -983,24 +989,42 @@
     </div>
     <div class="about-member-label reveal">Member</div>
     <div class="about-members">
-      <a class="about-member reveal" href="works.html?member=SHOTARO">
+      <div class="about-member reveal">
         <div class="about-member-photo">
           <img src="about.jpg" alt="SHOTARO">
         </div>
         <div class="about-member-name">SHOTARO</div>
-      </a>
-      <a class="about-member reveal" href="works.html?member=DDD">
+        <a class="about-member-works-btn" href="works.html?member=SHOTARO">
+          Works
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </a>
+      </div>
+      <div class="about-member reveal">
         <div class="about-member-photo">
           <img src="about-ddd.jpg" alt="DDD">
         </div>
         <div class="about-member-name">DDD</div>
-      </a>
-      <a class="about-member reveal" href="works.html?member=Shun Shimizu">
+        <a class="about-member-works-btn" href="works.html?member=DDD">
+          Works
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </a>
+      </div>
+      <div class="about-member reveal">
         <div class="about-member-photo">
           <img src="about-shun.jpg" alt="Shun Shimizu">
         </div>
         <div class="about-member-name">Shun Shimizu</div>
-      </a>
+        <a class="about-member-works-btn" href="works.html?member=Shun Shimizu">
+          Works
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </a>
+      </div>
     </div>
   </div>
 </section>

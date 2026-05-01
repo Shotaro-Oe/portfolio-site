@@ -116,14 +116,13 @@
     padding: 48px 0 56px;
     border-bottom: 1px solid var(--line);
   }
-  .page-heading .back, .page-heading .back-all {
+  .page-heading .back {
     display: inline-flex; align-items: center; gap: 8px;
     font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
     color: var(--muted); margin-bottom: 24px;
     transition: color 0.2s, gap 0.2s;
   }
-  .page-heading .back:hover, .page-heading .back-all:hover { color: var(--fg); gap: 12px; }
-  .page-heading .back-all { margin-top: 16px; display: none; }
+  .page-heading .back:hover { color: var(--fg); gap: 12px; }
   .work-card { cursor: pointer; }
   .page-heading h2 {
     font-size: clamp(28px, 4vw, 48px);
@@ -312,12 +311,6 @@
     </a>
     <h2 id="page-title">All Works</h2>
     <div class="count" id="work-count">20 projects</div>
-    <a href="works.html" class="back-all" id="back-all" style="display:none">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-        <line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/>
-      </svg>
-      Back to All Works
-    </a>
   </div>
 </div>
 
@@ -521,7 +514,6 @@
   if (catParam) {
     const labelMap = { 'アーティスト': 'MV', '企業': '企業' };
     document.getElementById('page-title').textContent = labelMap[catParam] || catParam;
-    document.getElementById('back-all').style.display = 'inline-flex';
     let count = 0;
     cards.forEach(card => {
       const cardCat = card.querySelector('.work-cat').textContent.trim();
@@ -538,7 +530,6 @@
   const memberParam = params.get('member');
   if (memberParam) {
     document.getElementById('page-title').textContent = memberParam;
-    document.getElementById('back-all').style.display = 'inline-flex';
     let count = 0;
     cards.forEach(card => {
       const members = (card.dataset.members || '').split(',').map(m => m.trim());
@@ -550,6 +541,15 @@
     });
     document.getElementById('work-count').textContent = count + ' projects';
   }
+
+  // 年表示をメンバー名に置き換え
+  cards.forEach(card => {
+    const yearEl = card.querySelector('.work-year');
+    const members = card.dataset.members || '';
+    if (yearEl && members) {
+      yearEl.textContent = members.split(',').map(m => m.trim()).join(' / ');
+    }
+  });
 
   // カード全体クリックで work.html へ
   cards.forEach(card => {
