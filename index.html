@@ -428,6 +428,7 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 24px;
     max-width: 1080px;
+    align-items: stretch;
   }
   .about-member {
     background: var(--glass);
@@ -512,6 +513,7 @@
     padding: 0 4px;
     margin-top: 8px;
     margin-bottom: 14px;
+    flex-grow: 1;
   }
   @media (max-width: 640px) {
     .about-members { grid-template-columns: repeat(2, 1fr); gap: 16px; }
