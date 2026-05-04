@@ -644,7 +644,7 @@
   document.querySelectorAll('.work-grid').forEach(grid => {
     const cols = getComputedStyle(grid).gridTemplateColumns.split(' ').length;
     Array.from(grid.querySelectorAll('.reveal')).forEach((el, i) => {
-      el.style.transitionDelay = (Math.floor(i / cols) * 0.12) + 's';
+      el.style.transitionDelay = (i % cols * 0.12) + 's';
     });
   });
 
