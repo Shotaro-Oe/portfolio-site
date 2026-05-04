@@ -1224,10 +1224,11 @@
       }
     });
   }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-  // 作品グリッドのみスタガー遅延を設定
+  // 作品グリッド：行ごとに上から順に遅延（同じ行は同時表示）
   document.querySelectorAll('.work-grid').forEach(grid => {
-    grid.querySelectorAll('.reveal').forEach((el, i) => {
-      el.style.transitionDelay = (i % 3 * 0.1) + 's';
+    const cols = getComputedStyle(grid).gridTemplateColumns.split(' ').length;
+    Array.from(grid.querySelectorAll('.reveal')).forEach((el, i) => {
+      el.style.transitionDelay = (Math.floor(i / cols) * 0.12) + 's';
     });
   });
 
