@@ -640,10 +640,11 @@
       }
     });
   }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
-  // 作品グリッド：行ごとに上から順に遅延（同じ行は同時表示）
+  // 作品グリッド：表示中カードのみ対象にスタガー設定
   document.querySelectorAll('.work-grid').forEach(grid => {
     const cols = getComputedStyle(grid).gridTemplateColumns.split(' ').length;
-    Array.from(grid.querySelectorAll('.reveal')).forEach((el, i) => {
+    const visibleCards = Array.from(grid.querySelectorAll('.reveal')).filter(el => el.style.display !== 'none');
+    visibleCards.forEach((el, i) => {
       el.style.transitionDelay = (i % cols * 0.12) + 's';
     });
   });
