@@ -1224,8 +1224,8 @@
       }
     });
   }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-  // グリッド内アイテムにスタガー遅延を設定
-  document.querySelectorAll('.work-grid, .about-members').forEach(grid => {
+  // 作品グリッドのみスタガー遅延を設定
+  document.querySelectorAll('.work-grid').forEach(grid => {
     grid.querySelectorAll('.reveal').forEach((el, i) => {
       el.style.transitionDelay = (i % 3 * 0.1) + 's';
     });
