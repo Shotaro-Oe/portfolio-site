@@ -155,8 +155,8 @@
   .credit-role { color: var(--muted); letter-spacing: 0.05em; }
   .credit-name { font-weight: 500; }
   .credit-name-line { display: block; }
-  .credit-row.is-launch .credit-role,
-  .credit-row.is-launch .credit-name { font-weight: 700; color: var(--fg); }
+  .credit-row.is-launch .credit-role { font-weight: 700; color: var(--fg); }
+  .credit-name-line.is-launch-member { font-weight: 700; color: var(--fg); }
 
   /* ===== Desktop: Liquid Glass OFF (769px以上) ===== */
   @media (min-width: 769px) {
@@ -414,13 +414,13 @@ const works = {
     title: 'タケヤキ翔「Hello Hello」MV',
     year: 2022, cat: 'アーティスト',
     desc: 'Launch.が制作アシスタントを担当しました。',
-    credits: [['Director', 'SOLO'], ['Director of photography', 'Tom Tominaga (PLACETO)'], ['Assistant director', 'Yuta Kobayashi (PLACETO)'], ['Assistant', 'Takuya / Yuya Komatsu / Shinya Iino'], ['Colorist', 'Ginta Nakahara (PLACETO)'], ['CG director', 'Sorai Ueda'], ['Lighting Director', 'Lin'], ['Lighting Assistant', 'WWOORRY / TOKIMITSUYUSUKE / Lewis Horie'], ['Stage set design', 'Bell Rock LLC.'], ['制作アシスタント', 'Hiroshi Anazawa / Kazuya Kitamura / DDD (Launch.) / Toya Yuuki / Masato Nakajima / Sukenaga Tanaka'], ['Hair & make', '大晃萌夏 (PUENTE)'], ['Assistant Producer', 'なかむらたけひと'], ['Production manager', '山田 江梨花'], ['Producer', 'なかじまいぶき'], ['Production', 'CAVU Enterprise']]
+    credits: [['監督', 'SOLO'], ['撮影監督', 'Tom Tominaga (PLACETO)'], ['監督助手', 'Yuta Kobayashi (PLACETO)'], ['アシスタント', 'Takuya / Yuya Komatsu / Shinya Iino'], ['カラリスト', 'Ginta Nakahara (PLACETO)'], ['CGディレクター', 'Sorai Ueda'], ['照明監督', 'Lin'], ['照明アシスタント', 'WWOORRY / TOKIMITSUYUSUKE / Lewis Horie'], ['舞台美術', 'Bell Rock LLC.'], ['制作アシスタント', 'Hiroshi Anazawa / Kazuya Kitamura / DDD (Launch.) / Toya Yuuki / Masato Nakajima / Sukenaga Tanaka'], ['ヘアメイク', '大晃萌夏 (PUENTE)'], ['アシスタントプロデューサー', 'なかむらたけひと'], ['制作マネージャー', '山田 江梨花'], ['プロデューサー', 'なかじまいぶき'], ['制作', 'CAVU Enterprise']]
   },
   'oJiYaKzOonM': {
     title: 'ピラフ星人「タメ口」MV',
     year: 2025, cat: 'アーティスト',
     desc: 'Launch.がカメラアシスタントを担当しました。',
-    credits: [['監督', 'Keita Uchino'], ['アシスタントディレクター', 'Kenta Otsuka'], ['照明', 'Taro Otsuka'], ['カメラアシスタント', 'DDD (Launch.)']]
+    credits: [['監督', 'Keita Uchino'], ['監督助手', 'Kenta Otsuka'], ['照明監督', 'Taro Otsuka'], ['カメラアシスタント', 'DDD (Launch.)']]
   }
 };
 
@@ -444,7 +444,7 @@ if (work) {
     const roles = role.split('/').map(r => r.trim());
     const names = name.split('/').map(n => n.trim());
     const isLaunch = name.includes('Launch.');
-    const nameHtml = `<span class="credit-name">${names.map(n => `<span class="credit-name-line">${n}</span>`).join('')}</span>`;
+    const nameHtml = `<span class="credit-name">${names.map(n => `<span class="credit-name-line${n.includes('Launch.') ? ' is-launch-member' : ''}">${n}</span>`).join('')}</span>`;
     roles.forEach(r => {
       const row = document.createElement('div');
       row.className = 'credit-row' + (isLaunch ? ' is-launch' : '');
