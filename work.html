@@ -278,7 +278,9 @@
 <div class="container">
   <section class="work-video reveal">
     <div class="video-wrap" id="videoWrap">
-      <div id="ytPlayer"></div>
+      <iframe id="workIframe" src="" allowfullscreen loading="lazy"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+      </iframe>
     </div>
     <div class="embed-blocked" id="embedBlocked">
       <img id="embedThumb" src="" alt="">
@@ -455,30 +457,22 @@ if (work) {
   document.getElementById('workTitle').textContent = work.title;
   document.getElementById('workCat').textContent   = work.cat;
   document.getElementById('workYear').textContent  = work.year;
-  // YouTube Player API でエラー153(埋め込み不可)を検知してフォールバック表示
+  // iframe セット
   document.getElementById('embedThumb').src = `https://img.youtube.com/vi/${id}/maxresdefault.jpg`;
   document.getElementById('embedLink').href = `https://www.youtube.com/watch?v=${id}`;
+  document.getElementById('workIframe').src = `https://www.youtube.com/embed/${id}?rel=0&enablejsapi=1`;
 
-  function onYouTubeIframeAPIReady() {
-    new YT.Player('ytPlayer', {
-      videoId: id,
-      playerVars: { rel: 0 },
-      events: {
-        onError: function(e) {
-          // 101/150 = 埋め込み不可、5 = HTML5エラー
-          if (e.data === 101 || e.data === 150 || e.data === 5) {
-            document.getElementById('videoWrap').style.display = 'none';
-            document.getElementById('embedBlocked').style.display = 'block';
-          }
-        }
+  // postMessage でエラー(101/150=埋め込み不可)を検知してフォールバック表示
+  window.addEventListener('message', function(e) {
+    if (e.origin !== 'https://www.youtube.com') return;
+    try {
+      const data = JSON.parse(e.data);
+      if (data.event === 'onError' && (data.info === 101 || data.info === 150 || data.info === 5)) {
+        document.getElementById('videoWrap').style.display = 'none';
+        document.getElementById('embedBlocked').style.display = 'block';
       }
-    });
-  }
-  window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
-
-  const ytScript = document.createElement('script');
-  ytScript.src = 'https://www.youtube.com/iframe_api';
-  document.head.appendChild(ytScript);
+    } catch(err) {}
+  });
 
   if (work.desc) {
     document.getElementById('workDesc').textContent = work.desc.replace(/\//g, '、');
