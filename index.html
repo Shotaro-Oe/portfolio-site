@@ -86,6 +86,8 @@
     font-size: 11px;
   }
   header nav a:hover { color: #fff; }
+  .lang-btn { background:none; border:1px solid rgba(255,255,255,0.35); color:rgba(255,255,255,0.75); padding:3px 11px; border-radius:20px; cursor:pointer; font-size:11px; font-family:inherit; letter-spacing:0.08em; transition:background 0.2s; margin-left:6px; }
+  .lang-btn:hover { background:rgba(255,255,255,0.1); }
 
   /* ===== Hero ===== */
   .hero {
@@ -150,6 +152,7 @@
     margin-top: 12px;
     margin-bottom: 56px;
     font-style: italic;
+    display: none;
   }
   .hero-genre {
     display: flex;
@@ -954,6 +957,7 @@
       <a href="#works">Works</a>
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
+      <button class="lang-btn" id="langBtn" onclick="toggleLang()">EN</button>
     </nav>
     <button class="hamburger" id="hamburger" aria-label="メニュー">
       <span></span><span></span><span></span>
@@ -1220,6 +1224,105 @@
   });
 
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // ===== Language system =====
+  const TITLES_EN = {
+    'Bzf7EDiDhew': 'you-to "Rainbow Dream" MV',
+    'H0g-1gybDJw': 'Kawagishi Livestock – CEO Documentary',
+    'jYZN9irRYTk': 'Juster "Hangry" MV',
+    'GgmS1CXq54Y': 'Nekozeno Navy Saison "MONOTARINAI" MV',
+  };
+  const TITLES_JP = {
+    'Bzf7EDiDhew': 'you-to「Rainbow Dream」MV',
+    'H0g-1gybDJw': '川岸畜産様 社長密着ドキュメンタリー',
+    'jYZN9irRYTk': 'Juster「Hangry」MV',
+    'GgmS1CXq54Y': '猫背のネイビーセゾン「MONOTARINAI」MV',
+  };
+  const CAT_EN = { 'アーティスト': 'Artist', '企業': 'Corporate', 'ドキュメンタリー': 'Documentary' };
+
+  function applyLang(lang) {
+    const isEN = lang === 'en';
+
+    // Hero
+    document.querySelector('.hero-catch').innerHTML = isEN
+      ? 'Bringing your vision to the world.'
+      : '想いを、届ける。';
+    document.querySelector('.hero-tagline').style.display = isEN ? 'none' : '';
+    document.querySelector('.hero-tagline-en').style.display = isEN ? '' : 'none';
+
+    // About
+    const aboutIntro = document.querySelector('.about-intro p');
+    if (aboutIntro) aboutIntro.innerHTML = isEN
+      ? 'A video production team based in Osaka, covering music videos, corporate PR films, and more.<br>We support your project from planning through delivery, flexibly and consistently.<br>Development, shooting, and editing — all handled in-house.'
+      : '大阪を拠点に、MV・企業PR映像など幅広く手がける映像制作チーム。<br>企画段階から映像が世界に届くまで柔軟にご相談に応じます。<br>企画・撮影・編集まで一貫した対応が可能です。';
+
+    const bios = document.querySelectorAll('.about-member-bio');
+    const biosEN = [
+      'Born in 2000, from Hyogo.<br>Director and Lighting Director, overseeing the full production process.<br>Covers a wide range from MVs and corporate PR to documentaries.',
+      "Born in 2001, from Kyoto.<br>Director with a unique perspective, primarily creating music videos.<br>Translating artists' visions into film.",
+      'Born in 1999, from Osaka.<br>Director of Photography, crafting visual quality and aesthetic.<br>Works across artist MVs and corporate productions.'
+    ];
+    const biosJP = [
+      '2000年生まれ、兵庫県出身。<br>監督・照明監督として映像制作全体を担っています。<br>MVや企業PR映像、ドキュメンタリーまで幅広いジャンルに対応します。',
+      '2001年生まれ、京都府出身。<br>監督として独自の視点でMVを中心に制作しています。<br>アーティストのビジョンを映像として形にします。',
+      '1999年生まれ、大阪府出身。<br>撮影監督として映像の質感と画を作り上げています。<br>アーティストMVから企業映像まで幅広く担当します。'
+    ];
+    bios.forEach((b, i) => { b.innerHTML = isEN ? biosEN[i] : biosJP[i]; });
+
+    // Contact
+    const heading = document.querySelector('.contact-heading');
+    if (heading) heading.textContent = isEN ? 'Request & Inquiries' : '映像制作のご依頼・ご相談';
+    const sub = document.querySelector('.contact-sub');
+    if (sub) sub.textContent = isEN
+      ? 'Feel free to reach out about production, planning, and editing.'
+      : '企画・撮影・編集まで、お気軽にご連絡ください。';
+
+    const lName = document.querySelector('label[for="cf-name"]');
+    if (lName) lName.textContent = isEN ? 'Name / Company' : 'お名前 / Company';
+    const lEmail = document.querySelector('label[for="cf-email"]');
+    if (lEmail) lEmail.textContent = isEN ? 'Email Address' : 'メールアドレス';
+    const lType = document.querySelector('label[for="cf-type"]');
+    if (lType) lType.textContent = isEN ? 'Project Type' : 'ご依頼の種類';
+    const lMsg = document.querySelector('label[for="cf-message"]');
+    if (lMsg) lMsg.textContent = isEN ? 'Message' : 'お問い合わせ内容';
+    const msgArea = document.getElementById('cf-message');
+    if (msgArea) msgArea.placeholder = isEN
+      ? 'Please share details about your project, budget, and timeline.'
+      : 'ご依頼の詳細・ご予算・スケジュールなどをお気軽にご記入ください。';
+
+    const cfType = document.getElementById('cf-type');
+    if (cfType) {
+      const vals = isEN
+        ? ['Select...','Music Video','Corporate PR Video','Documentary','YouTube Video Editing','Other']
+        : ['選択してください','MV制作','企業PR映像','ドキュメンタリー','YouTube動画編集','その他'];
+      cfType.querySelectorAll('option').forEach((o, i) => { if (vals[i]) o.textContent = vals[i]; });
+    }
+    const note = document.querySelector('.contact-form-note');
+    if (note) note.textContent = isEN
+      ? 'We typically respond within 2 business days.'
+      : '通常2営業日以内にご返信いたします。';
+
+    // Work cards
+    document.querySelectorAll('.work-card').forEach(card => {
+      const btn = card.querySelector('.watch-btn');
+      if (!btn) return;
+      const vid = (btn.getAttribute('href').match(/id=([^&]+)/) || [])[1];
+      const titleEl = card.querySelector('.work-title');
+      const catEl   = card.querySelector('.work-cat');
+      if (titleEl && vid) titleEl.textContent = isEN ? (TITLES_EN[vid] || titleEl.textContent) : (TITLES_JP[vid] || titleEl.textContent);
+      if (catEl) {
+        if (!catEl.dataset.jp) catEl.dataset.jp = catEl.textContent.trim();
+        catEl.textContent = isEN ? (CAT_EN[catEl.dataset.jp] || catEl.dataset.jp) : catEl.dataset.jp;
+      }
+    });
+
+    document.getElementById('langBtn').textContent = isEN ? 'JP' : 'EN';
+    localStorage.setItem('lang', lang);
+    document.documentElement.lang = isEN ? 'en' : 'ja';
+  }
+
+  function toggleLang() { applyLang(localStorage.getItem('lang') === 'en' ? 'jp' : 'en'); }
+  applyLang(localStorage.getItem('lang') || 'jp');
 </script>
 </body>
 </html>

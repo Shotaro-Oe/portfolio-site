@@ -71,6 +71,8 @@
     color: rgba(255,255,255,0.15); font-size: 11px;
   }
   header nav a:hover { color: #fff; }
+  .lang-btn { background:none; border:1px solid rgba(255,255,255,0.35); color:rgba(255,255,255,0.75); padding:3px 11px; border-radius:20px; cursor:pointer; font-size:11px; font-family:inherit; letter-spacing:0.08em; transition:background 0.2s; margin-left:6px; }
+  .lang-btn:hover { background:rgba(255,255,255,0.1); }
 
   /* Hamburger */
   .hamburger {
@@ -302,6 +304,7 @@
       <a href="index.html">Home</a>
       <a href="index.html#about">About</a>
       <a href="index.html#contact">Contact</a>
+      <button class="lang-btn" id="langBtn" onclick="toggleLang()">EN</button>
     </nav>
     <button class="hamburger" id="hamburger" aria-label="メニュー">
       <span></span><span></span><span></span>
@@ -705,6 +708,100 @@
   });
 
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // ===== Language system =====
+  const ALL_TITLES_EN = {
+    'Bzf7EDiDhew': 'you-to "Rainbow Dream" MV',
+    'H0g-1gybDJw': 'Kawagishi Livestock – CEO Documentary',
+    'jYZN9irRYTk': 'Juster "Hangry" MV',
+    'GgmS1CXq54Y': 'Nekozeno Navy Saison "MONOTARINAI" MV',
+    'oJiYaKzOonM': 'Pirafseijin "Tameguchi" MV',
+    'l_Af4hLnry0': 'Genesis Augmented Reality',
+    'XWLQKS59xxA': 'shu "Sagashimono" MV',
+    'zypF-yAFEqI': 'Zimbazi "Akari" MV',
+    'YAT6KenzrBk': '2106 from Summer Christmas – "Counter Culture" MV',
+    'JaNb-H6OIqg': 'Miyako Wakamaru "Hanasase" MV',
+    'O4Ea7N0h1Hg': 'Suiran "I Love You" MV',
+    'dA14ILze64U': 'HIGH SPY DOLL "Itoshii Kimi e" MV',
+    'hF4R6-bfg7M': 'LUDENS "Yellow" MV',
+    'IbaMGMUA1qk': 'Anthurium "Giji Renai Sasetageruttsu!" MV',
+    'HkDQjjbLm6o': 'Zimbazi "Osanpo" MV',
+    'eTuEeJuTc_A': 'Suiran "Haru wo Koete" MV',
+    'vSd7XBJmUWo': 'Zimbazi "Ima Kara wa" MV',
+    '_Zw2gbwOdrg': 'Kobe Sightseeing Taxi Port Group – PR Video',
+    '3tgqSp5cTGE': 'Zimbazi "Ano Sora ni wa" MV',
+    '5kCyAEQvFP0': 'Burochi "Night Trip" MV',
+    'IWRXq8qwDtY': 'Takeyaki Sho "Hello Hello" MV',
+    'T7LjjGe5jls': 'Zimbazi "Ki ga Tsukeba" MV',
+  };
+  const ALL_TITLES_JP = {
+    'Bzf7EDiDhew': 'you-to「Rainbow Dream」MV',
+    'H0g-1gybDJw': '川岸畜産様 社長密着ドキュメンタリー',
+    'jYZN9irRYTk': 'Juster「Hangry」MV',
+    'GgmS1CXq54Y': '猫背のネイビーセゾン「MONOTARINAI」MV',
+    'oJiYaKzOonM': 'ピラフ星人「タメ口」MV',
+    'l_Af4hLnry0': 'Genesis Augmented Reality',
+    'XWLQKS59xxA': 'shu「探し物」MV',
+    'zypF-yAFEqI': 'ジンバジ「灯」MV',
+    'YAT6KenzrBk': '2106 from Summer Christmas -「カウンターカルチャー」MV',
+    'JaNb-H6OIqg': '都若丸「花咲せ」MV',
+    'O4Ea7N0h1Hg': 'すいらん「アイラブユー」MV',
+    'dA14ILze64U': 'HIGH SPY DOLL「愛しい君へ」MV',
+    'hF4R6-bfg7M': 'LUDENS「Yellow」MV',
+    'IbaMGMUA1qk': 'アンスリューム「擬似恋愛させたげるっ！」MV',
+    'HkDQjjbLm6o': 'ジンバジ「おさんぽ」MV',
+    'eTuEeJuTc_A': 'すいらん「春を越えて」MV',
+    'vSd7XBJmUWo': 'ジンバジ「今からは」MV',
+    '_Zw2gbwOdrg': '神戸観光タクシー ポートグループ PR映像',
+    '3tgqSp5cTGE': 'ジンバジ「あの空には」MV',
+    '5kCyAEQvFP0': 'ブロチ「Night Trip」MV',
+    'IWRXq8qwDtY': 'タケヤキ翔「Hello Hello」MV',
+    'T7LjjGe5jls': 'ジンバジ「気が付けば」MV',
+  };
+  const ROLE_EN = { '監督':'Director','撮影監督':'Director of Photography','編集':'Editor','カラリスト':'Colorist','カラー':'Colorist','制作':'Production','監督助手':'Assistant Director','照明監督':'Lighting Director','照明アシスタント':'Lighting Assistant','照明助手':'Lighting Assistant','照明':'Lighting','カメラアシスタント':'Camera Assistant','撮影助手':'Camera Assistant','制作アシスタント':'Production Assistant','ヘアメイク':'Hair & Makeup','スタイリスト':'Stylist','CGディレクター':'CG Director','アシスタントプロデューサー':'Assistant Producer','アシスタントディレクター':'Assistant Director','制作マネージャー':'Production Manager','プロデューサー':'Producer','舞台美術':'Set Design','ドローン撮影':'Drone Operator','カメラマン':'Camera Operator','アシスタント':'Assistant','撮影アシスタント':'Camera Assistant','Special Thanks':'Special Thanks' };
+  const WCAT_EN = { 'アーティスト':'Artist','企業':'Corporate','ドキュメンタリー':'Documentary' };
+  const WCAT_JP = { 'Artist':'アーティスト','Corporate':'企業','Documentary':'ドキュメンタリー' };
+
+  function translateRole(r) { return r.split('/').map(p => ROLE_EN[p.trim()] || p.trim()).join(' / '); }
+
+  function applyWorksLang(lang) {
+    const isEN = lang === 'en';
+    document.querySelectorAll('.work-card').forEach(card => {
+      const btn = card.querySelector('.watch-btn');
+      if (!btn) return;
+      const vid = (btn.getAttribute('href').match(/id=([^&]+)/) || [])[1];
+      const titleEl = card.querySelector('.work-title');
+      const catEl   = card.querySelector('.work-cat');
+      if (titleEl && vid) titleEl.textContent = isEN ? (ALL_TITLES_EN[vid] || titleEl.textContent) : (ALL_TITLES_JP[vid] || titleEl.textContent);
+      if (catEl) {
+        if (!catEl.dataset.jp) catEl.dataset.jp = catEl.textContent.trim();
+        catEl.textContent = isEN ? (WCAT_EN[catEl.dataset.jp] || catEl.dataset.jp) : catEl.dataset.jp;
+      }
+      // role in member-filter view
+      const membersEl = card.querySelector('.work-members');
+      if (membersEl && memberParam && isEN) {
+        const rolesData = card.dataset.roles || '';
+        const rolesMap = {};
+        rolesData.split(',').forEach(pair => {
+          const idx = pair.indexOf(':');
+          if (idx !== -1) rolesMap[pair.slice(0,idx).trim()] = pair.slice(idx+1).trim();
+        });
+        const jpRole = rolesMap[memberParam];
+        if (jpRole) membersEl.textContent = translateRole(jpRole);
+      }
+    });
+    // page title for category filter
+    if (catParam) {
+      const titleMap = { 'アーティスト': isEN ? 'MV' : 'MV', '企業': isEN ? 'Corporate' : '企業', 'ドキュメンタリー': isEN ? 'Documentary' : 'ドキュメンタリー' };
+      document.getElementById('page-title').textContent = titleMap[catParam] || catParam;
+    }
+    document.getElementById('langBtn').textContent = isEN ? 'JP' : 'EN';
+    localStorage.setItem('lang', lang);
+    document.documentElement.lang = isEN ? 'en' : 'ja';
+  }
+
+  function toggleLang() { applyWorksLang(localStorage.getItem('lang') === 'en' ? 'jp' : 'en'); }
+  applyWorksLang(localStorage.getItem('lang') || 'jp');
 </script>
 </body>
 </html>

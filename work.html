@@ -61,6 +61,8 @@
     color: rgba(255,255,255,0.15); font-size: 11px;
   }
   header nav a:hover { color: #fff; }
+  .lang-btn { background:none; border:1px solid rgba(255,255,255,0.35); color:rgba(255,255,255,0.75); padding:3px 11px; border-radius:20px; cursor:pointer; font-size:11px; font-family:inherit; letter-spacing:0.08em; transition:background 0.2s; margin-left:6px; }
+  .lang-btn:hover { background:rgba(255,255,255,0.1); }
 
   /* Hamburger */
   .hamburger {
@@ -247,6 +249,7 @@
       <a href="works.html">Works</a>
       <a href="index.html#about">About</a>
       <a href="index.html#contact">Contact</a>
+      <button class="lang-btn" id="langBtn" onclick="toggleLang()">EN</button>
     </nav>
     <button class="hamburger" id="hamburger" aria-label="メニュー">
       <span></span><span></span><span></span>
@@ -516,6 +519,103 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// ===== Language system =====
+const WORK_TITLES_EN = {
+  'Bzf7EDiDhew': 'you-to "Rainbow Dream" MV',
+  'H0g-1gybDJw': 'Kawagishi Livestock – CEO Documentary',
+  'jYZN9irRYTk': 'Juster "Hangry" MV',
+  'GgmS1CXq54Y': 'Nekozeno Navy Saison "MONOTARINAI" MV',
+  'oJiYaKzOonM': 'Pirafseijin "Tameguchi" MV',
+  'l_Af4hLnry0': 'Genesis Augmented Reality',
+  'XWLQKS59xxA': 'shu "Sagashimono" MV',
+  'zypF-yAFEqI': 'Zimbazi "Akari" MV',
+  'YAT6KenzrBk': '2106 from Summer Christmas – "Counter Culture" MV',
+  'JaNb-H6OIqg': 'Miyako Wakamaru "Hanasase" MV',
+  'O4Ea7N0h1Hg': 'Suiran "I Love You" MV',
+  'dA14ILze64U': 'HIGH SPY DOLL "Itoshii Kimi e" MV',
+  'hF4R6-bfg7M': 'LUDENS "Yellow" MV',
+  'IbaMGMUA1qk': 'Anthurium "Giji Renai Sasetageruttsu!" MV',
+  'HkDQjjbLm6o': 'Zimbazi "Osanpo" MV',
+  'eTuEeJuTc_A': 'Suiran "Haru wo Koete" MV',
+  'vSd7XBJmUWo': 'Zimbazi "Ima Kara wa" MV',
+  '_Zw2gbwOdrg': 'Kobe Sightseeing Taxi Port Group – PR Video',
+  '3tgqSp5cTGE': 'Zimbazi "Ano Sora ni wa" MV',
+  '5kCyAEQvFP0': 'Burochi "Night Trip" MV',
+  'IWRXq8qwDtY': 'Takeyaki Sho "Hello Hello" MV',
+  'T7LjjGe5jls': 'Zimbazi "Ki ga Tsukeba" MV',
+};
+const WORK_DESC_EN = {
+  'Bzf7EDiDhew': 'Launch. served as Lighting Director.',
+  'H0g-1gybDJw': 'Launch. served as Director, Lighting Director, and Camera Operator.',
+  'jYZN9irRYTk': 'Launch. served as Director.',
+  'GgmS1CXq54Y': 'Launch. served as Camera Assistant.',
+  'oJiYaKzOonM': 'Launch. served as Camera Assistant.',
+  'l_Af4hLnry0': 'Launch. served as Director.',
+  'XWLQKS59xxA': 'Launch. served as Director / Director of Photography, Lighting Director, Camera Operator, and Drone Operator.',
+  'zypF-yAFEqI': 'Launch. served as Director, Lighting Director, and Director of Photography.',
+  'YAT6KenzrBk': 'Launch. served as Director and Lighting Director.',
+  'JaNb-H6OIqg': 'Launch. served as Lighting Director.',
+  'O4Ea7N0h1Hg': 'Launch. served as Director and Camera Operator.',
+  'dA14ILze64U': 'Launch. served as Lighting Director.',
+  'hF4R6-bfg7M': 'Launch. served as Director / Editor / Colorist, Director of Photography, and Lighting Director.',
+  'IbaMGMUA1qk': 'Launch. served as Lighting Assistant.',
+  'HkDQjjbLm6o': 'Launch. served as Director, Lighting Director, and Production Assistant.',
+  'eTuEeJuTc_A': 'Launch. served as Director / Editor / Colorist, Director of Photography, Camera Assistant, and Drone Operator.',
+  'vSd7XBJmUWo': 'Launch. served as Editor / Colorist and Camera Operator.',
+  '_Zw2gbwOdrg': 'Launch. served as Director / Colorist / Editor, Director of Photography, and Drone Operator.',
+  '3tgqSp5cTGE': 'Launch. served as Director / Director of Photography / Editor / Colorist, Lighting Director, and Production Assistant.',
+  '5kCyAEQvFP0': 'Launch. served as Director of Photography and Camera Operator.',
+  'IWRXq8qwDtY': 'Launch. served as Production Assistant.',
+  'T7LjjGe5jls': 'Launch. served as Director / Editor / Colorist and Director of Photography.',
+};
+const WCAT_EN = { 'アーティスト': 'Artist', '企業': 'Corporate', 'ドキュメンタリー': 'Documentary' };
+const ROLE_MAP_EN = { '監督':'Director','撮影監督':'Director of Photography','編集':'Editor','カラリスト':'Colorist','カラー':'Colorist','制作':'Production','監督助手':'Assistant Director','照明監督':'Lighting Director','照明アシスタント':'Lighting Assistant','照明助手':'Lighting Assistant','照明':'Lighting','カメラアシスタント':'Camera Assistant','撮影助手':'Camera Assistant','制作アシスタント':'Production Assistant','ヘアメイク':'Hair & Makeup','スタイリスト':'Stylist','CGディレクター':'CG Director','アシスタントプロデューサー':'Assistant Producer','アシスタントディレクター':'Assistant Director','制作マネージャー':'Production Manager','プロデューサー':'Producer','舞台美術':'Set Design','ドローン撮影':'Drone Operator','カメラマン':'Camera Operator','アシスタント':'Assistant','撮影アシスタント':'Camera Assistant','アートディレクター':'Art Director','モーションエフェクト':'Motion Effects','Special Thanks':'Special Thanks' };
+
+function translateRoleWork(r) { return r.split('/').map(p => ROLE_MAP_EN[p.trim()] || p.trim()).join(' / '); }
+
+function applyWorkLang(lang) {
+  if (!work) return;
+  const isEN = lang === 'en';
+  const title = isEN ? (WORK_TITLES_EN[id] || work.title) : work.title;
+  document.getElementById('workTitle').textContent = title;
+  document.getElementById('workCat').textContent = isEN ? (WCAT_EN[work.cat] || work.cat) : work.cat;
+  document.title = title + ' — Launch.';
+
+  // Description
+  if (work.desc) {
+    const desc = isEN ? (WORK_DESC_EN[id] || work.desc) : work.desc.replace(/\//g, '、');
+    document.getElementById('workDesc').textContent = desc;
+  }
+
+  // Credits — re-render with translated roles
+  const list = document.getElementById('creditsList');
+  list.innerHTML = '';
+  work.credits.forEach(([role, name]) => {
+    const roles = role.split('/').map(r => r.trim());
+    const displayRoles = isEN ? [translateRoleWork(role)] : roles;
+    const names = name.split('/').map(n => n.trim());
+    const isLaunch = name.includes('Launch.');
+    const nameHtml = `<span class="credit-name">${names.map(n => `<span class="credit-name-line${n.includes('Launch.') ? ' is-launch-member' : ''}">${n}</span>`).join('')}</span>`;
+    displayRoles.forEach(r => {
+      const row = document.createElement('div');
+      row.className = 'credit-row' + (isLaunch ? ' is-launch' : '');
+      row.innerHTML = `<span class="credit-role">${r}</span>${nameHtml}`;
+      list.appendChild(row);
+    });
+  });
+
+  // YouTube link text
+  const embedLink = document.getElementById('embedLink');
+  if (embedLink) embedLink.textContent = isEN ? '▶ Watch on YouTube' : '▶ YouTubeで見る';
+
+  document.getElementById('langBtn').textContent = isEN ? 'JP' : 'EN';
+  localStorage.setItem('lang', lang);
+  document.documentElement.lang = isEN ? 'en' : 'ja';
+}
+
+function toggleLang() { applyWorkLang(localStorage.getItem('lang') === 'en' ? 'jp' : 'en'); }
+applyWorkLang(localStorage.getItem('lang') || 'jp');
 </script>
 </body>
 </html>
