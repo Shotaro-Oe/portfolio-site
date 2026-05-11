@@ -71,8 +71,11 @@
     color: rgba(255,255,255,0.15); font-size: 11px;
   }
   header nav a:hover { color: #fff; }
-  .lang-btn { background:none; border:1px solid rgba(255,255,255,0.35); color:rgba(255,255,255,0.75); padding:3px 11px; border-radius:20px; cursor:pointer; font-size:11px; font-family:inherit; letter-spacing:0.08em; transition:background 0.2s; margin-left:6px; }
-  .lang-btn:hover { background:rgba(255,255,255,0.1); }
+  .lang-sw { display:flex; align-items:center; gap:0; font-size:11px; letter-spacing:0.08em; margin-left:10px; }
+  .lang-jp, .lang-en { cursor:pointer; color:rgba(255,255,255,0.3); transition:color 0.2s; padding:0 3px; }
+  .lang-jp:hover, .lang-en:hover { color:rgba(255,255,255,0.8); }
+  .lang-jp.active, .lang-en.active { color:#fff; }
+  .lang-sep { color:rgba(255,255,255,0.2); }
 
   /* Hamburger */
   .hamburger {
@@ -304,7 +307,7 @@
       <a href="index.html">Home</a>
       <a href="index.html#about">About</a>
       <a href="index.html#contact">Contact</a>
-      <button class="lang-btn" id="langBtn" onclick="toggleLang()">EN</button>
+      <span class="lang-sw"><span class="lang-jp active" id="langJP" onclick="applyWorksLang('jp')">jp</span><span class="lang-sep">/</span><span class="lang-en" id="langEN" onclick="applyWorksLang('en')">en</span></span>
     </nav>
     <button class="hamburger" id="hamburger" aria-label="メニュー">
       <span></span><span></span><span></span>
@@ -795,12 +798,12 @@
       const titleMap = { 'アーティスト': isEN ? 'MV' : 'MV', '企業': isEN ? 'Corporate' : '企業', 'ドキュメンタリー': isEN ? 'Documentary' : 'ドキュメンタリー' };
       document.getElementById('page-title').textContent = titleMap[catParam] || catParam;
     }
-    document.getElementById('langBtn').textContent = isEN ? 'JP' : 'EN';
+    document.getElementById('langJP').classList.toggle('active', !isEN);
+    document.getElementById('langEN').classList.toggle('active', isEN);
     localStorage.setItem('lang', lang);
     document.documentElement.lang = isEN ? 'en' : 'ja';
   }
 
-  function toggleLang() { applyWorksLang(localStorage.getItem('lang') === 'en' ? 'jp' : 'en'); }
   applyWorksLang(localStorage.getItem('lang') || 'jp');
 </script>
 </body>
