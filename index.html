@@ -86,7 +86,8 @@
     font-size: 11px;
   }
   header nav a:hover { color: #fff; }
-  .lang-sw { display:flex; align-items:center; gap:0; font-size:11px; letter-spacing:0.08em; margin-left:10px; }
+  .nav-pipe { color:rgba(255,255,255,0.18); margin:0 10px; font-size:11px; }
+  .lang-sw { display:flex; align-items:center; gap:0; font-size:11px; letter-spacing:0.08em; }
   .lang-jp, .lang-en { cursor:pointer; color:rgba(255,255,255,0.3); transition:color 0.2s; padding:0 3px; }
   .lang-jp:hover, .lang-en:hover { color:rgba(255,255,255,0.8); }
   .lang-jp.active, .lang-en.active { color:#fff; }
@@ -950,6 +951,7 @@
   <a href="#works" class="mnl">Works</a>
   <a href="#about" class="mnl">About</a>
   <a href="#contact" class="mnl">Contact</a>
+  <span class="lang-sw" style="margin-left:0;margin-top:8px;"><span class="lang-jp active" onclick="applyLang('jp')">jp</span><span class="lang-sep">/</span><span class="lang-en" onclick="applyLang('en')">en</span></span>
 </nav>
 
 <!-- ===== Header ===== -->
@@ -960,7 +962,8 @@
       <a href="#works">Works</a>
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
-      <span class="lang-sw"><span class="lang-jp active" id="langJP" onclick="applyLang('jp')">jp</span><span class="lang-sep">/</span><span class="lang-en" id="langEN" onclick="applyLang('en')">en</span></span>
+      <span class="nav-pipe">|</span>
+      <span class="lang-sw"><span class="lang-jp active" id="langJP" onclick="applyLang('jp')">JP</span><span class="lang-sep">/</span><span class="lang-en" id="langEN" onclick="applyLang('en')">EN</span></span>
     </nav>
     <button class="hamburger" id="hamburger" aria-label="メニュー">
       <span></span><span></span><span></span>
@@ -1319,10 +1322,11 @@
       }
     });
 
-    document.getElementById('langJP').classList.toggle('active', !isEN);
-    document.getElementById('langEN').classList.toggle('active', isEN);
+    document.querySelectorAll('.lang-jp').forEach(el => el.classList.toggle('active', !isEN));
+    document.querySelectorAll('.lang-en').forEach(el => el.classList.toggle('active', isEN));
     localStorage.setItem('lang', lang);
     document.documentElement.lang = isEN ? 'en' : 'ja';
+    if (typeof closeMenu === 'function') closeMenu();
   }
 
   applyLang(localStorage.getItem('lang') || 'jp');

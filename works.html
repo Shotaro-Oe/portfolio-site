@@ -71,7 +71,8 @@
     color: rgba(255,255,255,0.15); font-size: 11px;
   }
   header nav a:hover { color: #fff; }
-  .lang-sw { display:flex; align-items:center; gap:0; font-size:11px; letter-spacing:0.08em; margin-left:10px; }
+  .nav-pipe { color:rgba(255,255,255,0.18); margin:0 10px; font-size:11px; }
+  .lang-sw { display:flex; align-items:center; gap:0; font-size:11px; letter-spacing:0.08em; }
   .lang-jp, .lang-en { cursor:pointer; color:rgba(255,255,255,0.3); transition:color 0.2s; padding:0 3px; }
   .lang-jp:hover, .lang-en:hover { color:rgba(255,255,255,0.8); }
   .lang-jp.active, .lang-en.active { color:#fff; }
@@ -297,6 +298,7 @@
   <a href="index.html" class="mnl">Home</a>
   <a href="index.html#about" class="mnl">About</a>
   <a href="index.html#contact" class="mnl">Contact</a>
+  <span class="lang-sw" style="margin-left:0;margin-top:8px;"><span class="lang-jp active" onclick="applyWorksLang('jp')">jp</span><span class="lang-sep">/</span><span class="lang-en" onclick="applyWorksLang('en')">en</span></span>
 </nav>
 
 <!-- ===== Header ===== -->
@@ -307,7 +309,8 @@
       <a href="index.html">Home</a>
       <a href="index.html#about">About</a>
       <a href="index.html#contact">Contact</a>
-      <span class="lang-sw"><span class="lang-jp active" id="langJP" onclick="applyWorksLang('jp')">jp</span><span class="lang-sep">/</span><span class="lang-en" id="langEN" onclick="applyWorksLang('en')">en</span></span>
+      <span class="nav-pipe">|</span>
+      <span class="lang-sw"><span class="lang-jp active" id="langJP" onclick="applyWorksLang('jp')">JP</span><span class="lang-sep">/</span><span class="lang-en" id="langEN" onclick="applyWorksLang('en')">EN</span></span>
     </nav>
     <button class="hamburger" id="hamburger" aria-label="メニュー">
       <span></span><span></span><span></span>
@@ -798,10 +801,11 @@
       const titleMap = { 'アーティスト': isEN ? 'MV' : 'MV', '企業': isEN ? 'Corporate' : '企業', 'ドキュメンタリー': isEN ? 'Documentary' : 'ドキュメンタリー' };
       document.getElementById('page-title').textContent = titleMap[catParam] || catParam;
     }
-    document.getElementById('langJP').classList.toggle('active', !isEN);
-    document.getElementById('langEN').classList.toggle('active', isEN);
+    document.querySelectorAll('.lang-jp').forEach(el => el.classList.toggle('active', !isEN));
+    document.querySelectorAll('.lang-en').forEach(el => el.classList.toggle('active', isEN));
     localStorage.setItem('lang', lang);
     document.documentElement.lang = isEN ? 'en' : 'ja';
+    if (typeof closeMenu === 'function') closeMenu();
   }
 
   applyWorksLang(localStorage.getItem('lang') || 'jp');
