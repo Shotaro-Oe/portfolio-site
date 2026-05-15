@@ -157,28 +157,58 @@
   }
   .embed-blocked a:hover { background: #e8e8f0; }
 
-  /* ===== Instagram Reels Grid ===== */
+  /* ===== Instagram Reels ===== */
   .ig-reels-section { padding: 64px 0; border-bottom: 1px solid var(--line); }
   .ig-reels-scroll {
     display: flex;
-    flex-direction: row;
     gap: 20px;
     overflow-x: auto;
     overflow-y: visible;
     padding-bottom: 12px;
-    /* スクロールバーを控えめに */
     scrollbar-width: thin;
-    scrollbar-color: rgba(100,120,200,0.25) transparent;
+    scrollbar-color: rgba(100,120,200,0.18) transparent;
     -webkit-overflow-scrolling: touch;
     scroll-snap-type: x mandatory;
   }
   .ig-reels-scroll::-webkit-scrollbar { height: 4px; }
   .ig-reels-scroll::-webkit-scrollbar-track { background: transparent; }
-  .ig-reels-scroll::-webkit-scrollbar-thumb { background: rgba(100,120,200,0.25); border-radius: 2px; }
-  .ig-reel-wrap {
-    flex: 0 0 340px;
+  .ig-reels-scroll::-webkit-scrollbar-thumb { background: rgba(100,120,200,0.22); border-radius: 2px; }
+  .ig-reel-card {
+    flex: 0 0 260px;
     scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
   }
+  .ig-reel-thumb {
+    width: 260px;
+    aspect-ratio: 9/16;
+    border-radius: var(--r-sm);
+    overflow: hidden;
+    background: #111;
+    position: relative;
+  }
+  .ig-reel-thumb img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+  .ig-reel-card:hover .ig-reel-thumb img { transform: scale(1.03); }
+  .ig-reel-link {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+    text-decoration: none;
+    padding: 8px 0;
+    border-top: 1px solid var(--line);
+    transition: color 0.2s;
+  }
+  .ig-reel-link:hover { color: var(--fg); }
 
   .video-wrap {
     position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;
@@ -260,7 +290,8 @@
     .work-hero h2 { font-size: 18px; }
     .credit-row { grid-template-columns: 120px 1fr; }
     footer .inner { flex-direction: column; gap: 8px; text-align: center; }
-    .ig-reel-wrap { flex: 0 0 280px; }
+    .ig-reel-card { flex: 0 0 200px; }
+    .ig-reel-thumb { width: 200px; }
     .ig-reel-wrap:last-child:nth-child(odd) { grid-column: auto; max-width: 100%; }
   }
 </style>
@@ -363,6 +394,7 @@ const IG_WORKS = {
     year: 2025, cat: 'アーティスト',
     desc: 'Launch.が監督、撮影助手、制作アシスタントを担当しました。',
     shortcodes: ['DJ-MTfkzib_', 'DJsLhISz28o', 'DKDpYXsS-xc'],
+    images: ['ig-timba-1.png', 'ig-timba-2.png', 'ig-timba-3.png'],
     credits: [
       ['監督', 'SHOTARO (Launch.)'],
       ['撮影助手', 'DDD (Launch.)'],
@@ -524,22 +556,24 @@ if (igWork) {
   document.querySelector('.work-video').style.display = 'none';
   document.getElementById('igReelsSection').style.display = '';
 
-  // Reelsグリッドを構築
+  // Reelsサムネイルカードを構築
   const grid = document.getElementById('igReelsGrid');
-  igWork.shortcodes.forEach(code => {
-    const wrap = document.createElement('div');
-    wrap.className = 'ig-reel-wrap';
-    wrap.innerHTML = `<blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/${code}/?utm_source=ig_embed" data-instgrm-version="14" style="background:#FFF;border:0;border-radius:3px;box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15);margin:0;padding:0;width:100%;"><a href="https://www.instagram.com/reel/${code}/"></a></blockquote>`;
-    grid.appendChild(wrap);
+  igWork.shortcodes.forEach((code, i) => {
+    const imgFile = (igWork.images && igWork.images[i]) ? igWork.images[i] : '';
+    const card = document.createElement('div');
+    card.className = 'ig-reel-card';
+    card.innerHTML = `
+      <a href="https://www.instagram.com/reel/${code}/" target="_blank" rel="noopener">
+        <div class="ig-reel-thumb">
+          <img src="${imgFile}" alt="Reel ${i+1}" loading="lazy">
+        </div>
+      </a>
+      <a class="ig-reel-link" href="https://www.instagram.com/reel/${code}/" target="_blank" rel="noopener" id="igLink${i}">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        Instagramで見る
+      </a>`;
+    grid.appendChild(card);
   });
-
-  // Instagram embed.js を読み込み
-  if (!document.querySelector('script[src*="instagram.com/embed.js"]')) {
-    const s = document.createElement('script');
-    s.src = '//www.instagram.com/embed.js';
-    s.async = true;
-    document.body.appendChild(s);
-  }
 
   if (igWork.desc) {
     document.getElementById('workDesc').textContent = igWork.desc;
@@ -710,6 +744,12 @@ function applyWorkLang(lang) {
       row.className = 'credit-row' + (isLaunch ? ' is-launch' : '');
       row.innerHTML = `<span class="credit-role">${displayRole}</span>${nameHtml}`;
       list.appendChild(row);
+    });
+    // リンクテキスト翻訳
+    document.querySelectorAll('.ig-reel-link').forEach(el => {
+      const svg = el.querySelector('svg');
+      el.textContent = isEN ? '▶ View on Instagram' : '▶ Instagramで見る';
+      if (svg) el.insertBefore(svg, el.firstChild);
     });
   } else {
     // ===== YouTube作品 =====
