@@ -161,16 +161,21 @@
   .ig-reels-section { padding: 64px 0; border-bottom: 1px solid var(--line); }
   .ig-reels-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
     align-items: start;
+    /* 3本のReelを2列で表示（3本目は中央配置） */
   }
-  .ig-reel-wrap { display: flex; justify-content: center; }
-  .ig-reel-wrap .instagram-media {
-    min-width: unset !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    margin: 0 !important;
+  .ig-reel-wrap {
+    display: flex;
+    justify-content: center;
+    overflow: visible;
+  }
+  /* 3枚目を中央に配置 */
+  .ig-reel-wrap:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    max-width: 50%;
+    margin: 0 auto;
   }
 
   .video-wrap {
@@ -254,6 +259,7 @@
     .credit-row { grid-template-columns: 120px 1fr; }
     footer .inner { flex-direction: column; gap: 8px; text-align: center; }
     .ig-reels-grid { grid-template-columns: 1fr; }
+    .ig-reel-wrap:last-child:nth-child(odd) { grid-column: auto; max-width: 100%; }
   }
 </style>
 </head>
@@ -356,7 +362,6 @@ const IG_WORKS = {
     desc: 'Launch.が監督、撮影助手、制作アシスタントを担当しました。',
     shortcodes: ['DJ-MTfkzib_', 'DJsLhISz28o', 'DKDpYXsS-xc'],
     credits: [
-      ['Music', 'Timba-man'],
       ['監督', 'SHOTARO (Launch.)'],
       ['撮影助手', 'DDD (Launch.)'],
       ['制作アシスタント', 'Shun Shimizu (Launch.)'],
