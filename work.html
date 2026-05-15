@@ -159,23 +159,25 @@
 
   /* ===== Instagram Reels Grid ===== */
   .ig-reels-section { padding: 64px 0; border-bottom: 1px solid var(--line); }
-  .ig-reels-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
-    align-items: start;
-    /* 3本のReelを2列で表示（3本目は中央配置） */
-  }
-  .ig-reel-wrap {
+  .ig-reels-scroll {
     display: flex;
-    justify-content: center;
-    overflow: visible;
+    flex-direction: row;
+    gap: 20px;
+    overflow-x: auto;
+    overflow-y: visible;
+    padding-bottom: 12px;
+    /* スクロールバーを控えめに */
+    scrollbar-width: thin;
+    scrollbar-color: rgba(100,120,200,0.25) transparent;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
   }
-  /* 3枚目を中央に配置（上2枚と同じ幅） */
-  .ig-reel-wrap:last-child:nth-child(odd) {
-    grid-column: 1 / -1;
-    width: calc(50% - 12px);
-    margin: 0 auto;
+  .ig-reels-scroll::-webkit-scrollbar { height: 4px; }
+  .ig-reels-scroll::-webkit-scrollbar-track { background: transparent; }
+  .ig-reels-scroll::-webkit-scrollbar-thumb { background: rgba(100,120,200,0.25); border-radius: 2px; }
+  .ig-reel-wrap {
+    flex: 0 0 340px;
+    scroll-snap-align: start;
   }
 
   .video-wrap {
@@ -258,7 +260,7 @@
     .work-hero h2 { font-size: 18px; }
     .credit-row { grid-template-columns: 120px 1fr; }
     footer .inner { flex-direction: column; gap: 8px; text-align: center; }
-    .ig-reels-grid { grid-template-columns: 1fr; }
+    .ig-reel-wrap { flex: 0 0 280px; }
     .ig-reel-wrap:last-child:nth-child(odd) { grid-column: auto; max-width: 100%; }
   }
 </style>
@@ -328,7 +330,7 @@
 
 <div class="container">
   <section class="ig-reels-section reveal" id="igReelsSection" style="display:none">
-    <div class="ig-reels-grid" id="igReelsGrid"></div>
+    <div class="ig-reels-scroll" id="igReelsGrid"></div>
   </section>
 </div>
 
