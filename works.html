@@ -182,6 +182,18 @@
     display: block; transition: transform 0.5s ease;
   }
   .work-card:hover .work-thumb img { transform: scale(1.04); }
+  /* Instagram Reelsカード用サムネイル */
+  .work-thumb-ig {
+    background: linear-gradient(135deg, #833ab4 0%, #e1306c 55%, #fcb045 100%);
+    display: flex; align-items: center; justify-content: center;
+    transition: opacity 0.3s;
+  }
+  .work-thumb-ig .ig-icon {
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    color: rgba(255,255,255,0.9);
+  }
+  .work-thumb-ig .ig-icon span { font-size: 11px; letter-spacing: 0.12em; opacity: 0.85; font-weight: 500; }
+  .work-card:hover .work-thumb-ig { opacity: 0.9; }
   .work-meta {
     display: flex; align-items: center; gap: 6px;
     margin-bottom: 5px; padding: 0 2px;
@@ -411,6 +423,25 @@
         <div class="work-title">Genesis Augmented Reality</div>
         <div class="work-members"></div>
         <a class="watch-btn" href="work.html?id=l_Af4hLnry0">Watch</a>
+      </div>
+
+      <!-- 2025-05 Instagram Reels -->
+      <div class="work-card reveal" data-members="SHOTARO,DDD,Shun Shimizu" data-roles="SHOTARO:監督,DDD:撮影助手,Shun Shimizu:制作アシスタント">
+        <div class="work-thumb work-thumb-ig">
+          <div class="ig-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.95)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
+            <span>Instagram Reels</span>
+          </div>
+        </div>
+        <div class="work-meta">
+          <div class="work-cat">アーティスト</div>
+          <div class="work-year">2025</div>
+        </div>
+        <div class="work-title">Timba-man「Timberland」MV</div>
+        <div class="work-members"></div>
+        <a class="watch-btn" href="work.html?igw=timba-timberland">Watch</a>
       </div>
 
       <!-- 2025-02-05 -->
@@ -721,6 +752,7 @@
 
   // ===== Language system =====
   const ALL_TITLES_EN = {
+    'igw:timba-timberland': 'Timba-man "Timberland" MV',
     'Bzf7EDiDhew': 'you-to "Rainbow Dream" MV',
     'H0g-1gybDJw': 'Kawagishi Chikusan – CEO Documentary',
     'jYZN9irRYTk': 'Juster "Hangry" MV',
@@ -745,6 +777,7 @@
     'T7LjjGe5jls': 'Zinbazi "Ki ga Tsukeba" MV',
   };
   const ALL_TITLES_JP = {
+    'igw:timba-timberland': 'Timba-man「Timberland」MV',
     'Bzf7EDiDhew': 'you-to「Rainbow Dream」MV',
     'H0g-1gybDJw': '川岸畜産様 社長密着ドキュメンタリー',
     'jYZN9irRYTk': 'Juster「Hangry」MV',
@@ -779,10 +812,13 @@
     document.querySelectorAll('.work-card').forEach(card => {
       const btn = card.querySelector('.watch-btn');
       if (!btn) return;
-      const vid = (btn.getAttribute('href').match(/id=([^&]+)/) || [])[1];
+      const href = btn.getAttribute('href');
+      const vid    = (href.match(/[?&]id=([^&]+)/) || [])[1];
+      const igwKey = (href.match(/[?&]igw=([^&]+)/) || [])[1];
+      const key = vid || (igwKey ? 'igw:' + igwKey : null);
       const titleEl = card.querySelector('.work-title');
       const catEl   = card.querySelector('.work-cat');
-      if (titleEl && vid) titleEl.textContent = isEN ? (ALL_TITLES_EN[vid] || titleEl.textContent) : (ALL_TITLES_JP[vid] || titleEl.textContent);
+      if (titleEl && key) titleEl.textContent = isEN ? (ALL_TITLES_EN[key] || titleEl.textContent) : (ALL_TITLES_JP[key] || titleEl.textContent);
       if (catEl) {
         if (!catEl.dataset.jp) catEl.dataset.jp = catEl.textContent.trim();
         catEl.textContent = isEN ? (WCAT_EN[catEl.dataset.jp] || catEl.dataset.jp) : catEl.dataset.jp;

@@ -156,6 +156,23 @@
     text-decoration: none; letter-spacing: 0.02em;
   }
   .embed-blocked a:hover { background: #e8e8f0; }
+
+  /* ===== Instagram Reels Grid ===== */
+  .ig-reels-section { padding: 64px 0; border-bottom: 1px solid var(--line); }
+  .ig-reels-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    align-items: start;
+  }
+  .ig-reel-wrap { display: flex; justify-content: center; }
+  .ig-reel-wrap .instagram-media {
+    min-width: unset !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+  }
+
   .video-wrap {
     position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;
     background: #000;
@@ -236,6 +253,7 @@
     .work-hero h2 { font-size: 18px; }
     .credit-row { grid-template-columns: 120px 1fr; }
     footer .inner { flex-direction: column; gap: 8px; text-align: center; }
+    .ig-reels-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -302,6 +320,12 @@
   </section>
 </div>
 
+<div class="container">
+  <section class="ig-reels-section reveal" id="igReelsSection" style="display:none">
+    <div class="ig-reels-grid" id="igReelsGrid"></div>
+  </section>
+</div>
+
 <div class="container reveal" id="descSection" style="display:none">
   <section class="work-desc">
     <div class="section-label">Description</div>
@@ -324,6 +348,23 @@
 </footer>
 
 <script>
+// ===== Instagram Works =====
+const IG_WORKS = {
+  'timba-timberland': {
+    title: 'Timba-man「Timberland」MV',
+    year: 2025, cat: 'アーティスト',
+    desc: 'Launch.が監督、撮影助手、制作アシスタントを担当しました。',
+    shortcodes: ['DJ-MTfkzib_', 'DJsLhISz28o', 'DKDpYXsS-xc'],
+    credits: [
+      ['Music', 'Timba-man'],
+      ['監督', 'SHOTARO (Launch.)'],
+      ['撮影助手', 'DDD (Launch.)'],
+      ['制作アシスタント', 'Shun Shimizu (Launch.)'],
+      ['制作', 'Launch.']
+    ]
+  }
+};
+
 const works = {
   'Bzf7EDiDhew': {
     title: "you-to「Rainbow Dream」MV",
@@ -459,10 +500,57 @@ const works = {
   }
 };
 
-const id   = new URLSearchParams(window.location.search).get('id');
-const work = works[id];
+const id       = new URLSearchParams(window.location.search).get('id');
+const igwParam = new URLSearchParams(window.location.search).get('igw');
+const work     = works[id];
+const igWork   = igwParam ? IG_WORKS[igwParam] : null;
 
-if (work) {
+if (igWork) {
+  document.title = igWork.title + ' — Launch.';
+  document.querySelector('meta[property="og:title"]').setAttribute('content', igWork.title + ' — Launch.');
+  document.querySelector('meta[property="og:description"]').setAttribute('content', igWork.desc || igWork.title);
+  document.getElementById('workTitle').textContent = igWork.title;
+  document.getElementById('workCat').textContent   = igWork.cat;
+  document.getElementById('workYear').textContent  = igWork.year;
+
+  // YouTubeプレーヤーを非表示、IGセクションを表示
+  document.querySelector('.work-video').style.display = 'none';
+  document.getElementById('igReelsSection').style.display = '';
+
+  // Reelsグリッドを構築
+  const grid = document.getElementById('igReelsGrid');
+  igWork.shortcodes.forEach(code => {
+    const wrap = document.createElement('div');
+    wrap.className = 'ig-reel-wrap';
+    wrap.innerHTML = `<blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/${code}/?utm_source=ig_embed" data-instgrm-version="14" style="background:#FFF;border:0;border-radius:3px;box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15);margin:0;padding:0;width:100%;"><a href="https://www.instagram.com/reel/${code}/"></a></blockquote>`;
+    grid.appendChild(wrap);
+  });
+
+  // Instagram embed.js を読み込み
+  if (!document.querySelector('script[src*="instagram.com/embed.js"]')) {
+    const s = document.createElement('script');
+    s.src = '//www.instagram.com/embed.js';
+    s.async = true;
+    document.body.appendChild(s);
+  }
+
+  if (igWork.desc) {
+    document.getElementById('workDesc').textContent = igWork.desc;
+    document.getElementById('descSection').style.display = '';
+  }
+
+  // クレジット表示
+  const igList = document.getElementById('creditsList');
+  igWork.credits.forEach(([role, name]) => {
+    const isLaunch = name.includes('Launch.');
+    const nameHtml = `<span class="credit-name"><span class="credit-name-line${isLaunch ? ' is-launch-member' : ''}">${name}</span></span>`;
+    const row = document.createElement('div');
+    row.className = 'credit-row' + (isLaunch ? ' is-launch' : '');
+    row.innerHTML = `<span class="credit-role">${role}</span>${nameHtml}`;
+    igList.appendChild(row);
+  });
+
+} else if (work) {
   document.title = work.title + ' — Launch.';
   document.querySelector('meta[property="og:title"]').setAttribute('content', work.title + ' — Launch.');
   document.querySelector('meta[property="og:description"]').setAttribute('content', work.desc || work.title);
@@ -509,6 +597,7 @@ if (work) {
   document.querySelector('.work-hero h2').textContent = '作品が見つかりません';
 }
 
+
 // Hamburger
 const hamburger = document.getElementById('hamburger');
 const mobileNav = document.getElementById('mobileNav');
@@ -531,6 +620,13 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
 // ===== Language system =====
+const IG_TITLES_EN = {
+  'timba-timberland': 'Timba-man "Timberland" MV',
+};
+const IG_DESC_EN = {
+  'timba-timberland': 'Launch. served as Director, Camera Assistant, and Production Assistant.',
+};
+
 const WORK_TITLES_EN = {
   'Bzf7EDiDhew': 'you-to "Rainbow Dream" MV',
   'H0g-1gybDJw': 'Kawagishi Chikusan – CEO Documentary',
@@ -585,39 +681,61 @@ const ROLE_MAP_EN = { '監督':'Director','撮影監督':'Director of Photograph
 function translateRoleWork(r) { return r.split('/').map(p => ROLE_MAP_EN[p.trim()] || p.trim()).join(' / '); }
 
 function applyWorkLang(lang) {
-  if (!work) return;
+  if (!work && !igWork) return;
   const isEN = lang === 'en';
-  const title = isEN ? (WORK_TITLES_EN[id] || work.title) : work.title;
-  document.getElementById('workTitle').textContent = title;
-  document.getElementById('workCat').textContent = isEN ? (WCAT_EN[work.cat] || work.cat) : work.cat;
-  document.title = title + ' — Launch.';
 
-  // Description
-  if (work.desc) {
-    const desc = isEN ? (WORK_DESC_EN[id] || work.desc) : work.desc.replace(/\//g, '、');
-    document.getElementById('workDesc').textContent = desc;
-  }
-
-  // Credits — re-render with translated roles
-  const list = document.getElementById('creditsList');
-  list.innerHTML = '';
-  work.credits.forEach(([role, name]) => {
-    const roles = role.split('/').map(r => r.trim());
-    const displayRoles = isEN ? [translateRoleWork(role)] : roles;
-    const names = name.split('/').map(n => n.trim());
-    const isLaunch = name.includes('Launch.');
-    const nameHtml = `<span class="credit-name">${names.map(n => `<span class="credit-name-line${n.includes('Launch.') ? ' is-launch-member' : ''}">${n}</span>`).join('')}</span>`;
-    displayRoles.forEach(r => {
+  if (igWork) {
+    // ===== Instagram作品 =====
+    const title = isEN ? (IG_TITLES_EN[igwParam] || igWork.title) : igWork.title;
+    document.getElementById('workTitle').textContent = title;
+    document.getElementById('workCat').textContent = isEN ? (WCAT_EN[igWork.cat] || igWork.cat) : igWork.cat;
+    document.title = title + ' — Launch.';
+    if (igWork.desc) {
+      document.getElementById('workDesc').textContent = isEN ? (IG_DESC_EN[igwParam] || igWork.desc) : igWork.desc;
+    }
+    const list = document.getElementById('creditsList');
+    list.innerHTML = '';
+    igWork.credits.forEach(([role, name]) => {
+      const isLaunch = name.includes('Launch.');
+      const displayRole = isEN ? (ROLE_MAP_EN[role] || role) : role;
+      const nameHtml = `<span class="credit-name"><span class="credit-name-line${isLaunch ? ' is-launch-member' : ''}">${name}</span></span>`;
       const row = document.createElement('div');
       row.className = 'credit-row' + (isLaunch ? ' is-launch' : '');
-      row.innerHTML = `<span class="credit-role">${r}</span>${nameHtml}`;
+      row.innerHTML = `<span class="credit-role">${displayRole}</span>${nameHtml}`;
       list.appendChild(row);
     });
-  });
+  } else {
+    // ===== YouTube作品 =====
+    const title = isEN ? (WORK_TITLES_EN[id] || work.title) : work.title;
+    document.getElementById('workTitle').textContent = title;
+    document.getElementById('workCat').textContent = isEN ? (WCAT_EN[work.cat] || work.cat) : work.cat;
+    document.title = title + ' — Launch.';
 
-  // YouTube link text
-  const embedLink = document.getElementById('embedLink');
-  if (embedLink) embedLink.textContent = isEN ? '▶ Watch on YouTube' : '▶ YouTubeで見る';
+    if (work.desc) {
+      const desc = isEN ? (WORK_DESC_EN[id] || work.desc) : work.desc.replace(/\//g, '、');
+      document.getElementById('workDesc').textContent = desc;
+    }
+
+    const list = document.getElementById('creditsList');
+    list.innerHTML = '';
+    work.credits.forEach(([role, name]) => {
+      const roles = role.split('/').map(r => r.trim());
+      const displayRoles = isEN ? [translateRoleWork(role)] : roles;
+      const names = name.split('/').map(n => n.trim());
+      const isLaunch = name.includes('Launch.');
+      const nameHtml = `<span class="credit-name">${names.map(n => `<span class="credit-name-line${n.includes('Launch.') ? ' is-launch-member' : ''}">${n}</span>`).join('')}</span>`;
+      displayRoles.forEach(r => {
+        const row = document.createElement('div');
+        row.className = 'credit-row' + (isLaunch ? ' is-launch' : '');
+        row.innerHTML = `<span class="credit-role">${r}</span>${nameHtml}`;
+        list.appendChild(row);
+      });
+    });
+
+    // YouTube link text
+    const embedLink = document.getElementById('embedLink');
+    if (embedLink) embedLink.textContent = isEN ? '▶ Watch on YouTube' : '▶ YouTubeで見る';
+  }
 
   document.querySelectorAll('.lang-jp').forEach(el => el.classList.toggle('active', !isEN));
   document.querySelectorAll('.lang-en').forEach(el => el.classList.toggle('active', isEN));
