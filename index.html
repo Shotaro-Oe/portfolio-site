@@ -773,9 +773,15 @@
       flex-direction: column;
     }
     .about-member-works-btn {
-      padding: 0;
       margin-top: auto;
-      padding-top: 16px;
+      padding: 7px 16px;
+      background: var(--glass);
+      backdrop-filter: var(--blur);
+      -webkit-backdrop-filter: var(--blur);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--r);
+      box-shadow: 0 2px 8px rgba(50,70,160,0.08), inset 0 1px 0 rgba(255,255,255,0.92);
+      transform: none !important;
     }
     .about-member::before { display: none; }
     .about-member-photo {
