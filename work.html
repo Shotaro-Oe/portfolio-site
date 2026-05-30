@@ -187,13 +187,17 @@
     background: #111;
     position: relative;
   }
-  .ig-reel-thumb img {
+  .ig-reel-thumb img,
+  .ig-reel-thumb video {
     width: 100%; height: 100%;
     object-fit: cover;
     display: block;
-    transition: transform 0.4s ease;
   }
-  .ig-reel-card:hover .ig-reel-thumb img { transform: scale(1.03); }
+  .ig-reel-thumb video {
+    border-radius: var(--r-sm);
+    background: #000;
+    cursor: pointer;
+  }
   .ig-reel-link {
     margin-top: 10px;
     display: flex;
@@ -395,6 +399,7 @@ const IG_WORKS = {
     desc: 'Launch.が監督、撮影助手、制作アシスタントを担当しました。',
     shortcodes: ['DJ-MTfkzib_', 'DJsLhISz28o', 'DKDpYXsS-xc'],
     images: ['ig-timba-1.png', 'ig-timba-2.png', 'ig-timba-3.png'],
+    videos: ['timba-1.mp4', 'timba-2.mp4', 'timba-3.mp4'],
     credits: [
       ['監督', 'SHOTARO (Launch.)'],
       ['撮影助手', 'DDD (Launch.)'],
@@ -556,22 +561,40 @@ if (igWork) {
   document.querySelector('.work-video').style.display = 'none';
   document.getElementById('igReelsSection').style.display = '';
 
-  // Reelsサムネイルカードを構築
+  // Reelsビデオカードを構築
   const grid = document.getElementById('igReelsGrid');
   igWork.shortcodes.forEach((code, i) => {
     const imgFile = (igWork.images && igWork.images[i]) ? igWork.images[i] : '';
+    const videoFile = (igWork.videos && igWork.videos[i]) ? igWork.videos[i] : '';
     const card = document.createElement('div');
     card.className = 'ig-reel-card';
-    card.innerHTML = `
-      <a href="https://www.instagram.com/reel/${code}/" target="_blank" rel="noopener">
+    if (videoFile) {
+      card.innerHTML = `
         <div class="ig-reel-thumb">
-          <img src="${imgFile}" alt="Reel ${i+1}">
+          <video
+            src="${videoFile}"
+            poster="${imgFile}"
+            controls
+            playsinline
+            preload="none"
+          ></video>
         </div>
-      </a>
-      <a class="ig-reel-link" href="https://www.instagram.com/reel/${code}/" target="_blank" rel="noopener" id="igLink${i}">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-        Instagramで見る
-      </a>`;
+        <a class="ig-reel-link" href="https://www.instagram.com/reel/${code}/" target="_blank" rel="noopener" id="igLink${i}">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          Instagramで見る
+        </a>`;
+    } else {
+      card.innerHTML = `
+        <a href="https://www.instagram.com/reel/${code}/" target="_blank" rel="noopener">
+          <div class="ig-reel-thumb">
+            <img src="${imgFile}" alt="Reel ${i+1}">
+          </div>
+        </a>
+        <a class="ig-reel-link" href="https://www.instagram.com/reel/${code}/" target="_blank" rel="noopener" id="igLink${i}">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          Instagramで見る
+        </a>`;
+    }
     grid.appendChild(card);
   });
 
