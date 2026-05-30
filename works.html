@@ -425,6 +425,20 @@
         <a class="watch-btn" href="work.html?id=l_Af4hLnry0">Watch</a>
       </div>
 
+      <!-- 2025-06-20 Instagram Reels -->
+      <div class="work-card reveal" data-members="SHOTARO" data-roles="SHOTARO:撮影・編集">
+        <div class="work-thumb">
+          <img src="nyu-thumb.png" onerror="this.parentElement.style.background='#111'" alt="">
+        </div>
+        <div class="work-meta">
+          <div class="work-cat">イベント撮影</div>
+          <div class="work-year">2025</div>
+        </div>
+        <div class="work-title">nyu発売記念イベント@大阪 Reels</div>
+        <div class="work-members"></div>
+        <a class="watch-btn" href="work.html?igw=nyu-event">Watch</a>
+      </div>
+
       <!-- 2025-05 Instagram Reels -->
       <div class="work-card reveal" data-members="SHOTARO,DDD,Shun Shimizu" data-roles="SHOTARO:監督,DDD:撮影助手,Shun Shimizu:制作アシスタント">
         <div class="work-thumb">
@@ -747,6 +761,7 @@
 
   // ===== Language system =====
   const ALL_TITLES_EN = {
+    'igw:nyu-event': 'nyu Release Event @Osaka Reels',
     'igw:timba-timberland': 'Timba-man "Timberland" MV Reels',
     'Bzf7EDiDhew': 'you-to "Rainbow Dream" MV',
     'H0g-1gybDJw': 'Kawagishi Chikusan – CEO Documentary',
@@ -772,6 +787,7 @@
     'T7LjjGe5jls': 'Zinbazi "Ki ga Tsukeba" MV',
   };
   const ALL_TITLES_JP = {
+    'igw:nyu-event': 'nyu発売記念イベント@大阪 Reels',
     'igw:timba-timberland': 'Timba-man「Timberland」MV Reels',
     'Bzf7EDiDhew': 'you-to「Rainbow Dream」MV',
     'H0g-1gybDJw': '川岸畜産様 社長密着ドキュメンタリー',
@@ -797,7 +813,7 @@
     'T7LjjGe5jls': 'ジンバジ「気が付けば」MV',
   };
   const ROLE_EN = { '監督':'Director','撮影監督':'Director of Photography','編集':'Editor','カラリスト':'Colorist','カラー':'Colorist','制作':'Production','監督助手':'Assistant Director','照明監督':'Lighting Director','照明アシスタント':'Lighting Assistant','照明助手':'Lighting Assistant','照明':'Lighting','カメラアシスタント':'Camera Assistant','撮影助手':'Camera Assistant','制作アシスタント':'Production Assistant','ヘアメイク':'Hair & Makeup','スタイリスト':'Stylist','CGディレクター':'CG Director','アシスタントプロデューサー':'Assistant Producer','アシスタントディレクター':'Assistant Director','制作マネージャー':'Production Manager','プロデューサー':'Producer','舞台美術':'Set Design','ドローン撮影':'Drone Operator','カメラマン':'Camera Operator','アシスタント':'Assistant','撮影アシスタント':'Camera Assistant','Special Thanks':'Special Thanks' };
-  const WCAT_EN = { 'アーティスト':'Artist','企業':'Corporate','ドキュメンタリー':'Documentary' };
+  const WCAT_EN = { 'アーティスト':'Artist','企業':'Corporate','ドキュメンタリー':'Documentary','イベント撮影':'Event' };
   const WCAT_JP = { 'Artist':'アーティスト','Corporate':'企業','Documentary':'ドキュメンタリー' };
 
   function translateRole(r) { return r.split('/').map(p => ROLE_EN[p.trim()] || p.trim()).join(' / '); }

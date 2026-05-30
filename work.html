@@ -406,6 +406,17 @@ const IG_WORKS = {
       ['制作アシスタント', 'Shun Shimizu (Launch.)'],
       ['制作', 'Launch.']
     ]
+  },
+  'nyu-event': {
+    title: 'nyu発売記念イベント@大阪 Reels',
+    year: 2025, cat: 'イベント撮影',
+    desc: 'Launch.が撮影、編集を担当しました。',
+    shortcodes: ['DLHY41lSLs8'],
+    images: ['nyu-reel-1.png'],
+    videos: ['nyu-1.mp4'],
+    credits: [
+      ['撮影・編集', 'SHOTARO (Launch.)']
+    ]
   }
 };
 
@@ -686,9 +697,11 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 // ===== Language system =====
 const IG_TITLES_EN = {
   'timba-timberland': 'Timba-man "Timberland" MV Reels',
+  'nyu-event': 'nyu Release Event @Osaka Reels',
 };
 const IG_DESC_EN = {
   'timba-timberland': 'Launch. served as Director, Camera Assistant, and Production Assistant.',
+  'nyu-event': 'Launch. served as Videographer and Editor.',
 };
 
 const WORK_TITLES_EN = {
@@ -739,7 +752,7 @@ const WORK_DESC_EN = {
   'IWRXq8qwDtY': 'Launch. served as Production Assistant.',
   'T7LjjGe5jls': 'Launch. served as Director / Editor / Colorist, Director of Photography, and Production Assistant.',
 };
-const WCAT_EN = { 'アーティスト': 'Artist', '企業': 'Corporate', 'ドキュメンタリー': 'Documentary' };
+const WCAT_EN = { 'アーティスト': 'Artist', '企業': 'Corporate', 'ドキュメンタリー': 'Documentary', 'イベント撮影': 'Event' };
 const ROLE_MAP_EN = { '監督':'Director','撮影監督':'Director of Photography','編集':'Editor','カラリスト':'Colorist','カラー':'Colorist','制作':'Production','監督助手':'Assistant Director','照明監督':'Lighting Director','照明アシスタント':'Lighting Assistant','照明助手':'Lighting Assistant','照明':'Lighting','カメラアシスタント':'Camera Assistant','撮影助手':'Camera Assistant','制作アシスタント':'Production Assistant','ヘアメイク':'Hair & Makeup','スタイリスト':'Stylist','CGディレクター':'CG Director','アシスタントプロデューサー':'Assistant Producer','アシスタントディレクター':'Assistant Director','制作マネージャー':'Production Manager','プロデューサー':'Producer','舞台美術':'Set Design','ドローン撮影':'Drone Operator','カメラマン':'Camera Operator','アシスタント':'Assistant','撮影アシスタント':'Camera Assistant','アートディレクター':'Art Director','モーションエフェクト':'Motion Effects','Special Thanks':'Special Thanks' };
 
 function translateRoleWork(r) { return r.split('/').map(p => ROLE_MAP_EN[p.trim()] || p.trim()).join(' / '); }
