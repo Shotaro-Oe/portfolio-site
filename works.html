@@ -344,7 +344,7 @@
       Back
     </a>
     <h2 id="page-title">All Works</h2>
-    <div class="count" id="work-count">22 projects</div>
+    <div class="count" id="work-count">24 projects</div>
   </div>
 </div>
 
@@ -671,6 +671,11 @@
   const params = new URLSearchParams(window.location.search);
   const catParam = params.get('cat');
   const cards = document.querySelectorAll('.work-card');
+
+  // フィルターなし時も正確にカウント
+  if (!catParam && !params.get('member')) {
+    document.getElementById('work-count').textContent = cards.length + ' projects';
+  }
 
   if (catParam) {
     const labelMap = { 'アーティスト': 'MV', '企業': '企業' };
