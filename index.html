@@ -104,6 +104,14 @@
     justify-content: center;
     overflow: hidden;
   }
+  .hero-video {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    opacity: 0.45;
+    z-index: 0;
+    pointer-events: none;
+  }
   /* グレインテクスチャ（filmっぽさ） */
   .hero::after {
     content: '';
@@ -972,6 +980,9 @@
 
 <!-- ===== Hero ===== -->
 <section class="hero">
+  <video class="hero-video" autoplay muted loop playsinline preload="auto">
+    <source src="hero-bg.mp4" type="video/mp4">
+  </video>
   <div class="hero-content">
     <h2 class="hero-name">Launch.</h2>
     <p class="hero-catch">想いを、届ける。</p>
