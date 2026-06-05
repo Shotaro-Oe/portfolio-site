@@ -932,6 +932,33 @@
     .works { padding: 80px 0 40px; }
     .work-grid { gap: 16px; }
     .about { padding: 40px 0 80px; }
+
+    /* Hero: モバイルは縦並び（テキスト上・動画下） */
+    .hero {
+      height: auto;
+      min-height: unset;
+      flex-direction: column;
+      justify-content: flex-start;
+      padding-top: 64px;
+    }
+    .hero-video {
+      position: relative;
+      inset: unset;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16/9;
+      opacity: 1;
+      z-index: 0;
+      margin-top: 32px;
+    }
+    .hero::after { display: none; }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      padding: 0 24px;
+    }
+    .hero-scroll { display: none; }
     .about-members { gap: 12px; }
     .about-member-works-btn {
       padding: 7px 16px;
