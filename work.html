@@ -623,8 +623,11 @@ if (igWork) {
     grid.appendChild(card);
   });
 
-  if (igWork.desc) {
-    document.getElementById('workDesc').textContent = igWork.desc;
+  // 全クレジットがLaunch.メンバーの場合は自動でdescriptionを上書き
+  const allLaunch = igWork.credits.every(([, name]) => name.includes('Launch.'));
+  const igDesc = allLaunch ? 'Launch.が制作しました。' : igWork.desc;
+  if (igDesc) {
+    document.getElementById('workDesc').textContent = igDesc;
     document.getElementById('descSection').style.display = '';
   }
 
@@ -664,8 +667,11 @@ if (igWork) {
     } catch(err) {}
   });
 
-  if (work.desc) {
-    document.getElementById('workDesc').textContent = work.desc.replace(/\//g, '、');
+  // 全クレジットがLaunch.メンバーの場合は自動でdescriptionを上書き
+  const allLaunchWork = work.credits.every(([, name]) => name.includes('Launch.'));
+  const workDesc = allLaunchWork ? 'Launch.が制作しました。' : work.desc;
+  if (workDesc) {
+    document.getElementById('workDesc').textContent = workDesc.replace(/\//g, '、');
     document.getElementById('descSection').style.display = '';
   }
 
