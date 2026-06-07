@@ -578,18 +578,25 @@ const work     = works[id];
 const igWork   = igwParam ? IG_WORKS[igwParam] : null;
 
 // ===== クレジット整形ユーティリティ =====
+// ・Role・名前ともに / を改行に変換
 // ・同一人物が複数Roleを持つ場合 → 左列にRole縦積み、右列に名前1回（垂直中央）
 // ・同じRoleセットを持つ複数人   → 同一ブロックに名前を縦積み
 function renderCredits(credits, container, isEN) {
   container.innerHTML = '';
 
-  // Step1: 人物ごとにRole配列を収集（登場順を保持）
+  // Step1: Role・名前を / で分割 → 人物ごとにRole配列を収集
   const personMap = new Map();
   const personOrder = [];
-  for (const [role, name] of credits) {
-    if (!personMap.has(name)) { personMap.set(name, []); personOrder.push(name); }
-    const roles = personMap.get(name);
-    if (!roles.includes(role)) roles.push(role);
+  for (const [roleRaw, nameRaw] of credits) {
+    const splitNames = nameRaw.split('/').map(n => n.trim()).filter(Boolean);
+    const splitRoles = roleRaw.split('/').map(r => r.trim()).filter(Boolean);
+    for (const name of splitNames) {
+      if (!personMap.has(name)) { personMap.set(name, []); personOrder.push(name); }
+      const personRoles = personMap.get(name);
+      for (const role of splitRoles) {
+        if (!personRoles.includes(role)) personRoles.push(role);
+      }
+    }
   }
 
   // Step2: 同一RoleセットのPersonをグループ化
