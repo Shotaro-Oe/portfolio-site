@@ -1044,63 +1044,7 @@
       <span class="section-label">Works</span>
     </div>
     <div class="work-grid">
-
-      <div class="work-card reveal" data-members="SHOTARO">
-        <div class="work-thumb">
-          <img src="https://img.youtube.com/vi/Bzf7EDiDhew/maxresdefault.jpg"
-               onerror="this.src='https://img.youtube.com/vi/Bzf7EDiDhew/hqdefault.jpg'" alt="you-to Rainbow Dream">
-        </div>
-        <div class="work-meta">
-          <div class="work-cat">アーティスト</div>
-          <div class="work-year">2026</div>
-        </div>
-        <div class="work-title">you-to「Rainbow Dream」MV</div>
-        <div class="work-members"></div>
-        <a class="watch-btn" href="work.html?id=Bzf7EDiDhew">Watch</a>
-      </div>
-
-      <div class="work-card reveal" data-members="SHOTARO,Shun Shimizu">
-        <div class="work-thumb">
-          <img src="https://img.youtube.com/vi/H0g-1gybDJw/maxresdefault.jpg"
-               onerror="this.src='https://img.youtube.com/vi/H0g-1gybDJw/hqdefault.jpg'" alt="川岸畜産ドキュメンタリー">
-        </div>
-        <div class="work-meta">
-          <div class="work-cat">企業</div>
-          <div class="work-year">2025</div>
-        </div>
-        <div class="work-title">川岸畜産様 社長密着ドキュメンタリー</div>
-        <div class="work-members"></div>
-        <a class="watch-btn" href="work.html?id=H0g-1gybDJw">Watch</a>
-      </div>
-
-      <div class="work-card reveal" data-members="DDD">
-        <div class="work-thumb">
-          <img src="https://img.youtube.com/vi/jYZN9irRYTk/maxresdefault.jpg"
-               onerror="this.src='https://img.youtube.com/vi/jYZN9irRYTk/hqdefault.jpg'" alt="Juster Hangry">
-        </div>
-        <div class="work-meta">
-          <div class="work-cat">アーティスト</div>
-          <div class="work-year">2025</div>
-        </div>
-        <div class="work-title">Juster「Hangry」MV</div>
-        <div class="work-members"></div>
-        <a class="watch-btn" href="work.html?id=jYZN9irRYTk">Watch</a>
-      </div>
-
-      <div class="work-card reveal" data-members="SHOTARO">
-        <div class="work-thumb">
-          <img src="https://img.youtube.com/vi/GgmS1CXq54Y/maxresdefault.jpg"
-               onerror="this.src='https://img.youtube.com/vi/GgmS1CXq54Y/hqdefault.jpg'" alt="猫背のネイビーセゾン MONOTARINAI">
-        </div>
-        <div class="work-meta">
-          <div class="work-cat">アーティスト</div>
-          <div class="work-year">2025</div>
-        </div>
-        <div class="work-title">猫背のネイビーセゾン「MONOTARINAI」MV</div>
-        <div class="work-members"></div>
-        <a class="watch-btn" href="work.html?id=GgmS1CXq54Y">Watch</a>
-      </div>
-
+      <!-- works.html の先頭4作品を JS で動的挿入 -->
     </div>
     <div class="works-more reveal">
       <a href="works.html">
@@ -1378,6 +1322,49 @@
   }
 
   applyLang(localStorage.getItem('lang') || 'jp');
+
+  // ===== Index: 最新4作品を works.html から動的取得 =====
+  (async () => {
+    const grid = document.querySelector('#works .work-grid');
+    try {
+      const res = await fetch('works.html');
+      if (!res.ok) throw new Error('fetch failed');
+      const html = await res.text();
+      const doc = new DOMParser().parseFromString(html, 'text/html');
+      const latest = Array.from(doc.querySelectorAll('.work-card')).slice(0, 4);
+      if (latest.length === 0) throw new Error('no cards');
+
+      // グリッドを差し替え
+      grid.innerHTML = '';
+      latest.forEach(c => grid.appendChild(document.importNode(c, true)));
+
+      // カード全体クリック & メンバー名表示
+      grid.querySelectorAll('.work-card').forEach(card => {
+        const btn = card.querySelector('.watch-btn');
+        if (!btn) return;
+        card.style.cursor = 'pointer';
+        card.addEventListener('click', e => {
+          if (e.target.closest('.watch-btn')) return;
+          window.location.href = btn.getAttribute('href');
+        });
+        const me = card.querySelector('.work-members');
+        const ms = card.dataset.members || '';
+        if (me && ms) me.textContent = ms.split(',').map(m => m.trim()).join(' / ');
+      });
+
+      // Scroll reveal（新カードを observe）
+      const cols = getComputedStyle(grid).gridTemplateColumns.split(' ').length;
+      Array.from(grid.querySelectorAll('.reveal')).forEach((el, i) => {
+        el.style.transitionDelay = (i % cols * 0.12) + 's';
+        observer.observe(el);
+      });
+
+      // 現在の言語を再適用
+      applyLang(localStorage.getItem('lang') || 'jp');
+    } catch (e) {
+      // フェッチ失敗時はフォールバックのカードをそのまま表示
+    }
+  })();
 </script>
 </body>
 </html>
