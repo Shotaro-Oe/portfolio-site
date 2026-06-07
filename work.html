@@ -603,16 +603,19 @@ function mergeCredits(credits) {
   return roleOrder.map(role => [role, roleMap.get(role).join(' / ')]);
 }
 
-function renderCredits(credits, container) {
+// isEN=true のとき ROLE_MAP_EN でRole名を翻訳（translateRoleWork は後方定義だが同スクリプト内で参照可）
+function renderCredits(credits, container, isEN) {
+  container.innerHTML = '';
   mergeCredits(credits).forEach(([role, names]) => {
     const nameList = names.split(' / ');
     const isLaunch = nameList.some(n => n.includes('Launch.'));
+    const displayRole = isEN ? (typeof translateRoleWork === 'function' ? translateRoleWork(role) : role) : role;
     const nameHtml = `<span class="credit-name">${
       nameList.map(n => `<span class="credit-name-line${n.includes('Launch.') ? ' is-launch-member' : ''}">${n}</span>`).join('')
     }</span>`;
     const row = document.createElement('div');
     row.className = 'credit-row' + (isLaunch ? ' is-launch' : '');
-    row.innerHTML = `<span class="credit-role">${role}</span>${nameHtml}`;
+    row.innerHTML = `<span class="credit-role">${displayRole}</span>${nameHtml}`;
     container.appendChild(row);
   });
 }
@@ -818,16 +821,7 @@ function applyWorkLang(lang) {
       document.getElementById('workDesc').textContent = isEN ? (IG_DESC_EN[igwParam] || igWork.desc) : igWork.desc;
     }
     const list = document.getElementById('creditsList');
-    list.innerHTML = '';
-    igWork.credits.forEach(([role, name]) => {
-      const isLaunch = name.includes('Launch.');
-      const displayRole = isEN ? (ROLE_MAP_EN[role] || role) : role;
-      const nameHtml = `<span class="credit-name"><span class="credit-name-line${isLaunch ? ' is-launch-member' : ''}">${name}</span></span>`;
-      const row = document.createElement('div');
-      row.className = 'credit-row' + (isLaunch ? ' is-launch' : '');
-      row.innerHTML = `<span class="credit-role">${displayRole}</span>${nameHtml}`;
-      list.appendChild(row);
-    });
+    renderCredits(igWork.credits, list, isEN);
     // リンクテキスト翻訳
     document.querySelectorAll('.ig-reel-link').forEach(el => {
       const svg = el.querySelector('svg');
@@ -847,20 +841,7 @@ function applyWorkLang(lang) {
     }
 
     const list = document.getElementById('creditsList');
-    list.innerHTML = '';
-    work.credits.forEach(([role, name]) => {
-      const roles = role.split('/').map(r => r.trim());
-      const displayRoles = isEN ? [translateRoleWork(role)] : roles;
-      const names = name.split('/').map(n => n.trim());
-      const isLaunch = name.includes('Launch.');
-      const nameHtml = `<span class="credit-name">${names.map(n => `<span class="credit-name-line${n.includes('Launch.') ? ' is-launch-member' : ''}">${n}</span>`).join('')}</span>`;
-      displayRoles.forEach(r => {
-        const row = document.createElement('div');
-        row.className = 'credit-row' + (isLaunch ? ' is-launch' : '');
-        row.innerHTML = `<span class="credit-role">${r}</span>${nameHtml}`;
-        list.appendChild(row);
-      });
-    });
+    renderCredits(work.credits, list, isEN);
 
     // YouTube link text
     const embedLink = document.getElementById('embedLink');
