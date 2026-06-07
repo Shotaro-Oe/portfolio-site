@@ -419,7 +419,8 @@ const IG_WORKS = {
     images: ['nyu-thumb.png'],
     videos: ['nyu-1.mp4'],
     credits: [
-      ['撮影', 'SHOTARO (Launch.)']
+      ['撮影', 'SHOTARO (Launch.)'],
+      ['編集', 'SHOTARO (Launch.)']
     ]
   },
   'kimiga-live': {
@@ -538,7 +539,7 @@ const works = {
     title: 'ジンバジ「今からは」MV',
     year: 2023, cat: 'アーティスト',
     desc: 'Launch.が編集/カラー、カメラマンを担当しました。',
-    credits: [['カメラマン', 'Shun Shimizu (Launch.)'], ['カメラマン', 'DDD (Launch.)'], ['カメラマン', 'SHOTARO (Launch.)'], ['制作', 'Launch.']]
+    credits: [['編集', 'Shun Shimizu (Launch.)'], ['カメラマン', 'Shun Shimizu (Launch.)'], ['カメラマン', 'DDD (Launch.)'], ['カメラマン', 'SHOTARO (Launch.)'], ['制作', 'Launch.']]
   },
   '3tgqSp5cTGE': {
     title: 'ジンバジ「あの空には」MV',
@@ -579,55 +580,86 @@ const igWork   = igwParam ? IG_WORKS[igwParam] : null;
 
 // ===== クレジット整形ユーティリティ =====
 // ・Role・名前ともに / を改行に変換
-// ・同一人物が複数Roleを持つ場合 → 左列にRole縦積み、右列に名前1回（垂直中央）
-// ・同じRoleセットを持つ複数人   → 同一ブロックに名前を縦積み
+// ・複数Roleを独占する人物 → 左列にRole縦積み、右列に名前1回（垂直中央）
+// ・複数人が同じRoleを持つ場合 → 共有行として名前を縦積み
 function renderCredits(credits, container, isEN) {
   container.innerHTML = '';
 
-  // Step1: Role・名前を / で分割 → 人物ごとにRole配列を収集
-  const personMap = new Map();
-  const personOrder = [];
+  // Step1: / を分割してフラット展開
+  const expanded = [];
   for (const [roleRaw, nameRaw] of credits) {
-    const splitNames = nameRaw.split('/').map(n => n.trim()).filter(Boolean);
-    const splitRoles = roleRaw.split('/').map(r => r.trim()).filter(Boolean);
-    for (const name of splitNames) {
-      if (!personMap.has(name)) { personMap.set(name, []); personOrder.push(name); }
-      const personRoles = personMap.get(name);
-      for (const role of splitRoles) {
-        if (!personRoles.includes(role)) personRoles.push(role);
+    const names = nameRaw.split('/').map(n => n.trim()).filter(Boolean);
+    const roles = roleRaw.split('/').map(r => r.trim()).filter(Boolean);
+    for (const name of names) {
+      for (const role of roles) {
+        expanded.push([role, name]);
       }
     }
   }
 
-  // Step2: 同一RoleセットのPersonをグループ化
-  const groupMap = new Map(); // JSON(roles) → { roles, names[] }
-  const groupOrder = [];
-  personOrder.forEach(name => {
-    const roles = personMap.get(name);
-    const key = JSON.stringify(roles);
-    if (!groupMap.has(key)) { groupMap.set(key, { roles, names: [] }); groupOrder.push(key); }
-    groupMap.get(key).names.push(name);
-  });
+  // Step2: ロールごとに担当人数を集計（共有ロール判定用）
+  const rolePersons = new Map(); // role → Set<name>
+  for (const [role, name] of expanded) {
+    if (!rolePersons.has(role)) rolePersons.set(role, new Set());
+    rolePersons.get(role).add(name);
+  }
+  const isShared = role => rolePersons.get(role).size > 1;
 
-  // Step3: 描画
-  groupOrder.forEach(key => {
-    const { roles, names } = groupMap.get(key);
-    const isLaunch = names.some(n => n.includes('Launch.'));
-    const isGrouped = roles.length > 1;
-    const displayRoles = isEN && typeof translateRoleWork === 'function'
-      ? roles.map(r => translateRoleWork(r)) : roles;
+  // Step3: 入力順を保ちながらブロックを構築
+  // {type:'exclusive', person, roles[]} | {type:'shared', role, names[]}
+  const blocks = [];
+  let curPerson = null, curRoles = [];
 
-    const roleContent = isGrouped
-      ? `<div class="credit-roles-stack">${displayRoles.map(r => `<span class="credit-role">${r}</span>`).join('')}</div>`
-      : `<span class="credit-role">${displayRoles[0]}</span>`;
+  const flushExclusive = () => {
+    if (curPerson && curRoles.length > 0) {
+      blocks.push({ type: 'exclusive', person: curPerson, roles: [...curRoles] });
+    }
+    curPerson = null; curRoles = [];
+  };
 
-    const nameHtml = `<span class="credit-name">${
-      names.map(n => `<span class="credit-name-line${n.includes('Launch.') ? ' is-launch-member' : ''}">${n}</span>`).join('')
-    }</span>`;
+  for (const [role, name] of expanded) {
+    if (isShared(role)) {
+      flushExclusive();
+      const existing = blocks.find(b => b.type === 'shared' && b.role === role);
+      if (existing) {
+        if (!existing.names.includes(name)) existing.names.push(name);
+      } else {
+        blocks.push({ type: 'shared', role, names: [name] });
+      }
+    } else {
+      if (name === curPerson) {
+        if (!curRoles.includes(role)) curRoles.push(role);
+      } else {
+        flushExclusive();
+        curPerson = name; curRoles = [role];
+      }
+    }
+  }
+  flushExclusive();
 
+  // Step4: 描画
+  blocks.forEach(block => {
     const row = document.createElement('div');
-    row.className = 'credit-row' + (isLaunch ? ' is-launch' : '') + (isGrouped ? ' is-grouped' : '');
-    row.innerHTML = roleContent + nameHtml;
+    if (block.type === 'exclusive') {
+      const isGrouped = block.roles.length > 1;
+      const isLaunch = block.person.includes('Launch.');
+      const displayRoles = isEN && typeof translateRoleWork === 'function'
+        ? block.roles.map(r => translateRoleWork(r)) : block.roles;
+      const roleContent = isGrouped
+        ? `<div class="credit-roles-stack">${displayRoles.map(r => `<span class="credit-role">${r}</span>`).join('')}</div>`
+        : `<span class="credit-role">${displayRoles[0]}</span>`;
+      const nameHtml = `<span class="credit-name"><span class="credit-name-line${isLaunch ? ' is-launch-member' : ''}">${block.person}</span></span>`;
+      row.className = 'credit-row' + (isLaunch ? ' is-launch' : '') + (isGrouped ? ' is-grouped' : '');
+      row.innerHTML = roleContent + nameHtml;
+    } else {
+      const isLaunch = block.names.some(n => n.includes('Launch.'));
+      const displayRole = isEN && typeof translateRoleWork === 'function' ? translateRoleWork(block.role) : block.role;
+      const nameHtml = `<span class="credit-name">${
+        block.names.map(n => `<span class="credit-name-line${n.includes('Launch.') ? ' is-launch-member' : ''}">${n}</span>`).join('')
+      }</span>`;
+      row.className = 'credit-row' + (isLaunch ? ' is-launch' : '');
+      row.innerHTML = `<span class="credit-role">${displayRole}</span>${nameHtml}`;
+    }
     container.appendChild(row);
   });
 }
