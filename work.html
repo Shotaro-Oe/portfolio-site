@@ -574,6 +574,49 @@ const igwParam = new URLSearchParams(window.location.search).get('igw');
 const work     = works[id];
 const igWork   = igwParam ? IG_WORKS[igwParam] : null;
 
+// ===== クレジット整形ユーティリティ =====
+// Rule1: 同一人物が複数Roleを持つ場合 → Role を / で結合して1行に
+// Rule2: 同一Roleに複数人いる場合    → 名前を / で結合して1行に
+function mergeCredits(credits) {
+  // Step1: 人物ごとにRoleをまとめる
+  const personMap = new Map();
+  const personOrder = [];
+  for (const [role, name] of credits) {
+    if (!personMap.has(name)) {
+      personMap.set(name, []);
+      personOrder.push(name);
+    }
+    personMap.get(name).push(role);
+  }
+  const merged1 = personOrder.map(name => [personMap.get(name).join('/'), name]);
+
+  // Step2: 同一Roleに複数人 → 名前を結合
+  const roleMap = new Map();
+  const roleOrder = [];
+  for (const [role, name] of merged1) {
+    if (!roleMap.has(role)) {
+      roleMap.set(role, []);
+      roleOrder.push(role);
+    }
+    roleMap.get(role).push(name);
+  }
+  return roleOrder.map(role => [role, roleMap.get(role).join(' / ')]);
+}
+
+function renderCredits(credits, container) {
+  mergeCredits(credits).forEach(([role, names]) => {
+    const nameList = names.split(' / ');
+    const isLaunch = nameList.some(n => n.includes('Launch.'));
+    const nameHtml = `<span class="credit-name">${
+      nameList.map(n => `<span class="credit-name-line${n.includes('Launch.') ? ' is-launch-member' : ''}">${n}</span>`).join('')
+    }</span>`;
+    const row = document.createElement('div');
+    row.className = 'credit-row' + (isLaunch ? ' is-launch' : '');
+    row.innerHTML = `<span class="credit-role">${role}</span>${nameHtml}`;
+    container.appendChild(row);
+  });
+}
+
 if (igWork) {
   document.title = igWork.title + ' — Launch.';
   document.querySelector('meta[property="og:title"]').setAttribute('content', igWork.title + ' — Launch.');
@@ -633,14 +676,7 @@ if (igWork) {
 
   // クレジット表示
   const igList = document.getElementById('creditsList');
-  igWork.credits.forEach(([role, name]) => {
-    const isLaunch = name.includes('Launch.');
-    const nameHtml = `<span class="credit-name"><span class="credit-name-line${isLaunch ? ' is-launch-member' : ''}">${name}</span></span>`;
-    const row = document.createElement('div');
-    row.className = 'credit-row' + (isLaunch ? ' is-launch' : '');
-    row.innerHTML = `<span class="credit-role">${role}</span>${nameHtml}`;
-    igList.appendChild(row);
-  });
+  renderCredits(igWork.credits, igList);
 
 } else if (work) {
   document.title = work.title + ' — Launch.';
@@ -676,18 +712,7 @@ if (igWork) {
   }
 
   const list = document.getElementById('creditsList');
-  work.credits.forEach(([role, name]) => {
-    const roles = role.split('/').map(r => r.trim());
-    const names = name.split('/').map(n => n.trim());
-    const isLaunch = name.includes('Launch.');
-    const nameHtml = `<span class="credit-name">${names.map(n => `<span class="credit-name-line${n.includes('Launch.') ? ' is-launch-member' : ''}">${n}</span>`).join('')}</span>`;
-    roles.forEach(r => {
-      const row = document.createElement('div');
-      row.className = 'credit-row' + (isLaunch ? ' is-launch' : '');
-      row.innerHTML = `<span class="credit-role">${r}</span>${nameHtml}`;
-      list.appendChild(row);
-    });
-  });
+  renderCredits(work.credits, list);
 } else {
   document.querySelector('.work-hero h2').textContent = '作品が見つかりません';
 }
