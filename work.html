@@ -460,6 +460,7 @@ const IG_WORKS = {
   },
   'kimiga-live': {
     title: '君がそうなら僕はこう「一般人の大挑戦」ワンマンライブ ダイジェスト映像',
+    titleHtml: '君がそうなら僕はこう「一般人の大挑戦」<br>ワンマンライブ ダイジェスト映像',
     year: 2026, cat: 'アーティスト',
     desc: 'Launch.が撮影を担当しました。',
     shortcodes: ['DZOkHVkBdNz'],
@@ -709,7 +710,7 @@ if (igWork) {
   document.title = igWork.title + ' — Launch.';
   document.querySelector('meta[property="og:title"]').setAttribute('content', igWork.title + ' — Launch.');
   document.querySelector('meta[property="og:description"]').setAttribute('content', igWork.desc || igWork.title);
-  document.getElementById('workTitle').textContent = igWork.title;
+  document.getElementById('workTitle').innerHTML = igWork.titleHtml || igWork.title;
   document.getElementById('workCat').textContent   = igWork.cat;
   document.getElementById('workYear').textContent  = igWork.year;
 
@@ -937,10 +938,11 @@ function applyWorkLang(lang) {
 
   if (igWork) {
     // ===== Instagram作品 =====
-    const title = isEN ? (IG_TITLES_EN[igwParam] || igWork.title) : igWork.title;
-    document.getElementById('workTitle').textContent = title;
+    const titlePlain = isEN ? (IG_TITLES_EN[igwParam] || igWork.title) : igWork.title;
+    const titleDisp  = isEN ? titlePlain : (igWork.titleHtml || igWork.title);
+    document.getElementById('workTitle').innerHTML = titleDisp;
     document.getElementById('workCat').textContent = isEN ? (WCAT_EN[igWork.cat] || igWork.cat) : igWork.cat;
-    document.title = title + ' — Launch.';
+    document.title = titlePlain + ' — Launch.';
     if (igWork.desc) {
       document.getElementById('workDesc').textContent = isEN ? (IG_DESC_EN[igwParam] || igWork.desc) : igWork.desc;
     }

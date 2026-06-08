@@ -362,7 +362,7 @@
           <div class="work-cat">アーティスト</div>
           <div class="work-year">2026</div>
         </div>
-        <div class="work-title">君がそうなら僕はこう「一般人の大挑戦」ワンマンライブ ダイジェスト映像</div>
+        <div class="work-title">君がそうなら僕はこう「一般人の大挑戦」<br>ワンマンライブ ダイジェスト映像</div>
         <div class="work-members"></div>
         <a class="watch-btn" href="work.html?igw=kimiga-live">Watch</a>
       </div>
@@ -822,7 +822,7 @@
     '5WA6xWuZ3Qg': 'Zinbazi "Kattou" MV',
   };
   const ALL_TITLES_JP = {
-    'igw:kimiga-live': '君がそうなら僕はこう「一般人の大挑戦」ワンマンライブ ダイジェスト映像',
+    'igw:kimiga-live': '君がそうなら僕はこう「一般人の大挑戦」<br>ワンマンライブ ダイジェスト映像',
     'igw:nyu-event': 'nyu発売記念イベント@大阪 Reels',
     'igw:timba-timberland': 'Timba-man「Timberland」MV Reels',
     'Bzf7EDiDhew': 'you-to「Rainbow Dream」MV',
@@ -866,7 +866,7 @@
       const key = vid || (igwKey ? 'igw:' + igwKey : null);
       const titleEl = card.querySelector('.work-title');
       const catEl   = card.querySelector('.work-cat');
-      if (titleEl && key) titleEl.textContent = isEN ? (ALL_TITLES_EN[key] || titleEl.textContent) : (ALL_TITLES_JP[key] || titleEl.textContent);
+      if (titleEl && key) titleEl.innerHTML = isEN ? (ALL_TITLES_EN[key] || titleEl.innerHTML) : (ALL_TITLES_JP[key] || titleEl.innerHTML);
       if (catEl) {
         if (!catEl.dataset.jp) catEl.dataset.jp = catEl.textContent.trim();
         catEl.textContent = isEN ? (WCAT_EN[catEl.dataset.jp] || catEl.dataset.jp) : catEl.dataset.jp;
