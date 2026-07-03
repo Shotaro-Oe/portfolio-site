@@ -465,11 +465,17 @@
     color: inherit;
     text-decoration: none;
   }
-  .about-member-works-btn {
+  .about-member-btns {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: auto;
+  }
+  .about-member-works-btn,
+  .about-member-ig-btn {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    margin-top: auto;
     padding: 0;
     font-size: 11px;
     letter-spacing: 0.18em;
@@ -481,7 +487,8 @@
     box-shadow: none;
     transition: color 0.25s ease, transform 0.25s ease;
   }
-  .about-member-works-btn:hover {
+  .about-member-works-btn:hover,
+  .about-member-ig-btn:hover {
     color: var(--fg);
     transform: translateY(-4px);
   }
@@ -971,7 +978,8 @@
       margin-top: 24px;
     }
     .about-members { gap: 12px; }
-    .about-member-works-btn {
+    .about-member-works-btn,
+    .about-member-ig-btn {
       padding: 7px 16px;
       background: var(--glass);
       backdrop-filter: var(--blur);
@@ -1075,12 +1083,22 @@
         </div>
         <div class="about-member-name">SHOTARO</div>
         <p class="about-member-bio">2000年生まれ、兵庫県出身。<br>監督・照明監督として映像制作全体を担う。<br>MVや企業PR映像、ドキュメンタリーまで幅広いジャンルに対応。</p>
-        <a class="about-member-works-btn" href="works.html?member=SHOTARO">
-          Works
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
-          </svg>
-        </a>
+        <div class="about-member-btns">
+          <a class="about-member-works-btn" href="works.html?member=SHOTARO">
+            Works
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </a>
+          <a class="about-member-ig-btn" href="https://www.instagram.com/shotaro_lib?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener">
+            Instagram
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <circle cx="12" cy="12" r="4"/>
+              <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/>
+            </svg>
+          </a>
+        </div>
       </div>
       <div class="about-member reveal">
         <div class="about-member-photo">
@@ -1088,12 +1106,22 @@
         </div>
         <div class="about-member-name">DDD</div>
         <p class="about-member-bio">2001年生まれ、京都府出身。<br>監督として独自の視点でMVを中心に制作。<br>アーティストのビジョンを映像として形にする。</p>
-        <a class="about-member-works-btn" href="works.html?member=DDD">
-          Works
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
-          </svg>
-        </a>
+        <div class="about-member-btns">
+          <a class="about-member-works-btn" href="works.html?member=DDD">
+            Works
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </a>
+          <a class="about-member-ig-btn" href="https://www.instagram.com/fsentmt_33s?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener">
+            Instagram
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <circle cx="12" cy="12" r="4"/>
+              <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/>
+            </svg>
+          </a>
+        </div>
       </div>
       <div class="about-member reveal">
         <div class="about-member-photo">
@@ -1101,12 +1129,22 @@
         </div>
         <div class="about-member-name">Shun Shimizu</div>
         <p class="about-member-bio">1999年生まれ、大阪府出身。<br>撮影監督として映像の質感と画を作り上げる。<br>アーティストMVから企業映像まで幅広く担当。</p>
-        <a class="about-member-works-btn" href="works.html?member=Shun Shimizu">
-          Works
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
-          </svg>
-        </a>
+        <div class="about-member-btns">
+          <a class="about-member-works-btn" href="works.html?member=Shun Shimizu">
+            Works
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </a>
+          <a class="about-member-ig-btn" href="https://www.instagram.com/shun_shimizu_bmp?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener">
+            Instagram
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <circle cx="12" cy="12" r="4"/>
+              <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/>
+            </svg>
+          </a>
+        </div>
       </div>
     </div>
   </div>
