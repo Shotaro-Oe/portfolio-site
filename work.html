@@ -10,6 +10,7 @@
 <meta property="og:image" content="https://launch-films.com/og-image.png">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="apple-touch-icon" href="favicon.svg">
+<meta name="theme-color" content="#0e0e0e">
 <style>
   :root {
     --fg: #1a1a2e;
@@ -63,10 +64,8 @@
   header nav a:hover { color: #fff; }
   .nav-pipe { color:rgba(255,255,255,0.18); margin:0 10px; font-size:11px; }
   .lang-sw { display:flex; align-items:center; gap:0; font-size:11px; letter-spacing:0.08em; }
-  .lang-jp, .lang-en { cursor:pointer; color:rgba(255,255,255,0.3); transition:color 0.2s; padding:0 3px; }
-  .lang-jp:hover, .lang-en:hover { color:rgba(255,255,255,0.8); }
-  .lang-jp.active, .lang-en.active { color:#fff; }
-  .lang-sep { color:rgba(255,255,255,0.2); }
+  .lang-toggle { cursor:pointer; color:rgba(255,255,255,0.6); transition:color 0.2s; padding:0 3px; }
+  .lang-toggle:hover { color:#fff; }
 
   /* Hamburger */
   .hamburger {
@@ -96,9 +95,8 @@
   .mobile-nav a { font-size: 16px; color: rgba(255,255,255,0.55); letter-spacing: 0.1em; transition: color 0.2s; }
   .mobile-nav a:hover { color: #fff; }
   .mobile-nav .lang-sw { font-size: 14px; letter-spacing: 0.12em; margin-top: 0; }
-  .mobile-nav .lang-jp, .mobile-nav .lang-en { color: rgba(255,255,255,0.35); padding: 0 4px; }
-  .mobile-nav .lang-jp.active, .mobile-nav .lang-en.active { color: #fff; }
-  .mobile-nav .lang-sep { color: rgba(255,255,255,0.2); }
+  .mobile-nav .lang-toggle { color: rgba(255,255,255,0.6); padding: 0 4px; }
+  .mobile-nav .lang-toggle:hover { color: #fff; }
 
   .mobile-overlay {
     display: none; position: fixed; inset: 0;
@@ -339,7 +337,7 @@
   <a href="works.html" class="mnl">Works</a>
   <a href="index.html#about" class="mnl">About</a>
   <a href="index.html#contact" class="mnl">Contact</a>
-  <span class="lang-sw" style="margin-left:0;margin-top:0;"><span class="lang-jp active" onclick="applyWorkLang('jp')">JP</span><span class="lang-sep">/</span><span class="lang-en" onclick="applyWorkLang('en')">EN</span></span>
+  <span class="lang-sw" style="margin-left:0;margin-top:0;"><span class="lang-toggle" onclick="toggleWorkLang()">EN</span></span>
 </nav>
 
 <!-- ===== Header ===== -->
@@ -351,7 +349,7 @@
       <a href="index.html#about">About</a>
       <a href="index.html#contact">Contact</a>
       <span class="nav-pipe">|</span>
-      <span class="lang-sw"><span class="lang-jp active" id="langJP" onclick="applyWorkLang('jp')">JP</span><span class="lang-sep">/</span><span class="lang-en" id="langEN" onclick="applyWorkLang('en')">EN</span></span>
+      <span class="lang-sw"><span class="lang-toggle" onclick="toggleWorkLang()">EN</span></span>
     </nav>
     <button class="hamburger" id="hamburger" aria-label="メニュー">
       <span></span><span></span><span></span>
@@ -974,11 +972,14 @@ function applyWorkLang(lang) {
     if (embedLink) embedLink.textContent = isEN ? '▶ Watch on YouTube' : '▶ YouTubeで見る';
   }
 
-  document.querySelectorAll('.lang-jp').forEach(el => el.classList.toggle('active', !isEN));
-  document.querySelectorAll('.lang-en').forEach(el => el.classList.toggle('active', isEN));
+  document.querySelectorAll('.lang-toggle').forEach(el => el.textContent = isEN ? 'JP' : 'EN');
   localStorage.setItem('lang', lang);
   document.documentElement.lang = isEN ? 'en' : 'ja';
   if (typeof closeMenu === 'function') closeMenu();
+}
+
+function toggleWorkLang() {
+  applyWorkLang((localStorage.getItem('lang') || 'jp') === 'jp' ? 'en' : 'jp');
 }
 
 applyWorkLang(localStorage.getItem('lang') || 'jp');
