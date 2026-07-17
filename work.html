@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Work — Launch.</title>
 <meta property="og:title" content="Work — Launch.">
 <meta property="og:description" content="Launch. 映像制作チームの作品">
@@ -41,6 +41,7 @@
   header {
     position: sticky; top: 0; z-index: 100;
     padding: 22px 0;
+    padding-top: calc(22px + env(safe-area-inset-top));
     background: rgba(14,14,14,0.92);
     backdrop-filter: blur(20px) saturate(1.4);
     -webkit-backdrop-filter: blur(20px) saturate(1.4);
