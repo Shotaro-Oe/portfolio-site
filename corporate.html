@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>企業・店舗向け映像制作 | Launch.</title>
+<meta name="description" content="企業PR・採用PV・観光PRなどの映像制作はLaunch.へ。企画・撮影・編集まで一貫対応。料金の目安・制作の流れ・実績を掲載しています。">
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:title" content="企業・店舗向け映像制作 | Launch.">
+<meta property="og:description" content="企業PR・採用PV・観光PRなどの映像制作。企画・撮影・編集まで一貫対応。">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://launch-films.com/og-image.png">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --black: #0a0a0a; --white: #fff;
+  --g100: #f5f5f5; --g200: #e6e6e6; --g400: #999; --g600: #555;
+  --font: -apple-system, "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ ProN W3", "Noto Sans JP", sans-serif;
+}
+html { scroll-behavior: smooth; }
+body { font-family: var(--font); color: var(--black); background: var(--white); line-height: 1.8; -webkit-font-smoothing: antialiased; }
+a { color: inherit; }
+
+/* placeholder (確認用: 公開前に削除) */
+.ph { background: #fff3a8; color: #5a4a00; padding: 0 4px; border-radius: 2px; }
+
+/* Nav */
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 16px 48px; background: rgba(255,255,255,.94); backdrop-filter: blur(10px); border-bottom: 1px solid var(--g200); }
+.logo { font-size: 18px; font-weight: 600; text-decoration: none; letter-spacing: .02em; }
+.nav-links { display: flex; gap: 28px; list-style: none; }
+.nav-links a { font-size: 13px; color: var(--g600); text-decoration: none; }
+.nav-links a:hover { color: var(--black); }
+.nav-cta { font-size: 13px; font-weight: 500; padding: 10px 22px; background: var(--black); color: var(--white); text-decoration: none; border-radius: 2px; white-space: nowrap; }
+
+/* Hero */
+.hero { min-height: 92vh; display: flex; align-items: center; padding: 130px 48px 90px; background: var(--black); color: var(--white); position: relative; overflow: hidden; }
+.hero-bg { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: .28; }
+.hero-inner { position: relative; max-width: 760px; }
+.eyebrow { font-size: 12px; letter-spacing: .18em; color: rgba(255,255,255,.5); margin-bottom: 28px; }
+.hero h1 { font-size: clamp(32px, 5.2vw, 60px); font-weight: 400; line-height: 1.35; letter-spacing: .01em; margin-bottom: 28px; }
+.hero p { font-size: 16px; color: rgba(255,255,255,.7); max-width: 520px; margin-bottom: 40px; }
+.btns { display: flex; gap: 14px; flex-wrap: wrap; }
+.btn { display: inline-block; padding: 16px 36px; font-size: 14px; font-weight: 500; text-decoration: none; border-radius: 2px; letter-spacing: .04em; }
+.btn-w { background: var(--white); color: var(--black); }
+.btn-g { border: 1px solid rgba(255,255,255,.35); color: rgba(255,255,255,.85); }
+.hero-points { position: relative; margin-top: 56px; display: flex; gap: 32px; flex-wrap: wrap; font-size: 13px; color: rgba(255,255,255,.6); }
+.hero-points span::before { content: "— "; color: rgba(255,255,255,.3); }
+
+/* Section */
+section { padding: 96px 48px; }
+.inner { max-width: 1040px; margin: 0 auto; }
+.label { font-size: 12px; letter-spacing: .18em; color: var(--g400); margin-bottom: 14px; }
+.title { font-size: clamp(24px, 3.2vw, 36px); font-weight: 400; line-height: 1.4; margin-bottom: 16px; }
+.lead { font-size: 15px; color: var(--g600); max-width: 600px; }
+.gray { background: var(--g100); }
+
+/* Problems */
+.problems { margin-top: 48px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.problem { background: var(--white); padding: 32px 28px; border: 1px solid var(--g200); }
+.problem h3 { font-size: 16px; font-weight: 500; margin-bottom: 10px; }
+.problem p { font-size: 13px; color: var(--g600); }
+.problem .n { font-size: 12px; color: var(--g400); letter-spacing: .1em; margin-bottom: 14px; }
+
+/* Works */
+.works { background: var(--black); color: var(--white); }
+.works .label { color: rgba(255,255,255,.4); }
+.works .lead { color: rgba(255,255,255,.55); }
+.work-main { margin-top: 48px; display: grid; grid-template-columns: 1.4fr 1fr; gap: 40px; align-items: center; }
+.thumb { position: relative; aspect-ratio: 16/9; background: #151515; overflow: hidden; display: block; }
+.thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.work-meta dt { font-size: 11px; letter-spacing: .12em; color: rgba(255,255,255,.4); margin-top: 18px; }
+.work-meta dd { font-size: 14px; color: rgba(255,255,255,.85); }
+.work-meta h3 { font-size: 20px; font-weight: 400; margin-bottom: 4px; }
+.work-sub { margin-top: 56px; }
+.work-sub h4 { font-size: 13px; letter-spacing: .1em; color: rgba(255,255,255,.45); margin-bottom: 16px; font-weight: 400; }
+.work-sub-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.work-sub-grid .cap { font-size: 12px; color: rgba(255,255,255,.65); margin-top: 8px; }
+
+/* Strengths */
+.str-grid { margin-top: 48px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--g200); border: 1px solid var(--g200); }
+.str { background: var(--white); padding: 36px 30px; }
+.str h3 { font-size: 16px; font-weight: 500; margin-bottom: 10px; }
+.str p { font-size: 13px; color: var(--g600); }
+
+/* Price */
+.price-grid { margin-top: 48px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.plan { background: var(--white); border: 1px solid var(--g200); padding: 36px 30px; }
+.plan.main { border: 2px solid var(--black); }
+.plan .name { font-size: 14px; font-weight: 500; margin-bottom: 6px; }
+.plan .len { font-size: 12px; color: var(--g400); margin-bottom: 20px; }
+.plan .amt { font-size: 30px; font-weight: 300; letter-spacing: -.01em; margin-bottom: 20px; }
+.plan .amt small { font-size: 13px; color: var(--g600); }
+.plan ul { list-style: none; font-size: 13px; color: var(--g600); }
+.plan li { padding: 8px 0; border-top: 1px solid var(--g200); }
+.note { margin-top: 20px; font-size: 12px; color: var(--g400); }
+
+/* Process */
+.steps { margin-top: 48px; display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; }
+.step { padding: 0 14px 0 0; border-top: 1px solid var(--black); padding-top: 20px; }
+.step .n { font-size: 12px; color: var(--g400); margin-bottom: 10px; letter-spacing: .1em; }
+.step h3 { font-size: 14px; font-weight: 500; margin-bottom: 8px; }
+.step p { font-size: 12px; color: var(--g600); }
+
+/* FAQ */
+.faq { margin-top: 40px; max-width: 760px; }
+.faq details { border-bottom: 1px solid var(--g200); padding: 20px 0; }
+.faq summary { cursor: pointer; font-size: 15px; font-weight: 500; list-style: none; display: flex; justify-content: space-between; gap: 16px; }
+.faq summary::after { content: "+"; color: var(--g400); }
+.faq details[open] summary::after { content: "−"; }
+.faq details p { margin-top: 12px; font-size: 14px; color: var(--g600); }
+
+/* Company */
+.company { margin-top: 32px; max-width: 640px; font-size: 14px; }
+.company div { display: grid; grid-template-columns: 140px 1fr; padding: 14px 0; border-bottom: 1px solid var(--g200); }
+.company dt { color: var(--g400); }
+
+/* Contact */
+.contact { background: var(--black); color: var(--white); }
+.contact .label { color: rgba(255,255,255,.4); }
+.contact .lead { color: rgba(255,255,255,.55); }
+form { margin-top: 40px; max-width: 640px; display: grid; gap: 20px; }
+.f label { display: block; font-size: 13px; color: rgba(255,255,255,.7); margin-bottom: 6px; }
+.f label em { font-style: normal; color: #ff8a8a; margin-left: 6px; font-size: 11px; }
+.f input, .f select, .f textarea { width: 100%; padding: 13px 16px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.18); border-radius: 2px; color: var(--white); font-size: 14px; font-family: var(--font); outline: none; }
+.f select option { color: #000; }
+.f input:focus, .f select:focus, .f textarea:focus { border-color: rgba(255,255,255,.55); }
+.f textarea { min-height: 120px; resize: vertical; }
+.row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.hp { position: absolute; left: -9999px; }
+.submit { padding: 16px; background: var(--white); color: var(--black); border: none; border-radius: 2px; font-size: 15px; font-weight: 500; font-family: var(--font); cursor: pointer; }
+.submit[disabled] { opacity: .5; cursor: default; }
+.msg { font-size: 14px; display: none; padding: 14px 16px; border-radius: 2px; }
+.msg.ok { display: block; background: rgba(120,220,160,.15); color: #b6f0cd; }
+.msg.err { display: block; background: rgba(255,120,120,.15); color: #ffb3b3; }
+.form-note { font-size: 12px; color: rgba(255,255,255,.4); }
+
+footer { padding: 36px 48px; display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--g400); border-top: 1px solid var(--g200); }
+footer ul { display: flex; gap: 20px; list-style: none; }
+footer a { text-decoration: none; }
+
+.sp-cta { display: none; }
+
+@media (max-width: 860px) {
+  nav { padding: 14px 20px; }
+  .nav-links { display: none; }
+  section { padding: 68px 20px; }
+  .hero { padding: 110px 20px 70px; min-height: 85vh; }
+  .problems, .str-grid, .price-grid, .work-sub-grid { grid-template-columns: 1fr; }
+  .work-main { grid-template-columns: 1fr; gap: 24px; }
+  .steps { grid-template-columns: 1fr; gap: 24px; }
+  .row2 { grid-template-columns: 1fr; }
+  .company div { grid-template-columns: 100px 1fr; }
+  footer { flex-direction: column; gap: 14px; padding: 32px 20px 90px; }
+  .sp-cta { display: block; position: fixed; left: 0; right: 0; bottom: 0; z-index: 90; padding: 12px 16px; background: rgba(255,255,255,.96); border-top: 1px solid var(--g200); }
+  .sp-cta a { display: block; text-align: center; padding: 14px; background: var(--black); color: var(--white); text-decoration: none; font-size: 14px; font-weight: 500; border-radius: 2px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="logo">Launch.</a>
+  <ul class="nav-links">
+    <li><a href="#works">実績</a></li>
+    <li><a href="#price">料金</a></li>
+    <li><a href="#flow">制作の流れ</a></li>
+    <li><a href="#faq">よくある質問</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">無料で相談する</a>
+</nav>
+
+<header class="hero">
+  <div class="hero-bg" style="background-image:url('https://img.youtube.com/vi/6NUUu_5wL80/maxresdefault.jpg')"></div>
+  <div class="hero-inner">
+    <p class="eyebrow">VIDEO PRODUCTION FOR BUSINESS</p>
+    <h1>伝えたいことが、<br>ちゃんと伝わる映像を。</h1>
+    <p>企業PR・採用・観光・商品紹介など、目的に合わせた映像をつくります。企画・撮影・編集まで、映像クリエイターのチームが担当します。</p>
+    <div class="btns">
+      <a href="#contact" class="btn btn-w">無料で相談する</a>
+      <a href="#price" class="btn btn-g">料金の目安を見る</a>
+    </div>
+  </div>
+  <div class="hero-points">
+    <span>企画から納品まで一貫対応</span>
+    <span>料金の目安を公開</span>
+    <span>オンライン相談可 <b class="ph">要確認</b></span>
+  </div>
+</header>
+
+<section>
+  <div class="inner">
+    <p class="label">PROBLEM</p>
+    <h2 class="title">映像づくりで、こんなお悩みはありませんか。</h2>
+    <div class="problems">
+      <div class="problem"><div class="n">01</div><h3>自社の魅力が文章や写真だけでは伝わらない</h3><p>サービスの価値や会社の雰囲気を、短い時間で直感的に伝えたい。</p></div>
+      <div class="problem"><div class="n">02</div><h3>何を撮ればいいか整理できていない</h3><p>映像にしたい気持ちはあるが、目的や構成がまだ固まっていない。</p></div>
+      <div class="problem"><div class="n">03</div><h3>どこに依頼すればいいか分からない</h3><p>制作会社ごとに料金や進め方が違い、比較も依頼内容の整理も難しい。</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="gray">
+  <div class="inner">
+    <p class="label">SERVICE</p>
+    <h2 class="title">対応できる映像</h2>
+    <p class="lead"><span class="ph">対応範囲は実際に受けられるものに合わせて調整してください。</span></p>
+    <div class="str-grid">
+      <div class="str"><h3>企業・サービスPR</h3><p>会社紹介や商品・サービスの魅力を伝えるプロモーション映像。Webサイト・SNS・展示会で活用できます。</p></div>
+      <div class="str"><h3>採用PV</h3><p>職場の雰囲気や働く人の表情を伝える採用向けの映像です。</p></div>
+      <div class="str"><h3>観光・施設PR</h3><p>地域や施設、観光サービスの魅力を映像で発信します。</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="works" class="works">
+  <div class="inner">
+    <p class="label">WORKS</p>
+    <h2 class="title">制作実績</h2>
+    <p class="lead">実際に制作した企業向けの映像です。</p>
+
+    <div class="work-main">
+      <a class="thumb" href="https://www.youtube.com/watch?v=EE5jU77ev_g" target="_blank" rel="noopener">
+        <img src="https://img.youtube.com/vi/EE5jU77ev_g/maxresdefault.jpg" alt="神戸観光タクシーポートグループ 観光タクシーPV">
+      </a>
+      <dl class="work-meta">
+        <h3>神戸観光タクシーポートグループ 観光タクシーPV</h3>
+        <dt>制作年</dt><dd>2026</dd>
+        <dt>目的</dt><dd><span class="ph">依頼の背景・課題を記入</span></dd>
+        <dt>制作内容</dt><dd><span class="ph">企画 / 撮影 / 編集 などを記入</span></dd>
+        <dt>成果</dt><dd><span class="ph">お客様の声・反響などを記入</span></dd>
+      </dl>
+    </div>
+
+    <div class="work-sub">
+      <h4>その他の実績</h4>
+      <div class="work-sub-grid">
+        <div>
+          <a class="thumb" href="https://www.youtube.com/watch?v=6NUUu_5wL80" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/6NUUu_5wL80/maxresdefault.jpg" alt="神戸観光タクシーポートグループ 採用PV"></a>
+          <p class="cap">神戸観光タクシーポートグループ 採用PV（2026）</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="gray">
+  <div class="inner">
+    <p class="label">STRENGTH</p>
+    <h2 class="title">Launch.が選ばれる理由</h2>
+    <p class="lead"><span class="ph">以下は仮の文面です。実際の強みに書き換えてください。</span></p>
+    <div class="str-grid">
+      <div class="str"><h3>顔が見えるクリエイターチーム</h3><p>監督・撮影監督など、実際に制作する本人が直接やり取りするため、意図が伝わりやすく、修正もスムーズです。</p></div>
+      <div class="str"><h3>目的から逆算した企画</h3><p>「誰に何を伝えるか」から設計し、見栄えだけで終わらない映像を提案します。</p></div>
+      <div class="str"><h3>企画から納品まで一貫対応</h3><p>撮影・編集を窓口一本で対応。複数社に分けて依頼する手間がありません。</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="price">
+  <div class="inner">
+    <p class="label">PRICE</p>
+    <h2 class="title">料金の目安</h2>
+    <p class="lead">内容・撮影日数・出演人数により変動します。まずはご予算をお聞かせください。</p>
+    <div class="price-grid">
+      <div class="plan">
+        <div class="name">ライト</div><div class="len">尺 <span class="ph">◯</span>分 / 撮影 <span class="ph">◯</span>日</div>
+        <div class="amt"><span class="ph">◯◯万円</span><small> 〜</small></div>
+        <ul><li><span class="ph">内容を記入</span></li><li><span class="ph">内容を記入</span></li><li><span class="ph">内容を記入</span></li></ul>
+      </div>
+      <div class="plan main">
+        <div class="name">スタンダード（おすすめ）</div><div class="len">尺 <span class="ph">◯</span>分 / 撮影 <span class="ph">◯</span>日</div>
+        <div class="amt"><span class="ph">◯◯万円</span><small> 〜</small></div>
+        <ul><li><span class="ph">内容を記入</span></li><li><span class="ph">内容を記入</span></li><li><span class="ph">内容を記入</span></li></ul>
+      </div>
+      <div class="plan">
+        <div class="name">プレミアム</div><div class="len">尺 <span class="ph">◯</span>分 / 撮影 <span class="ph">◯</span>日</div>
+        <div class="amt"><span class="ph">◯◯万円</span><small> 〜</small></div>
+        <ul><li><span class="ph">内容を記入</span></li><li><span class="ph">内容を記入</span></li><li><span class="ph">内容を記入</span></li></ul>
+      </div>
+    </div>
+    <p class="note">※ 表示価格は税別の目安です。<span class="ph">税別/税込・含まれる範囲を確認</span></p>
+  </div>
+</section>
+
+<section id="flow" class="gray">
+  <div class="inner">
+    <p class="label">FLOW</p>
+    <h2 class="title">ご相談から納品までの流れ</h2>
+    <div class="steps">
+      <div class="step"><div class="n">STEP 01</div><h3>ご相談・ヒアリング</h3><p>目的・ターゲット・ご予算をお伺いします。</p></div>
+      <div class="step"><div class="n">STEP 02</div><h3>企画・お見積り</h3><p>構成案とお見積りをご提案します。</p></div>
+      <div class="step"><div class="n">STEP 03</div><h3>撮影</h3><p>職場・社員の皆様を撮影します。</p></div>
+      <div class="step"><div class="n">STEP 04</div><h3>編集・確認</h3><p>初稿をご確認いただき、修正を反映します。<span class="ph">修正回数を記入</span></p></div>
+      <div class="step"><div class="n">STEP 05</div><h3>納品</h3><p>ご希望の形式で納品します。</p></div>
+    </div>
+    <p class="note">ご相談から納品までの目安期間：<span class="ph">◯〜◯週間</span></p>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="inner">
+    <p class="label">FAQ</p>
+    <h2 class="title">よくあるご質問</h2>
+    <div class="faq">
+      <details><summary>制作期間はどのくらいですか？</summary><p><span class="ph">例：ご依頼から納品まで標準で◯〜◯週間です。</span></p></details>
+      <details><summary>修正は何回まで対応してもらえますか？</summary><p><span class="ph">例：初稿提出後◯回まで追加費用なしで対応します。</span></p></details>
+      <details><summary>関西以外でも撮影に来てもらえますか？</summary><p><span class="ph">対応エリアと出張費の扱いを記入</span></p></details>
+      <details><summary>完成した動画の権利はどうなりますか？</summary><p><span class="ph">著作権・二次利用の扱いを記入</span></p></details>
+      <details><summary>まだ内容が固まっていなくても相談できますか？</summary><p>はい、可能です。目的やご予算が未定の段階でもお気軽にご相談ください。</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="gray">
+  <div class="inner">
+    <p class="label">ABOUT</p>
+    <h2 class="title">運営者情報</h2>
+    <dl class="company">
+      <div><dt>屋号</dt><dd>Launch.</dd></div>
+      <div><dt>運営者</dt><dd>大江 章太郎（個人事業主）</dd></div>
+      <div><dt>体制</dt><dd>個人事業主の映像クリエイターによる制作チーム</dd></div>
+      <div><dt>所在地</dt><dd><span class="ph">所在地または「兵庫県」など公開範囲を記入</span></dd></div>
+      <div><dt>事業内容</dt><dd>映像制作（企業PR・採用PV・観光PR・MV・ドキュメンタリー）</dd></div>
+    </dl>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="inner">
+    <p class="label">CONTACT</p>
+    <h2 class="title">まずは無料でご相談ください</h2>
+    <p class="lead">ご予算・納期が未定でも構いません。内容を拝見のうえ、<span class="ph">2営業日以内</span>にご返信します。</p>
+
+    <form id="cform" novalidate>
+      <div class="row2">
+        <div class="f"><label for="company">会社名<em>必須</em></label><input id="company" name="company" required></div>
+        <div class="f"><label for="name">ご担当者名<em>必須</em></label><input id="name" name="name" required></div>
+      </div>
+      <div class="f"><label for="email">メールアドレス<em>必須</em></label><input id="email" name="email" type="email" required></div>
+      <div class="row2">
+        <div class="f"><label for="budget">ご予算の目安</label>
+          <select id="budget" name="budget"><option value="">未定</option><option>〜30万円</option><option>30〜50万円</option><option>50〜100万円</option><option>100万円〜</option></select></div>
+        <div class="f"><label for="deadline">希望納期</label><input id="deadline" name="deadline" placeholder="例：2026年12月末"></div>
+      </div>
+      <div class="f"><label for="message">ご相談内容<em>必須</em></label><textarea id="message" name="message" required placeholder="映像の目的や用途など、分かる範囲でご記入ください"></textarea></div>
+      <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button class="submit" type="submit">送信する</button>
+      <div id="msg" class="msg" role="status"></div>
+      <p class="form-note">ご入力いただいた情報は、お問い合わせへの回答のみに使用します。</p>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 Launch.</span>
+  <ul>
+    <li><a href="index.html">Launch. トップ</a></li>
+    <li><a href="works.html">Works</a></li>
+  </ul>
+</footer>
+
+<div class="sp-cta"><a href="#contact">無料で相談する</a></div>
+
+<script>
+(function () {
+  var form = document.getElementById('cform');
+  var msg = document.getElementById('msg');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    msg.className = 'msg';
+    var data = {};
+    new FormData(form).forEach(function (v, k) { data[k] = String(v).trim(); });
+    if (!data.company || !data.name || !data.email || !data.message) {
+      msg.className = 'msg err'; msg.textContent = '必須項目をご入力ください。'; return;
+    }
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(data.email)) {
+      msg.className = 'msg err'; msg.textContent = 'メールアドレスの形式をご確認ください。'; return;
+    }
+    var btn = form.querySelector('.submit');
+    btn.disabled = true; btn.textContent = '送信中…';
+    fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
+      .then(function (r) { if (!r.ok) throw new Error(); form.reset(); msg.className = 'msg ok'; msg.textContent = '送信しました。内容を確認のうえ、ご連絡いたします。'; })
+      .catch(function () { msg.className = 'msg err'; msg.textContent = '送信に失敗しました。お手数ですが時間をおいて再度お試しください。'; })
+      .finally(function () { btn.disabled = false; btn.textContent = '送信する'; });
+  });
+})();
+</script>
+</body>
+</html>
