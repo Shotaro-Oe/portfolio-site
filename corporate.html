@@ -145,6 +145,8 @@ footer a { text-decoration: none; }
   .nav-links { display: none; }
   section { padding: 68px 20px; }
   .hero { padding: 110px 20px 70px; min-height: 85vh; }
+  .hero h1 { font-size: clamp(22px, 7vw, 32px); line-height: 1.4; }
+  .hero p { font-size: 14px; }
   .problems, .str-grid, .price-grid, .work-sub-grid { grid-template-columns: 1fr; }
   .work-main { grid-template-columns: 1fr; gap: 24px; }
   .steps { grid-template-columns: 1fr; gap: 24px; }
@@ -204,10 +206,11 @@ footer a { text-decoration: none; }
     <p class="label">SERVICE</p>
     <h2 class="title">対応できる映像</h2>
     <p class="lead"><span class="ph">対応範囲は実際に受けられるものに合わせて調整してください。</span></p>
-    <div class="str-grid">
+    <div class="str-grid" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr))">
       <div class="str"><h3>企業・サービスPR</h3><p>会社紹介や商品・サービスの魅力を伝えるプロモーション映像。Webサイト・SNS・展示会で活用できます。</p></div>
       <div class="str"><h3>採用PV</h3><p>職場の雰囲気や働く人の表情を伝える採用向けの映像です。</p></div>
       <div class="str"><h3>観光・施設PR</h3><p>地域や施設、観光サービスの魅力を映像で発信します。</p></div>
+      <div class="str"><h3>ドキュメンタリー</h3><p>経営者や現場に密着し、会社の想いや人柄を伝える映像です。</p></div>
     </div>
   </div>
 </section>
@@ -219,11 +222,11 @@ footer a { text-decoration: none; }
     <p class="lead">実際に制作した企業向けの映像です。</p>
 
     <div class="work-main">
-      <a class="thumb" href="https://www.youtube.com/watch?v=EE5jU77ev_g" target="_blank" rel="noopener">
-        <img src="https://img.youtube.com/vi/EE5jU77ev_g/maxresdefault.jpg" alt="神戸観光タクシーポートグループ 観光タクシーPV">
+      <a class="thumb" href="https://www.youtube.com/watch?v=6NUUu_5wL80" target="_blank" rel="noopener">
+        <img src="https://img.youtube.com/vi/6NUUu_5wL80/maxresdefault.jpg" alt="神戸観光タクシーポートグループ 採用PV">
       </a>
       <dl class="work-meta">
-        <h3>神戸観光タクシーポートグループ 観光タクシーPV</h3>
+        <h3>神戸観光タクシーポートグループ 採用PV</h3>
         <dt>制作年</dt><dd>2026</dd>
         <dt>目的</dt><dd><span class="ph">依頼の背景・課題を記入</span></dd>
         <dt>制作内容</dt><dd><span class="ph">企画 / 撮影 / 編集 などを記入</span></dd>
@@ -232,11 +235,19 @@ footer a { text-decoration: none; }
     </div>
 
     <div class="work-sub">
-      <h4>その他の実績</h4>
+      <h4>その他の企業向け実績</h4>
       <div class="work-sub-grid">
         <div>
-          <a class="thumb" href="https://www.youtube.com/watch?v=6NUUu_5wL80" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/6NUUu_5wL80/maxresdefault.jpg" alt="神戸観光タクシーポートグループ 採用PV"></a>
-          <p class="cap">神戸観光タクシーポートグループ 採用PV（2026）</p>
+          <a class="thumb" href="https://www.youtube.com/watch?v=EE5jU77ev_g" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/EE5jU77ev_g/maxresdefault.jpg" alt="神戸観光タクシーポートグループ 観光タクシーPV"></a>
+          <p class="cap">神戸観光タクシーポートグループ 観光タクシーPV（2026）</p>
+        </div>
+        <div>
+          <a class="thumb" href="https://www.youtube.com/watch?v=H0g-1gybDJw" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/H0g-1gybDJw/maxresdefault.jpg" alt="川岸畜産様 社長密着ドキュメンタリー"></a>
+          <p class="cap">川岸畜産様 社長密着ドキュメンタリー（2025）</p>
+        </div>
+        <div>
+          <a class="thumb" href="https://www.youtube.com/watch?v=_Zw2gbwOdrg" target="_blank" rel="noopener"><img src="https://img.youtube.com/vi/_Zw2gbwOdrg/maxresdefault.jpg" alt="神戸観光タクシー ポートグループ PR映像"></a>
+          <p class="cap">神戸観光タクシー ポートグループ PR映像（2023）</p>
         </div>
       </div>
     </div>
