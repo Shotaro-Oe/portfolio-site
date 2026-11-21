@@ -57,6 +57,24 @@ html{scroll-behavior:smooth}
 .lv{transform-origin:top;animation:lv linear both;animation-timeline:view();animation-range:entry 20% cover 55%}
 .rf{animation:reveal linear both;animation-timeline:view();animation-range:entry 0% cover 45%}
 }
+.spbr{display:none}
+@media (max-width: 760px){
+.spbr{display:inline!important}
+header{padding:20px 20px!important}
+header nav{margin-left:auto;gap:0 18px!important}
+header nav a{letter-spacing:.2em!important}
+#top{padding:132px 24px 72px!important;min-height:640px!important;gap:40px!important}
+#top h1{font-size:22px!important;letter-spacing:.26em!important;padding-left:.5em!important}
+.vline{height:72px!important}
+section{padding-bottom:96px!important}
+#about{padding-top:112px!important;margin-bottom:96px!important}
+#contact{padding-top:96px!important}
+.mqw{margin-bottom:96px!important}
+.vph{flex:none!important;width:62%!important;margin:0 0 0 auto!important}
+.row{padding:32px 0!important;gap:10px!important}
+.row>span{flex:1 1 100%!important}
+.hide-sm{display:none!important}
+}
 @media (prefers-reduced-motion: reduce){
 *,*::before,*::after{animation:none!important;transition:none!important}
 }
@@ -80,8 +98,8 @@ html{scroll-behavior:smooth}
 <!-- ヒーロー：余白の中に、ひとこと -->
 <section id="top" style="position: relative; min-height: min(100vh, 1000px); box-sizing: border-box; padding: 160px 24px 120px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 56px; text-align: center">
 <div class="vline" aria-hidden="true" style="width: 1px; height: 96px; background: #3D3D3D"></div>
-<p class="lbl f1" style="margin: 0; color: #4F5D49">Wedding Films — Osaka</p>
-<h1 style="margin: 0; font-weight: 400; font-size: clamp(24px, 2.6vw, 36px); letter-spacing: 0.32em; line-height: 1.8"><span class="ch" style="animation-delay: 0.80s">お</span><span class="ch" style="animation-delay: 0.92s">二</span><span class="ch" style="animation-delay: 1.04s">人</span><span class="ch" style="animation-delay: 1.16s">の</span><span class="ch" style="animation-delay: 1.28s">想</span><span class="ch" style="animation-delay: 1.40s">い</span><span class="ch" style="animation-delay: 1.52s">を</span><span class="ch" style="animation-delay: 1.64s">、</span><span class="ch" style="animation-delay: 1.76s">届</span><span class="ch" style="animation-delay: 1.88s">け</span><span class="ch" style="animation-delay: 2.00s">る</span><span class="ch" style="animation-delay: 2.12s">。</span></h1>
+<p class="lbl f1" style="margin: 0; padding-left: 0.32em; color: #4F5D49">Wedding Films — Osaka</p>
+<h1 style="margin: 0; width: 100%; box-sizing: border-box; padding-left: 0.8em; text-align: center; text-wrap: balance; font-weight: 400; font-size: clamp(24px, 2.6vw, 36px); letter-spacing: 0.32em; line-height: 1.8"><span class="ch" style="animation-delay: 0.80s">お</span><span class="ch" style="animation-delay: 0.92s">二</span><span class="ch" style="animation-delay: 1.04s">人</span><span class="ch" style="animation-delay: 1.16s">の</span><span class="ch" style="animation-delay: 1.28s">想</span><span class="ch" style="animation-delay: 1.40s">い</span><span class="ch" style="animation-delay: 1.52s">を</span><span class="ch" style="animation-delay: 1.64s">、</span><br class="spbr"><span class="ch" style="animation-delay: 1.76s">届</span><span class="ch" style="animation-delay: 1.88s">け</span><span class="ch" style="animation-delay: 2.00s">る</span><span class="ch" style="animation-delay: 2.12s">。</span></h1>
 <p class="en f2" style="margin: 0; font-style: italic; font-weight: 300; font-size: clamp(20px, 1.8vw, 26px); letter-spacing: 0.04em; line-height: 1.4; color: #4F5D49">A quiet film, for the two of you.</p>
 <a class="btn f3 lbl" href="#contact" style="text-decoration: none; padding: 18px 40px; border: 1px solid #3D3D3D; color: #3D3D3D">Contact us</a>
 </section>
@@ -97,7 +115,7 @@ html{scroll-behavior:smooth}
 </div>
 <figcaption class="lbl" style="margin-top: 16px; color: #4F5D49">Scene 01 — Main Visual（準備中）</figcaption>
 </figure>
-<figure class="drift" style="flex: 1 1 220px; min-width: 0; margin: 0 0 clamp(0px, 8vw, 120px)">
+<figure class="drift vph" style="flex: 1 1 220px; min-width: 0; margin: 0 0 clamp(0px, 8vw, 120px)">
 <div class="rf" role="img" aria-label="写真の枠（縦位置のスチルを入れる予定）" style="aspect-ratio: 3 / 4; background: #DDE3D6"></div>
 <figcaption class="lbl" style="margin-top: 16px; color: #4F5D49">Photo — 準備中</figcaption>
 </figure>
@@ -105,7 +123,7 @@ html{scroll-behavior:smooth}
 </section>
 
 <!-- マーキー -->
-<div aria-hidden="true" style="overflow: hidden; border-top: 1px solid #DDE3D6; border-bottom: 1px solid #DDE3D6; padding: 18px 0; margin: 0 0 clamp(140px, 16vw, 240px)">
+<div class="mqw" aria-hidden="true" style="overflow: hidden; border-top: 1px solid #DDE3D6; border-bottom: 1px solid #DDE3D6; padding: 18px 0; margin: 0 0 clamp(140px, 16vw, 240px)">
 <div class="mq en" style="display: flex; width: max-content; white-space: nowrap; font-style: italic; font-weight: 300; font-size: clamp(26px, 3vw, 40px); line-height: 1.3; color: #5A6E52">
 <span style="padding-right: 48px">Opening Movie　·　Profile Movie　·　Pre-wedding Film　·　Direction　·　Lighting　·　</span>
 <span style="padding-right: 48px">Opening Movie　·　Profile Movie　·　Pre-wedding Film　·　Direction　·　Lighting　·　</span>
