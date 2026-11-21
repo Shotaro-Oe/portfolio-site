@@ -74,6 +74,34 @@ section{padding-bottom:96px!important}
 .row{padding:32px 0!important;gap:10px!important}
 .row>span{flex:1 1 100%!important}
 .hide-sm{display:none!important}
+/* ===== iOS 27 風（launch-films.com のモバイルと同系統）: ガラス質感・角丸・ピル型 ===== */
+body{background:#F1F3EC}
+header{position:fixed!important;top:calc(10px + env(safe-area-inset-top))!important;left:12px!important;right:12px!important;padding:10px 20px!important;border-radius:100px;background:rgba(253,253,251,.72);-webkit-backdrop-filter:blur(24px) saturate(1.8);backdrop-filter:blur(24px) saturate(1.8);border:1px solid rgba(255,255,255,.8);box-shadow:0 8px 30px rgba(60,80,55,.12),inset 0 1.5px 0 rgba(255,255,255,.9)}
+header{flex-wrap:nowrap!important;gap:12px!important}
+header>a:first-child{font-size:18px!important}
+header nav{flex-wrap:nowrap!important;gap:0 14px!important}
+header nav a{font-size:10px!important;letter-spacing:.1em!important;padding:6px 0!important}
+.vcard p br,.pcard p br,#about div p br,.plist p br{display:none}
+.rf{border-radius:20px}
+.btn{border-radius:100px!important;background:rgba(255,255,255,.6)!important;-webkit-backdrop-filter:blur(24px) saturate(1.8);backdrop-filter:blur(24px) saturate(1.8);border:1px solid rgba(255,255,255,.85)!important;box-shadow:0 8px 30px rgba(60,80,55,.12),inset 0 1.5px 0 rgba(255,255,255,.9)}
+#about{margin:0 12px!important;border-radius:28px;padding-left:20px!important;padding-right:20px!important}
+.band{background:transparent!important}
+.vcard,.pcard{background:rgba(255,255,255,.62);-webkit-backdrop-filter:blur(24px) saturate(1.8);backdrop-filter:blur(24px) saturate(1.8);border:1px solid rgba(255,255,255,.85);border-radius:24px;box-shadow:0 8px 30px rgba(60,80,55,.10),0 2px 8px rgba(60,80,55,.06),inset 0 1.5px 0 rgba(255,255,255,.9);padding:32px 22px!important;box-sizing:border-box}
+.vcard{flex:1 1 100%!important}
+.ic{padding:14px;background:rgba(90,110,82,.10);border-radius:18px}
+.ic .pic{width:30px;height:30px}
+.flist{border-top:0!important;display:flex;flex-direction:column;gap:12px}
+.row{background:rgba(255,255,255,.62);-webkit-backdrop-filter:blur(24px) saturate(1.8);backdrop-filter:blur(24px) saturate(1.8);border:1px solid rgba(255,255,255,.85);border-radius:24px;box-shadow:0 8px 30px rgba(60,80,55,.10),inset 0 1.5px 0 rgba(255,255,255,.9);padding:24px 22px!important;border-bottom:1px solid rgba(255,255,255,.85)!important}
+.row:hover{background:rgba(255,255,255,.62)}
+.row:hover .t{transform:none}
+.plist{border-top:0!important;background:rgba(255,255,255,.62);-webkit-backdrop-filter:blur(24px) saturate(1.8);backdrop-filter:blur(24px) saturate(1.8);border:1px solid rgba(255,255,255,.85);border-radius:24px;box-shadow:0 8px 30px rgba(60,80,55,.10),inset 0 1.5px 0 rgba(255,255,255,.9);overflow:hidden}
+.plist li{padding:24px 22px!important;gap:20px!important}
+.plist li:last-child{border-bottom:0!important}
+#process,#films{padding-left:16px!important;padding-right:16px!important}
+#contact{background:transparent!important}
+#wform input,#wform select,#wform textarea{box-sizing:border-box;width:100%;border:1px solid #DDE3D6!important;border-radius:18px!important;background:#F4F6EF!important;padding:14px 16px!important;box-shadow:inset 0 1px 2px rgba(60,80,55,.06)}
+#wform div[style*="flex-wrap"]{gap:36px!important}
+#wsubmit{align-self:stretch!important;border-radius:100px!important;background:#3D3D3D!important;color:#FDFDFB!important;border:0!important;min-height:54px!important;padding:0 24px!important}
 }
 @media (prefers-reduced-motion: reduce){
 *,*::before,*::after{animation:none!important;transition:none!important}
@@ -134,9 +162,9 @@ section{padding-bottom:96px!important}
 <div class="lv" aria-hidden="true" style="width: 1px; height: 80px; background: #7E877A"></div>
 <p class="lbl rv" style="padding-left: 0.32em; margin: 0; color: #C6CFBD">i. About</p>
 <p class="rv" style="padding-left: 0.24em; margin: 0; font-weight: 500; font-size: clamp(22px, 2.4vw, 34px); letter-spacing: 0.24em; line-height: 2">会場の空気が、<br>ふっと変わる数分間を。</p>
-<div class="rv" style="max-width: 540px; display: flex; flex-direction: column; gap: 1.6em; font-size: 15px; color: #DDE3D6">
-<p style="padding-left: 0.14em; margin: 0">披露宴で流れる映像は、ゲストの皆さまが<br>同じ画面を見つめる、数少ない時間です。</p>
-<p style="padding-left: 0.14em; margin: 0">Launch.は、ミュージックビデオで培った<br>企画・撮影・照明・編集の力で、<br>お二人らしさが伝わる一本をお作りします。</p>
+<div class="rv" style="max-width: 700px; display: flex; flex-direction: column; gap: 1.6em; font-size: 15px; color: #DDE3D6">
+<p style="padding-left: 0.14em; margin: 0">披露宴で流れる映像は、ゲストの皆さまが同じ画面を見つめる、数少ない時間です。</p>
+<p style="padding-left: 0.14em; margin: 0">Launch.は、ミュージックビデオで培った企画・撮影・照明・編集の力で、<br>お二人らしさが伝わる一本をお作りします。</p>
 </div>
 </section>
 
@@ -144,24 +172,24 @@ section{padding-bottom:96px!important}
 <section class="band" style="background: #F6F7F2; padding: clamp(120px, 14vw, 200px) clamp(24px, 5vw, 72px)">
 <div style="max-width: 1080px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 80px">
 <p class="lbl rv" style="padding-left: 0.32em; margin: 0; color: #4F5D49">ii. Values</p>
-<div style="width: 100%; display: flex; flex-wrap: wrap; gap: 72px clamp(40px, 6vw, 96px); text-align: center">
-<div class="rv" style="flex: 1 1 260px; display: flex; flex-direction: column; align-items: center; gap: 20px">
-<span style="color:#5A6E52;display:flex"><svg class="pic" width="44" height="44" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 10h32a2 2 0 0 1 2 2v18a2 2 0 0 1-2 2H22l-8 7v-7H8a2 2 0 0 1-2-2V12a2 2 0 0 1 2-2z"/><path d="M24 26.5c-4-2.8-6.5-5-6.5-7.6a3.4 3.4 0 0 1 6.5-1.3 3.4 3.4 0 0 1 6.5 1.3c0 2.6-2.500 4.800-6.500 7.600z"/></svg></span>
+<div style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: 72px; text-align: center">
+<div class="rv vcard" style="flex: 0 1 auto; width: 100%; max-width: 560px; display: flex; flex-direction: column; align-items: center; gap: 20px">
+<span class="ic" style="color:#5A6E52;display:flex"><svg class="pic" width="44" height="44" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 10h32a2 2 0 0 1 2 2v18a2 2 0 0 1-2 2H22l-8 7v-7H8a2 2 0 0 1-2-2V12a2 2 0 0 1 2-2z"/><path d="M24 26.5c-4-2.8-6.5-5-6.5-7.6a3.4 3.4 0 0 1 6.5-1.3 3.4 3.4 0 0 1 6.5 1.3c0 2.6-2.500 4.800-6.500 7.600z"/></svg></span>
 <span class="en" style="padding-left: 0.14em; font-style: italic; font-weight: 300; font-size: 22px; color: #5A6E52">— 01 —</span>
 <h3 style="padding-left: 0.2em; margin: 0; font-size: 16px; font-weight: 500; letter-spacing: 0.2em; line-height: 1.8">お二人の言葉から、<br>企画する</h3>
-<p style="margin: 0; font-size: 14px; color: #4F5D49; text-align: left">お二人のこと、好きな音楽、式のイメージをじっくり伺い、その言葉から映像の方向性を考えます。</p>
+<p style="margin: 0; font-size: 14px; color: #4F5D49; text-align: center">お二人のこと、好きな音楽、式のイメージを<br>じっくり伺い、その言葉から映像の方向性を考えます。</p>
 </div>
-<div class="rv" style="flex: 1 1 260px; display: flex; flex-direction: column; align-items: center; gap: 20px">
-<span style="color:#5A6E52;display:flex"><svg class="pic" width="44" height="44" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 33h12M19.500 38h9"/><path d="M24 6a12 12 0 0 0-6 22.400V33h12v-4.600A12 12 0 0 0 24 6z"/><path d="M24 33V22M20 22h8"/></svg></span>
+<div class="rv vcard" style="flex: 0 1 auto; width: 100%; max-width: 560px; display: flex; flex-direction: column; align-items: center; gap: 20px">
+<span class="ic" style="color:#5A6E52;display:flex"><svg class="pic" width="44" height="44" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 33h12M19.500 38h9"/><path d="M24 6a12 12 0 0 0-6 22.400V33h12v-4.600A12 12 0 0 0 24 6z"/><path d="M24 33V22M20 22h8"/></svg></span>
 <span class="en" style="padding-left: 0.14em; font-style: italic; font-weight: 300; font-size: 22px; color: #5A6E52">— 02 —</span>
 <h3 style="padding-left: 0.2em; margin: 0; font-size: 16px; font-weight: 500; letter-spacing: 0.2em; line-height: 1.8">映画のような、<br>光と画づくり</h3>
-<p style="margin: 0; font-size: 14px; color: #4F5D49; text-align: left">光づくりにこだわり、光の設計から撮影に入ります。大きなスクリーンでも参列者の方に楽しんでもらえる映像を目指します。</p>
+<p style="margin: 0; font-size: 14px; color: #4F5D49; text-align: center">光づくりにこだわり、<br>光の設計から撮影に入ります。<br>大きなスクリーンでも参列者の方に<br>楽しんでもらえる映像を目指します。</p>
 </div>
-<div class="rv" style="flex: 1 1 260px; display: flex; flex-direction: column; align-items: center; gap: 20px">
-<span style="color:#5A6E52;display:flex"><svg class="pic" width="44" height="44" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="17" cy="16" r="5"/><circle cx="32" cy="18" r="4"/><path d="M6 39c0-7 5-12 11-12s11 5 11 12"/><path d="M28 28c1.300-.600 2.700-1 4-1 5 0 9 4 9 10"/></svg></span>
+<div class="rv vcard" style="flex: 0 1 auto; width: 100%; max-width: 560px; display: flex; flex-direction: column; align-items: center; gap: 20px">
+<span class="ic" style="color:#5A6E52;display:flex"><svg class="pic" width="44" height="44" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="17" cy="16" r="5"/><circle cx="32" cy="18" r="4"/><path d="M6 39c0-7 5-12 11-12s11 5 11 12"/><path d="M28 28c1.300-.600 2.700-1 4-1 5 0 9 4 9 10"/></svg></span>
 <span class="en" style="padding-left: 0.14em; font-style: italic; font-weight: 300; font-size: 22px; color: #5A6E52">— 03 —</span>
 <h3 style="padding-left: 0.2em; margin: 0; font-size: 16px; font-weight: 500; letter-spacing: 0.2em; line-height: 1.8">少人数で、<br>最後まで</h3>
-<p style="margin: 0; font-size: 14px; color: #4F5D49; text-align: left">2〜3名の少人数で、ご相談から納品までLaunch.が担当します。撮影の日も、緊張しすぎない、アットホームな空気をつくります。</p>
+<p style="margin: 0; font-size: 14px; color: #4F5D49; text-align: center">2〜3名の少人数で、ご相談から納品までLaunch.が担当します。<br>撮影の日も、緊張しすぎない、アットホームな空気をつくります。</p>
 </div>
 </div>
 </div>
@@ -174,7 +202,7 @@ section{padding-bottom:96px!important}
 <p class="lbl rv" style="padding-left: 0.32em; margin: 0; color: #4F5D49">iii. Films</p>
 <h2 class="rv" style="padding-left: 0.24em; margin: 0; font-weight: 500; font-size: clamp(18px, 1.6vw, 22px); letter-spacing: 0.24em">お作りできる映像</h2>
 </div>
-<div style="width: 100%; border-top: 1px solid #3D3D3D">
+<div class="flist" style="width: 100%; border-top: 1px solid #3D3D3D">
 <a class="row rv" href="#contact" style="display: flex; flex-wrap: wrap; align-items: center; gap: 16px 40px; padding: 44px 16px; border-bottom: 1px solid #C6CFBD; text-decoration: none">
 <span class="hide-sm" aria-hidden="true" style="flex: 0 0 48px; color: #5A6E52; display: flex"><svg class="pic" width="40" height="40" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="19" width="36" height="21" rx="2"/><path d="M6 19l3-9 30 -5 3 9"/><path d="M13 14.500l5 6M23 12.500l5 6M33 10.500l5 6"/></svg></span>
 <span class="t en" style="flex: 1 1 360px; font-style: italic; font-weight: 300; font-size: clamp(34px, 4vw, 56px); line-height: 1.1">Opening Movie</span>
@@ -210,11 +238,11 @@ section{padding-bottom:96px!important}
 <!-- 企画書 -->
 <section class="band" style="background: #ECEFE6; padding: clamp(120px, 14vw, 200px) clamp(24px, 5vw, 72px)">
 <div style="max-width: 1080px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 64px clamp(48px, 8vw, 128px)">
-<div class="rv" style="flex: 1 1 320px; max-width: 560px; min-width: 0; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 28px">
-<span style="color:#5A6E52;display:flex"><svg class="pic" width="44" height="44" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g transform="translate(-0.5 0)"><path d="M12 5h17l9 9v29a1 1 0 0 1-1 1H12a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><path d="M29 5v9h9M17 22h14M17 28h14M17 34h9"/></g></svg></span>
+<div class="rv pcard" style="flex: 1 1 320px; max-width: 560px; min-width: 0; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 28px">
+<span class="ic" style="color:#5A6E52;display:flex"><svg class="pic" width="44" height="44" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g transform="translate(-0.5 0)"><path d="M12 5h17l9 9v29a1 1 0 0 1-1 1H12a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z"/><path d="M29 5v9h9M17 22h14M17 28h14M17 34h9"/></g></svg></span>
 <p class="lbl" style="margin: 0; padding-left: 0.32em; color: #4F5D49">iv. Proposal</p>
 <h2 style="margin: 0; padding-left: 0.24em; font-weight: 500; font-size: clamp(20px, 2vw, 28px); letter-spacing: 0.24em; line-height: 1.9">撮る前に、<br>言葉にする。</h2>
-<p style="margin: 0; padding-left: 0.14em; font-size: 14px; color: #4F5D49">ヒアリングのあと、企画書をお作りします。コンセプト、構成、撮影の内容、スケジュールを1冊にまとめ、お二人と同じ完成像を共有してから撮影に入ります。</p>
+<p style="margin: 0; padding-left: 0.14em; font-size: 14px; color: #4F5D49">ヒアリングのあと、企画書をお作りします。<br>コンセプト、構成、撮影の内容、スケジュールを1冊にまとめ、<br>お二人と同じ完成像を共有してから撮影に入ります。</p>
 </div>
 </div>
 </section>
@@ -226,10 +254,10 @@ section{padding-bottom:96px!important}
 <p class="lbl rv" style="padding-left: 0.32em; margin: 0; color: #4F5D49">v. Process</p>
 <h2 class="rv" style="padding-left: 0.24em; margin: 0; font-weight: 500; font-size: clamp(18px, 1.6vw, 22px); letter-spacing: 0.24em">制作の流れ</h2>
 </div>
-<ol style="width: 100%; list-style: none; margin: 0; padding: 0; border-top: 1px solid #DDE3D6">
+<ol class="plist" style="width: 100%; list-style: none; margin: 0; padding: 0; border-top: 1px solid #DDE3D6">
 <li class="rv" style="display: flex; gap: 32px; align-items: baseline; padding: 32px 0; border-bottom: 1px solid #DDE3D6">
 <span class="en" style="flex: 0 0 40px; font-style: italic; font-size: 22px; color: #5A6E52">01</span>
-<div style="display: flex; flex-direction: column; gap: 4px"><h3 style="margin: 0; font-size: 15px; font-weight: 500; letter-spacing: 0.2em">ご相談</h3><p style="margin: 0; font-size: 14px; color: #4F5D49">フォームかInstagramからご連絡ください。オンラインでも対面でも伺います。</p></div>
+<div style="display: flex; flex-direction: column; gap: 4px"><h3 style="margin: 0; font-size: 15px; font-weight: 500; letter-spacing: 0.2em">ご相談</h3><p style="margin: 0; font-size: 14px; color: #4F5D49">フォームかInstagramからご連絡ください。<br>オンラインでも対面でも伺います。</p></div>
 </li>
 <li class="rv" style="display: flex; gap: 32px; align-items: baseline; padding: 32px 0; border-bottom: 1px solid #DDE3D6">
 <span class="en" style="flex: 0 0 40px; font-style: italic; font-size: 22px; color: #5A6E52">02</span>
