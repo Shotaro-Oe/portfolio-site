@@ -249,7 +249,8 @@ html{scroll-behavior:smooth}
 <p class="en" style="margin: 0; font-style: italic; font-weight: 300; font-size: clamp(32px, 3.6vw, 52px); letter-spacing: 0.02em; line-height: 1.2">Tell us your story.</p>
 <p style="margin: 0; font-size: 14px; color: #4F5D49">まだ何も決まっていない段階でも大丈夫です。<br>お二人のお話を聞かせてください。</p>
 </div>
-<form class="rv" style="width: 100%; max-width: 560px; display: flex; flex-direction: column; gap: 36px">
+<form id="wform" novalidate class="rv" style="width: 100%; max-width: 560px; display: flex; flex-direction: column; gap: 36px">
+<input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
 <label style="display: flex; flex-direction: column; gap: 4px; font-size: 12px; letter-spacing: 0.2em; color: #4F5D49">お名前
 <input type="text" name="name" style="font-size: 16px; letter-spacing: 0.06em; padding: 10px 0; border: 0; border-bottom: 1px solid #7E877A; background: transparent; color: #3D3D3D; border-radius: 0; outline-offset: 4px">
 </label>
@@ -273,7 +274,8 @@ html{scroll-behavior:smooth}
 <label style="display: flex; flex-direction: column; gap: 4px; font-size: 12px; letter-spacing: 0.2em; color: #4F5D49">ご相談内容
 <textarea name="message" rows="4" style="font-size: 16px; letter-spacing: 0.06em; line-height: 1.8; padding: 10px 0; border: 0; border-bottom: 1px solid #7E877A; background: transparent; color: #3D3D3D; border-radius: 0; resize: vertical; outline-offset: 4px"></textarea>
 </label>
-<button class="btn lbl" type="button" style="align-self: center; min-height: 52px; padding: 0 56px; background: transparent; color: #3D3D3D; border: 1px solid #3D3D3D; border-radius: 0; cursor: pointer">Send</button>
+<button class="btn lbl" id="wsubmit" type="submit" style="align-self: center; min-height: 52px; padding: 0 56px; background: transparent; color: #3D3D3D; border: 1px solid #3D3D3D; border-radius: 0; cursor: pointer">Send</button>
+<p id="wmsg" role="status" style="margin: 0; text-align: center; font-size: 13px; letter-spacing: 0.1em; min-height: 1.5em"></p>
 <p style="margin: 0; text-align: center; font-size: 12px; letter-spacing: 0.12em; color: #4F5D49">※ 通常2営業日以内にご返信します。Instagram <a class="ul" href="https://www.instagram.com/launch__films/">@launch__films</a> からもどうぞ。</p>
 </form>
 </section>
@@ -286,5 +288,25 @@ html{scroll-behavior:smooth}
 
 </div>
 
+<script>
+(function () {
+  var form = document.getElementById('wform');
+  var msg = document.getElementById('wmsg');
+  var btn = document.getElementById('wsubmit');
+  function say(t, ok) { msg.style.color = ok ? '#4F5D49' : '#A33'; msg.textContent = t; }
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var data = {};
+    new FormData(form).forEach(function (v, k) { data[k] = String(v).trim(); });
+    if (!data.name || !data.email || !data.message) { say('お名前・メールアドレス・ご相談内容をご入力ください。'); return; }
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(data.email)) { say('メールアドレスの形式をご確認ください。'); return; }
+    btn.disabled = true; btn.textContent = 'Sending…';
+    fetch('/api/contact-wedding', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
+      .then(function (r) { if (!r.ok) throw new Error(); form.reset(); say('送信しました。内容を確認のうえ、ご連絡いたします。', true); })
+      .catch(function () { say('送信に失敗しました。お手数ですが時間をおいて再度お試しいただくか、Instagramからご連絡ください。'); })
+      .finally(function () { btn.disabled = false; btn.textContent = 'Send'; });
+  });
+})();
+</script>
 </body>
 </html>
