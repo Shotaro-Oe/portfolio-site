@@ -710,6 +710,18 @@
     color: rgba(255,255,255,0.3);
     letter-spacing: 0.08em;
   }
+  footer .wedding-link {
+    margin-left: auto;
+    font-size: 10px;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 0.12em;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 100px;
+    padding: 4px 12px;
+    transition: color .2s, border-color .2s;
+  }
+  footer .wedding-link:hover { color: rgba(255,255,255,0.8); border-color: rgba(255,255,255,0.4); }
 
   /* ===== Desktop: Liquid Glass OFF (769px以上) ===== */
   @media (min-width: 769px) {
@@ -1000,6 +1012,7 @@
     .contact { padding: 100px 0; }
     .contact-link { width: 100%; max-width: 320px; }
     footer .inner { flex-direction: column; gap: 8px; }
+    footer .wedding-link { margin-left: 0; }
   }
 </style>
 </head>
@@ -1215,6 +1228,7 @@
   <div class="inner">
     <span>© 2026 Launch.</span>
     <span>Osaka, Japan</span>
+    <a class="wedding-link" href="/wedding">Wedding</a>
   </div>
 </footer>
 
